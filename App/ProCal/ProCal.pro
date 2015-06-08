@@ -5,16 +5,26 @@
 #-------------------------------------------------
 
 QT       += core gui
-
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = ProCal
 TEMPLATE = app
 
+CONFIG += c++11
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+    core/evenement.cpp \
+    ui/mainwindow.cpp \
+    core/programmation.cpp \
+    core/projet.cpp \
+    core/tache.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += \
+    ui/headers/mainwindow.h \
+    core/headers/evenement.h \
+    core/headers/programmation.h \
+    core/headers/projet.h \
+    core/headers/tache.h
 
-FORMS    += mainwindow.ui
+FORMS    += \
+    ui/mainwindow.ui

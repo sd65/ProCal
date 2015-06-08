@@ -10,31 +10,29 @@ class Tache
 {
 private:
 	QString nom;
-    const Tache** succ;
-    const Tache** pred;
+    QList<Tache*> succ;
+    QList<Tache*> pred;
 	QDate disponibilite;
     QDate echeance;
     bool is_Unitaire;
 public:
-    Tache();
+    Tache() {}
+
+    Tache(QString pnom, QList<Tache*> psucc, QList<Tache*> ppred, bool pisUnitaire, QDate pdisponibilite, QDate pecheance) : nom(pnom), succ(psucc), pred(ppred), is_Unitaire(pisUnitaire), disponibilite(pdisponibilite), echeance(pecheance) {}
+
+    const QString& getNom() const { return nom; }
+    const QList<Tache*>getSucc() const { return succ; }
+    const QList<Tache*> getPred() const { return pred; }
+    const QDate getDisponibilite() const { return disponibilite; }
+    const QDate getEcheance() const { return echeance; }
+    bool isUnitaire() const { return is_Unitaire; }
 
     /*
-    const QString& getNom() const { return nom; }
     void setNom(const QString &value) { nom = value; }
-
-    const Tache** getSucc() const { return succ; }
     void setSucc(const Tache** value) { succ = value; }
-
-    const Tache** getPred() const { return pred; }
     void setPred(const Tache** value) { pred = value; }
-
-    const QDate getDisponibilite() const { return disponibilite; }
     void setDisponibilite(const QDate &value) { disponibilite = value; }
-
-    const QDate getEcheance() const { return echeance; }
     void setEcheance(const QDate &value) { echeance = value; }
-
-    bool isUnitaire() const { return is_Unitaire; }
     void setUnitaire(const bool &value) { is_Unitaire = value; }
     */
 };

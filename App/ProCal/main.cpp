@@ -18,12 +18,16 @@ int main(int argc, char *argv[])
     // For each
     foreach(Projet* projet, myProjetManager.getProjets())
     {
-            qDebug() << projet->getNom() << projet->getDisponibilite() << projet->getEcheance();
+      qDebug() << projet->getNom() << projet->getDisponibilite() << projet->getEcheance();
     }
 
     // Select one
      Projet* p1 = myProjetManager.getProjets().value("Projet un");
      qDebug() << p1->getNom();
+
+     //Todo, make this work !
+    // QList<Tache*>* vide = new QList<Tache*>;
+    // p1->creerTache("Tache1",QList<Tache*>, QList<Tache*>, true);
 
 
     /* /// UI ///

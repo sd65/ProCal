@@ -20,7 +20,7 @@ private:
     QString nom;
     QDate disponibilite;
     QDate echeance;
-    Tache** taches;
+    QMap<QString, Tache*> taches;
 
 public:
 
@@ -30,7 +30,10 @@ public:
         echeance = e;
     }
 
-
+    void creerTache(const QString& pnom, const QList<Tache*>& psucc, const QList<Tache*>& ppred, const bool& pisUnitaire, const QDate& pdisponibilite = QDate::currentDate(), const QDate& pecheance = QDate::currentDate().addMonths(1)) {
+        Tache* newTache = new Tache(pnom, psucc, ppred, pisUnitaire, pdisponibilite, pecheance);
+        taches.insert(pnom, newTache);
+    }
 
     const QString getNom() const { return nom; }
     const QDate getDisponibilite() const { return disponibilite; }
@@ -68,9 +71,8 @@ public:
 
     QMap<QString, Projet*> getProjets() const { return projets; }
 
-    void creerProjet(QString n, QDate d = QDate::currentDate(), QDate e = QDate()) {
-        if(e.isNull()) // Default argument for echeance
-             e = d.addMonths(2);
+     void creerProjet(const QString& n, const QDate& d = QDate::currentDate(), const QDate &e = QDate::currentDate().addMonths(1))
+    {
         Projet* newProject = new Projet(n, d, e);
         projets.insert(n, newProject);
     }

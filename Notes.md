@@ -13,3 +13,14 @@ Arguments par default pour simplifier leur Utilisation
 Singleton en static
 Liste method : construct, functions, getters
 Some macros
+Les activités ont forcement une date de prévu
+Singleton sur ProjetManaer et Programmation
+Composite sur tache
+
+
+
+
+Notes pour nous :
+
+Besoin à partir d'une tache de remonter à son nom de projet ?
+On ne peut pas faire hériter TAche UNitaire de evenement, mais tout Tache

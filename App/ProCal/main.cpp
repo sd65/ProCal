@@ -6,6 +6,7 @@
 
 #include "ui/headers/mainwindow.h"
 #include "core/headers/projet.h"
+#include "core/headers/programmation.h"
 
 #define creerTacheConteneur( nom, ... )  QList<Tache*> * nom = new QList<Tache*> __VA_ARGS__;
 
@@ -51,6 +52,37 @@ int main(int argc, char *argv[])
     p1->creerTacheComposite("TacheComposite1", *compo);
     qDebug() << p1->getTaches().value("TacheComposite1")->toString();
 
+    /////////////
+    // Activite
+
+    ActiviteManager& myActiviteManager = ActiviteManager::getInstance();
+    myActiviteManager.creerActivite("Activité un", "Balancoire");
+    myActiviteManager.creerActivite("Activité deux", "RDV galant");
+
+    // For each
+    foreach(Activite* activite, myActiviteManager.getActivites())
+        qDebug() << activite->toString();
+
+    Activite* a1 = myActiviteManager.getActivites().value("Activité un");
+    qDebug() << a1->toString();
+    Activite* a2 = myActiviteManager.getActivites().value("Activité deux");
+
+
+    /////////////////
+    // Programmation
+
+    Programmation& myProgrammation = Programmation::getInstance();
+    myProgrammation.programmer(a1, QDateTime::currentDateTime().addSecs(3600), QDateTime::currentDateTime().addSecs(10000));
+    myProgrammation.programmer(a2, QDateTime::currentDateTime().addMonths(1), QDateTime::currentDateTime().addMonths(1).addSecs(3600));
+
+    myProgrammation.programmer(t2, QDateTime::currentDateTime().addMonths(2), QDateTime::currentDateTime().addMonths(2).addSecs(3600));
+
+    foreach(Evenement* evenement, myProgrammation.getProgrammation())
+        qDebug() << evenement->toString();
+
+
+    ////////
+    // UI
 
     bool launchUI = false;
     if(launchUI) {

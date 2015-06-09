@@ -9,7 +9,7 @@
 ////////////////
 // CLASS Tache
 
-class Tache
+class Tache : public Evenement
 {
 
 private:
@@ -27,7 +27,7 @@ protected:
 
 public:
 
-    virtual QString toString() const;
+    virtual QString toString() const=0;
 
     const QString& getNom() const { return nom; }
     const QList<Tache*>getSucc() const { return succ; }
@@ -54,7 +54,7 @@ public:
 ///////////////////////
 // CLASS Tache Unitaire
 
-class TacheUnitaire : public Tache, public Evenement
+class TacheUnitaire : public Tache
 {
 
 private:
@@ -95,8 +95,6 @@ private:
 public:
 
     TacheComposite(const QString& pnom, const QList<Tache*>& pcomposition, const QList<Tache*>& psucc, const QList<Tache*>& ppred, const QDate& pdisponibilite, const QDate& pecheance) : Tache(pnom, psucc, ppred, false, pdisponibilite, pecheance), composition(pcomposition)  {}
-
-    QDate fin(TacheComposite&);
 
     QString toString() const;
 };

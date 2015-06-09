@@ -20,6 +20,8 @@ QString TacheUnitaire::toString() const {
     QString d = Tache::toString();
     d.append(" | Duree : " + QString::number(this->getDuree()));
     d.append(" | Preemptive : " + this->isPreemptiveToString());
+    d.append(" PROGRAMMATION | debut : " + this->getDebut().toString());
+    d.append(" | fin : " + this->getFin().toString());
     return d;
 }
 

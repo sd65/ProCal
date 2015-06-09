@@ -6,10 +6,29 @@
 class Programmation
 {
 private:
-	Evenement** programmation;
+    QList<Evenement*> programmation;
+
+    // Singleton
+    Programmation() {}
+    Programmation(Programmation const&) = delete;
+    void operator=(Programmation const&) = delete;
+    // End Singleton
+
 public:
-    Programmation();
+
+    // Singleton
+    static Programmation& getInstance()
+    {
+        static Programmation instance;
+        return instance;
+    }
+    // End Singleton
+
+    bool programmer(Evenement *e, const QDateTime &d, const QDateTime &f);
+
     int getDureeRestante(Evenement&);
+
+    QList<Evenement*> getProgrammation() const { return programmation; }
 };
 
 #endif // PROGRAMMATION_H

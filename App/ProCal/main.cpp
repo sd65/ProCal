@@ -1,12 +1,13 @@
 #include <algorithm>
 
 #include <QApplication>
-#include  <QDebug>
-#include  <QDate>
-
+#include <QDebug>
+#include <QDate>
 
 #include "ui/headers/mainwindow.h"
 #include "core/headers/projet.h"
+
+#define creerTacheConteneur( nom, ... )  QList<Tache*> * nom = new QList<Tache*> __VA_ARGS__;
 
 int main(int argc, char *argv[])
 {
@@ -20,13 +21,12 @@ int main(int argc, char *argv[])
 
     // For each
     foreach(Projet* projet, myProjetManager.getProjets())
-    {
-        qDebug() << projet->getNom() << projet->getDisponibilite() << projet->getEcheance();
-    }
+        qDebug() << projet->toString();
+
 
     // Select one
     Projet* p1 = myProjetManager.getProjets().value("Projet un");
-    qDebug() << p1->getNom();
+    qDebug() << p1->toString();
 
     ///////////////
     // Create Taches
@@ -36,21 +36,24 @@ int main(int argc, char *argv[])
 
 
     foreach(Tache* tache, p1->getTaches())
-    {
         qDebug() << tache->toString();
-    }
 
     Tache* t1 = p1->getTaches().value("Tache1");
     Tache* t3 = p1->getTaches().value("Tache3");
 
-    QList<Tache*> * pred = new QList<Tache*> {t1};
-    QList<Tache*> * succ = new QList<Tache*> {t3};
-    p1->creerTacheUnitaire("Tache2", 20, false, *pred, *succ);
-    qDebug() << p1->getTaches().value("Tache2")->toString();
+    creerTacheConteneur(pred, {t1});
+    creerTacheConteneur(succ, {t3});
+    p1->creerTacheUnitaire("Tache2", 10, false, *pred, *succ);
+    Tache* t2 = p1->getTaches().value("Tache2");
+    qDebug() << t2->toString();
+
+    creerTacheConteneur(compo, {t1, t2, t3});
+    p1->creerTacheComposite("TacheComposite1", *compo);
+    qDebug() << p1->getTaches().value("TacheComposite1")->toString();
 
 
 
-    bool launchUI = true;
+    bool launchUI = false;
     if(launchUI) {
         QApplication a(argc, argv);
         MainWindow w;

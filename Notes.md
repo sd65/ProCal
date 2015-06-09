@@ -10,3 +10,6 @@ Fichiers rangés dans des dossiers
 foreach(Projet* projet, myProjetManager.getProjets())
 Utilisation des QMap pour projet et projet manager
 Arguments par default pour simplifier leur Utilisation
+Singleton en static
+Liste method : construct, functions, getters
+Some macros

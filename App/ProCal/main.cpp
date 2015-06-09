@@ -31,22 +31,23 @@ int main(int argc, char *argv[])
     ///////////////
     // Create Taches
 
-    p1->creerTache("Tache1", true);
-    p1->creerTache("Tache3", true);
+    p1->creerTacheUnitaire("Tache1");
+    p1->creerTacheUnitaire("Tache3");
+
 
     foreach(Tache* tache, p1->getTaches())
     {
         qDebug() << tache->toString();
     }
 
-
     Tache* t1 = p1->getTaches().value("Tache1");
     Tache* t3 = p1->getTaches().value("Tache3");
 
     QList<Tache*> * pred = new QList<Tache*> {t1};
     QList<Tache*> * succ = new QList<Tache*> {t3};
-    p1->creerTache("Tache2", true, *pred, *succ);
+    p1->creerTacheUnitaire("Tache2", 20, false, *pred, *succ);
     qDebug() << p1->getTaches().value("Tache2")->toString();
+
 
 
 

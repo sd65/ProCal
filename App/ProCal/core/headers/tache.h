@@ -15,11 +15,11 @@ private:
 	QDate disponibilite;
     QDate echeance;
     bool is_Unitaire;
+
+protected:
+    Tache(const QString& pnom, const QList<Tache*>& psucc, const QList<Tache*>& ppred, const bool& pisUnitaire, const QDate& pdisponibilite, const QDate& pecheance) : nom(pnom), succ(psucc), pred(ppred), is_Unitaire(pisUnitaire), disponibilite(pdisponibilite), echeance(pecheance) {}
+
 public:
-    Tache() {}
-
-    Tache(QString pnom, QList<Tache*> psucc, QList<Tache*> ppred, bool pisUnitaire, QDate pdisponibilite, QDate pecheance) : nom(pnom), succ(psucc), pred(ppred), is_Unitaire(pisUnitaire), disponibilite(pdisponibilite), echeance(pecheance) {}
-
     const QString& getNom() const { return nom; }
     const QList<Tache*>getSucc() const { return succ; }
     const QList<Tache*> getPred() const { return pred; }
@@ -28,7 +28,7 @@ public:
     bool isUnitaire() const { return is_Unitaire; }
     QString isUnitaireToString() const { return is_Unitaire ? "true" : "false"; }
 
-    QString toString() const {
+    virtual QString toString() const {
        QString d = this->getNom();
        d.append(" | DISPO : " + this->getDisponibilite().toString());
        d.append(" | ECHEANCE : " + this->getDisponibilite().toString());
@@ -60,15 +60,23 @@ class TacheUnitaire : public Tache, public Evenement
 {
 private:
 	int duree;
-    bool is_Preemtive;
+    bool is_Preemptive;
 public:
-    TacheUnitaire();
+    TacheUnitaire(const QString& pnom, const int& pduree, const bool& pisPreemptive, const QList<Tache*>& psucc, const QList<Tache*>& ppred, const QDate& pdisponibilite, const QDate& pecheance) : Tache(pnom, psucc, ppred, true, pdisponibilite, pecheance), duree(pduree), is_Preemptive(pisPreemptive)  {}
+
+    QString toString() const {
+       QString d = Tache::toString();
+       d.append(" | Duree : " + QString::number(this->getDuree()));
+       d.append(" | Preemptive : " + this->isPreemptiveToString());
+       return d;
+    }
+
+    int getDuree() const { return duree; }
+    bool isPreemptive() const { return is_Preemptive; }
+    QString isPreemptiveToString() const { return is_Preemptive ? "true" : "false"; }
 
     /*
-    int getDuree() const { return duree; }
     void setDuree(const int &value) { duree = value; }
-
-    bool isPreemtive() const { return is_Preemtive; }
     void setPreemtive(const bool &value) { is_Preemtive = value; }
     */
 };

@@ -32,17 +32,9 @@ public:
 
     QMap<QString, Tache*> getTaches() const { return taches; }
 
-    void creerTache(const QString& pnom, const bool& pisUnitaire, const QList<Tache*>& ppred = QList<Tache*>(), const QList<Tache*>& psucc = QList<Tache*>(), const QDate& pdisponibilite = QDate::currentDate(), const QDate& pecheance = QDate::currentDate().addMonths(1)) {
-        if(pisUnitaire)
-        {
-            TacheUnitaire* newTache = new Tache(pnom, psucc, ppred, pisUnitaire, pdisponibilite, pecheance);
+    void creerTacheUnitaire(const QString& pnom, const int& pduree = 10, const bool& pisPreemptive = false, const QList<Tache*>& ppred = QList<Tache*>(), const QList<Tache*>& psucc = QList<Tache*>(), const QDate& pdisponibilite = QDate::currentDate(), const QDate& pecheance = QDate::currentDate().addMonths(1)) {
+            TacheUnitaire* newTache = new TacheUnitaire(pnom, pduree, pisPreemptive, psucc, ppred, pdisponibilite, pecheance);
             taches.insert(pnom, newTache);
-        }
-        else
-        {
-
-        }
-
     }
 
     const QString getNom() const { return nom; }

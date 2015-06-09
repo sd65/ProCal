@@ -52,7 +52,6 @@ int main(int argc, char *argv[])
     qDebug() << p1->getTaches().value("TacheComposite1")->toString();
 
 
-
     bool launchUI = false;
     if(launchUI) {
         QApplication a(argc, argv);

@@ -26,6 +26,23 @@ public:
     const QDate getDisponibilite() const { return disponibilite; }
     const QDate getEcheance() const { return echeance; }
     bool isUnitaire() const { return is_Unitaire; }
+    QString isUnitaireToString() const { return is_Unitaire ? "true" : "false"; }
+
+    QString toString() const {
+       QString d = this->getNom();
+       d.append(" | DISPO : " + this->getDisponibilite().toString());
+       d.append(" | ECHEANCE : " + this->getDisponibilite().toString());
+       d.append(" | UNITAIRE : " + this->isUnitaireToString());
+       foreach(Tache* tache, this->pred)
+       {
+           d.append(" | PRED : " + tache->getNom());
+       }
+       foreach(Tache* tache, this->succ)
+       {
+           d.append(" | SUCC : " + tache->getNom());
+       }
+       return d;
+    }
 
     /*
     void setNom(const QString &value) { nom = value; }

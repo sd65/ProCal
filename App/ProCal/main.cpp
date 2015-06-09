@@ -10,6 +10,9 @@
 
 int main(int argc, char *argv[])
 {
+    ////////////////
+    // Create Projet
+
     ProjetManager& myProjetManager = ProjetManager::getInstance();
     myProjetManager.creerProjet("Projet un");
     myProjetManager.creerProjet("Projet deux", QDate(2020,1,1));
@@ -18,16 +21,41 @@ int main(int argc, char *argv[])
     // For each
     foreach(Projet* projet, myProjetManager.getProjets())
     {
-      qDebug() << projet->getNom() << projet->getDisponibilite() << projet->getEcheance();
+        qDebug() << projet->getNom() << projet->getDisponibilite() << projet->getEcheance();
     }
 
     // Select one
-     Projet* p1 = myProjetManager.getProjets().value("Projet un");
-     qDebug() << p1->getNom();
+    Projet* p1 = myProjetManager.getProjets().value("Projet un");
+    qDebug() << p1->getNom();
 
-     //Todo, make this work !
-    // QList<Tache*>* vide = new QList<Tache*>;
-    // p1->creerTache("Tache1",QList<Tache*>, QList<Tache*>, true);
+    ///////////////
+    // Create Taches
+
+    p1->creerTache("Tache1", true);
+    p1->creerTache("Tache3", true);
+
+    foreach(Tache* tache, p1->getTaches())
+    {
+        qDebug() << tache->toString();
+    }
+
+
+    Tache* t1 = p1->getTaches().value("Tache1");
+    Tache* t3 = p1->getTaches().value("Tache3");
+
+    QList<Tache*> * pred = new QList<Tache*> {t1};
+    QList<Tache*> * succ = new QList<Tache*> {t3};
+    p1->creerTache("Tache2", true, *pred, *succ);
+    qDebug() << p1->getTaches().value("Tache2")->toString();
+
+
+
+
+
+
+
+
+
 
 
     /* /// UI ///

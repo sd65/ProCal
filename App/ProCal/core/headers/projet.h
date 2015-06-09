@@ -30,9 +30,19 @@ public:
         echeance = e;
     }
 
-    void creerTache(const QString& pnom, const QList<Tache*>& psucc, const QList<Tache*>& ppred, const bool& pisUnitaire, const QDate& pdisponibilite = QDate::currentDate(), const QDate& pecheance = QDate::currentDate().addMonths(1)) {
-        Tache* newTache = new Tache(pnom, psucc, ppred, pisUnitaire, pdisponibilite, pecheance);
-        taches.insert(pnom, newTache);
+    QMap<QString, Tache*> getTaches() const { return taches; }
+
+    void creerTache(const QString& pnom, const bool& pisUnitaire, const QList<Tache*>& ppred = QList<Tache*>(), const QList<Tache*>& psucc = QList<Tache*>(), const QDate& pdisponibilite = QDate::currentDate(), const QDate& pecheance = QDate::currentDate().addMonths(1)) {
+        if(pisUnitaire)
+        {
+            TacheUnitaire* newTache = new Tache(pnom, psucc, ppred, pisUnitaire, pdisponibilite, pecheance);
+            taches.insert(pnom, newTache);
+        }
+        else
+        {
+
+        }
+
     }
 
     const QString getNom() const { return nom; }

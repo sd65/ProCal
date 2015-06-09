@@ -50,20 +50,12 @@ int main(int argc, char *argv[])
 
 
 
+    bool launchUI = true;
+    if(launchUI) {
+        QApplication a(argc, argv);
+        MainWindow w;
+        w.show();
 
-
-
-
-
-
-
-
-
-    /* /// UI ///
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-
-    return a.exec();
-    */
+        return a.exec();
+     }
 }

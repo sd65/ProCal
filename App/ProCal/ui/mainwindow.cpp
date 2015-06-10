@@ -62,7 +62,7 @@ void MainWindow::updateListeActivites()
 
 void MainWindow::updateLundiCourant(const QDate & date)
 {
-    jourSelectionne = ui->calendrier->selectedDate();
+    jourSelectionne = date;
 }
 
 void MainWindow::updateListeProjets()

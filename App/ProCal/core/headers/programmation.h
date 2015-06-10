@@ -31,11 +31,7 @@ public:
 
     QList<Evenement*>* getProgrammation() { return &programmation; }
 
-    QList<Evenement*>* getWeekEvents(const QDate& monday)
-    {
-        foreach(Evenement* evenement, *this->getProgrammation())
-            qDebug() << evenement->toString();
-    }
+    QList<Evenement*>* getWeekEvents(const QDate& monday);
 };
 
 #endif // PROGRAMMATION_H

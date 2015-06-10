@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>add.svg</file>
+        <file>dialog-ok.svg</file>
+        <file>help-about.svg</file>
+        <file>appointment.svg</file>
+        <file>edit-find.svg</file>
+        <file>yellow-document-open.svg</file>
+        <file>pink-document-open.svg</file>
+        <file>office-calendar.svg</file>
+    </qresource>
+</RCC>

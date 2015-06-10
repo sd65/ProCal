@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="add">../../../../../../Téléchargements/ic/start/add.svg</file>
+        <file>../../../../../../Téléchargements/ic/dialog-ok.svg</file>
+        <file>../../../../../../Téléchargements/ic/help-about.svg</file>
+        <file>../../../../../../Téléchargements/ic/zoom-in.svg</file>
+        <file>../../../../../../Téléchargements/ic/appointment.svg</file>
+        <file>../../../../../../Téléchargements/ic/edit-find.svg</file>
+        <file>../../../../../../Téléchargements/ic/gnumeric.svg</file>
+        <file>../../../../../../Téléchargements/ic/yellow-document-open.svg</file>
+        <file>../../../../../../Téléchargements/ic/pink-document-open.svg</file>
+        <file>../../../../../../Téléchargements/ic/orange-document-open.svg</file>
+        <file>../../../../../../Téléchargements/ic/office-calendar.svg</file>
+        <file>../../../../../../Téléchargements/ic/addressbook.svg</file>
+    </qresource>
+</RCC>

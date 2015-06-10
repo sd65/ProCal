@@ -34,3 +34,8 @@ FORMS    += \
     ui/mainwindow.ui \
     ui/ajouteractivite.ui \
     ui/ajouterprojet.ui
+
+RESOURCES += \
+    ui/icons/iconsressourcefile.qrc
+
+DISTFILES +=

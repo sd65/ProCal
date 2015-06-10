@@ -17,7 +17,11 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Projet Calendar</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="icons/iconsressourcefile.qrc">
+    <normaloff>:/office-calendar.svg</normaloff>:/office-calendar.svg</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="minimumSize">
@@ -57,6 +61,10 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <attribute name="icon">
+          <iconset resource="icons/iconsressourcefile.qrc">
+           <normaloff>:/pink-document-open.svg</normaloff>:/pink-document-open.svg</iconset>
+         </attribute>
          <attribute name="title">
           <string>Activités</string>
          </attribute>
@@ -65,6 +73,10 @@
            <widget class="QPushButton" name="ajouterActivite">
             <property name="text">
              <string>Ajouter une activité</string>
+            </property>
+            <property name="icon">
+             <iconset resource="icons/iconsressourcefile.qrc">
+              <normaloff>:/add.svg</normaloff>:/add.svg</iconset>
             </property>
            </widget>
           </item>
@@ -80,6 +92,10 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <attribute name="icon">
+          <iconset resource="icons/iconsressourcefile.qrc">
+           <normaloff>:/yellow-document-open.svg</normaloff>:/yellow-document-open.svg</iconset>
+         </attribute>
          <attribute name="title">
           <string>Projets</string>
          </attribute>
@@ -88,6 +104,10 @@
            <widget class="QPushButton" name="ajouterProjet">
             <property name="text">
              <string>Ajouter un projet</string>
+            </property>
+            <property name="icon">
+             <iconset resource="icons/iconsressourcefile.qrc">
+              <normaloff>:/add.svg</normaloff>:/add.svg</iconset>
             </property>
            </widget>
           </item>
@@ -102,18 +122,10 @@
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1053</width>
-     <height>29</height>
-    </rect>
-   </property>
-  </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="icons/iconsressourcefile.qrc"/>
+ </resources>
  <connections/>
 </ui>

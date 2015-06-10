@@ -19,12 +19,12 @@ ajouterActivite::~ajouterActivite()
 void ajouterActivite::closeEvent(QCloseEvent *event)
 {
     qDebug() << ui->label->text();
-    qDebug() << "sdsdd";
-    event->ignore();
+    qDebug() << "DONE !";
+    event->accept();
 }
 
 void ajouterActivite::accept() {
-    qDebug() << "OK PRESSED";
+    this->close();
 }
 
 

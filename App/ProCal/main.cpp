@@ -12,7 +12,7 @@
 
 int main(int argc, char *argv[])
 {
-    /*
+
     ////////////////
     // Create Projet
 
@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     myProjetManager.creerProjet("Projet un");
     myProjetManager.creerProjet("Projet deux", QDate(2020,1,1));
     myProjetManager.creerProjet("Projet trois", QDate(2030,1,1), QDate(2030,1,2));
-
+/*
     // For each
     foreach(Projet* projet, myProjetManager.getProjets())
         qDebug() << projet->toString();
@@ -55,11 +55,11 @@ int main(int argc, char *argv[])
 
     /////////////
     // Activite
-
+*/
     ActiviteManager& myActiviteManager = ActiviteManager::getInstance();
     myActiviteManager.creerActivite("Activité un", "Balancoire");
     myActiviteManager.creerActivite("Activité deux", "RDV galant");
-
+/*
     // For each
     foreach(Activite* activite, myActiviteManager.getActivites())
         qDebug() << activite->toString();

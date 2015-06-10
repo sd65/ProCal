@@ -17,6 +17,7 @@ public:
 
 private slots:
     void boutonajouterActivite();
+    void boutonajouterProjet();
 
 private:
     Ui::MainWindow *ui;

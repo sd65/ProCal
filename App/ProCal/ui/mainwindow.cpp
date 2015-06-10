@@ -4,7 +4,11 @@
 #include "headers/ajouteractivite.h"
 #include "ui_ajouteractivite.h"
 
+#include "headers/ajouterprojet.h"
+#include "ui_ajouterprojet.h"
+
 #include "core/headers/evenement.h"
+#include "core/headers/projet.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -15,8 +19,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Fake activites
     ActiviteManager& myActiviteManager = ActiviteManager::getInstance();
-    myActiviteManager.creerActivite("Activité un", "Balancoire");
-    myActiviteManager.creerActivite("Activité deux", "RDV galant");
 
     QFont wantedFont;
     wantedFont.setPointSize(20);
@@ -29,7 +31,19 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->listeActivites->addItem(item);
     }
 
+    //Fake activites
+    ProjetManager& myProjetManager = ProjetManager::getInstance();
+
+    // For each add
+    foreach(Projet* projet, myProjetManager.getProjets())
+    {
+        QListWidgetItem * item = new  QListWidgetItem(projet->getNom());
+        item->setFont(wantedFont);
+        ui->listeProjets->addItem(item);
+    }
+
     connect(ui->ajouterActivite, SIGNAL (clicked()), this, SLOT (boutonajouterActivite()));
+    connect(ui->ajouterProjet, SIGNAL (clicked()), this, SLOT (boutonajouterProjet()));
 }
 
 MainWindow::~MainWindow()
@@ -40,5 +54,11 @@ MainWindow::~MainWindow()
 void MainWindow::boutonajouterActivite()
 {
     ajouterActivite a;
+    a.exec();
+}
+
+void MainWindow::boutonajouterProjet()
+{
+    ajouterProjet a;
     a.exec();
 }

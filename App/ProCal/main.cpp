@@ -12,6 +12,7 @@
 
 int main(int argc, char *argv[])
 {
+    /*
     ////////////////
     // Create Projet
 
@@ -79,17 +80,16 @@ int main(int argc, char *argv[])
 
     foreach(Evenement* evenement, myProgrammation.getProgrammation())
         qDebug() << evenement->toString();
-
+    */
 
     ////////
     // UI
 
-    bool launchUI = false;
+    bool launchUI = true;
     if(launchUI) {
         QApplication a(argc, argv);
         MainWindow w;
-        w.show();
-
+        w.showMaximized();
         return a.exec();
      }
 }

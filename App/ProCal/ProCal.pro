@@ -17,14 +17,17 @@ SOURCES += main.cpp\
     ui/mainwindow.cpp \
     core/programmation.cpp \
     core/projet.cpp \
-    core/tache.cpp
+    core/tache.cpp \
+    ui/ajouteractivite.cpp
 
 HEADERS  += \
     ui/headers/mainwindow.h \
     core/headers/evenement.h \
     core/headers/programmation.h \
     core/headers/projet.h \
-    core/headers/tache.h
+    core/headers/tache.h \
+    ui/headers/ajouteractivite.h
 
 FORMS    += \
-    ui/mainwindow.ui
+    ui/mainwindow.ui \
+    ui/ajouteractivite.ui

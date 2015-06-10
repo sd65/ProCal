@@ -1,14 +1,19 @@
+#include <QDebug>
+#include <QCloseEvent>
+#include <QMessageBox>
+
 #include "ui/headers/ajouteractivite.h"
 #include "ui_ajouteractivite.h"
 
-#include <QDebug>
-#include <QCloseEvent>
+#include "core/headers/evenement.h"
 
 ajouterActivite::ajouterActivite(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ajouterActivite)
 {
     ui->setupUi(this);
+    ui->debut->setDateTime(QDateTime::currentDateTime());
+    ui->fin->setDateTime(QDateTime::currentDateTime().addSecs(3600));
 }
 
 ajouterActivite::~ajouterActivite()
@@ -16,15 +21,36 @@ ajouterActivite::~ajouterActivite()
     delete ui;
 }
 
-void ajouterActivite::closeEvent(QCloseEvent *event)
-{
-    qDebug() << ui->label->text();
-    qDebug() << "DONE !";
-    event->accept();
-}
-
 void ajouterActivite::accept() {
-    this->close();
+    bool statusOk = true;
+    QString message;
+
+    if(ui->nom->text().isEmpty() || ui->type->toPlainText().isEmpty())
+    {
+        message += "Remplissez tous les champs !";
+        statusOk = false;
+    }
+
+    if(ui->debut->dateTime() > ui->fin->dateTime())
+    {
+        message += "\nLa fin est antérieure au début !";
+        statusOk = false;
+    }
+
+    if(statusOk)
+    {
+        ActiviteManager& myActiviteManager = ActiviteManager::getInstance();
+        myActiviteManager.creerActivite(ui->nom->text(), ui->type->toPlainText());
+        this->close();
+    }
+    else
+    {
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Attention !", message + "\n\nRééssayer ?", QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::No) {
+            this->close();
+        }
+    }
 }
 
 

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>440</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,12 +35,55 @@
     <widget class="QTextEdit" name="type"/>
    </item>
    <item>
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>Début</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDateTimeEdit" name="debut">
+     <property name="currentSection">
+      <enum>QDateTimeEdit::DaySection</enum>
+     </property>
+     <property name="displayFormat">
+      <string>dddd dd MMMM yyyy à HH:mm</string>
+     </property>
+     <property name="calendarPopup">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>Fin</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDateTimeEdit" name="fin">
+     <property name="showGroupSeparator" stdset="0">
+      <bool>false</bool>
+     </property>
+     <property name="currentSection">
+      <enum>QDateTimeEdit::DaySection</enum>
+     </property>
+     <property name="displayFormat">
+      <string>dddd dd MMMM yyyy à HH:mm</string>
+     </property>
+     <property name="calendarPopup">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QDialogButtonBox" name="buttonOk">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
      <property name="standardButtons">
-      <set>QDialogButtonBox::Ok</set>
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Save</set>
      </property>
      <property name="centerButtons">
       <bool>true</bool>
@@ -80,6 +123,22 @@
     <hint type="destinationlabel">
      <x>286</x>
      <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>debut</sender>
+   <signal>dateChanged(QDate)</signal>
+   <receiver>fin</receiver>
+   <slot>setDate(QDate)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>199</x>
+     <y>316</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>380</y>
     </hint>
    </hints>
   </connection>

@@ -13,9 +13,6 @@ private:
     QDateTime fin;
 
 public:
-
-    Evenement() : debut(QDateTime()), fin(QDateTime()) {}
-
     virtual QString toString() const =0;
 
     virtual QDateTime getDebut() const { return debut; }
@@ -23,6 +20,11 @@ public:
 
     void setDebut(const QDateTime &value) { debut = value; }
     void setFin(const QDateTime &value) { fin = value; }
+
+protected:
+
+    Evenement(const QDateTime& pdebut = QDateTime(), const QDateTime& pfin = QDateTime()) : debut(pdebut), fin(pfin) {}
+
 };
 
 class Activite : public Evenement
@@ -30,12 +32,12 @@ class Activite : public Evenement
 
 private:
 
-	QString nom;
-	QString type;
+    QString nom;
+    QString type;
 
 public:
 
-    Activite(const QString& n, const QString& t) : nom(n), type(t) {}
+    Activite(const QString& n, const QString& t, const QDateTime& pdebut = QDateTime::currentDateTime().addDays(1), const QDateTime& pfin = QDateTime::currentDateTime().addDays(1).addSecs(3600)) : Evenement(pdebut, pfin), nom(n), type(t) {}
 
     QString toString() const;
 
@@ -43,8 +45,8 @@ public:
     const QString& getType() const { return type; }
 
     /*
-    void setNom(const QString &value) { nom = value; } 
-    void setType(const QString &value) { type = value; } 
+    void setNom(const QString &value) { nom = value; }
+    void setType(const QString &value) { type = value; }
     */
 
 };
@@ -75,7 +77,7 @@ public:
     }
     // End Singleton
 
-     void creerActivite(const QString& n, const QString& t)
+    void creerActivite(const QString& n, const QString& t)
     {
         Activite* newActivite= new Activite(n, t);
         activites.insert(n, newActivite);

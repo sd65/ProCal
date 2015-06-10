@@ -31,6 +31,9 @@ private:
     {
         return jourSelectionne.addDays(- jourSelectionne.dayOfWeek() + 1);
     }
+
+    void updateListeActivites();
+    void updateListeProjets();
 };
 
 #endif // MAINWINDOW_H

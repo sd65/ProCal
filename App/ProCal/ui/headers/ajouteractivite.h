@@ -18,9 +18,7 @@ public:
 private:
     Ui::ajouterActivite *ui;
 
-    void closeEvent(QCloseEvent * event);
-
-     void accept();
+    void accept();
 
 };
 

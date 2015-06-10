@@ -1,16 +1,14 @@
 #ifndef PROJET_H
 #define PROJET_H
 
-#include <vector>
-
 #include <QDate>
 #include <QString>
+#include <QColor>
 #include <QDebug>
 
+
 #include "tache.h"
-
-using namespace std;
-
+class Tache; // Forward declare
 ////////////////
 // CLASS Projet
 
@@ -23,10 +21,14 @@ private:
     QDate disponibilite;
     QDate echeance;
     QMap<QString, Tache*> taches;
+    QColor couleur;
 
 public:
 
-    Projet(QString n, QDate d, QDate e) : nom(n), disponibilite(d), echeance(e) {}
+    Projet(QString n, QDate d, QDate e) : nom(n), disponibilite(d), echeance(e) {
+        QColor colors[] {"#d1e277", "#f9dd81", "#ffc265", "#ff9696", "#d7afe6"};
+        couleur = colors[rand() % (sizeof(colors)/sizeof(*colors))];
+    }
 
     bool creerTacheUnitaire(const QString& pnom, const int& pduree = 10, const bool& pisPreemptive = false, const QList<Tache*>& ppred = QList<Tache*>(), const QList<Tache*>& psucc = QList<Tache*>(), const QDate& pdisponibilite = QDate::currentDate(), const QDate& pecheance = QDate::currentDate().addMonths(1)); // See CPP
 
@@ -36,7 +38,8 @@ public:
 
     QString toString() const; // See CPP
 
-    QMap<QString, Tache*> getTaches() const { return taches; }
+    QMap<QString, Tache*>* getTaches() { return &taches; }
+    QColor getCouleur() const { return couleur; }
     const QString getNom() const { return nom; }
     const QDate getDisponibilite() const { return disponibilite; }
     const QDate getEcheance() const { return echeance; }
@@ -84,7 +87,7 @@ public:
         projets.insert(n, newProject);
     }
 
-    QMap<QString, Projet*> getProjets() const { return projets; }
+    QMap<QString, Projet*>* getProjets() { return &projets; }
 
 };
 

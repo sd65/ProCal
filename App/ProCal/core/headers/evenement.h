@@ -23,7 +23,6 @@ public:
 
     void setDebut(const QDateTime &value) { debut = value; }
     void setFin(const QDateTime &value) { fin = value; }
-
 };
 
 class Activite : public Evenement
@@ -82,7 +81,7 @@ public:
         activites.insert(n, newActivite);
     }
 
-    QMap<QString, Activite*> getActivites() const { return activites; }
+    QMap<QString, Activite*>* getActivites() { return &activites; }
 
 };
 

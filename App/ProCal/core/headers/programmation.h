@@ -2,6 +2,7 @@
 #define PROGRAMMATION_H
 
 #include "evenement.h"
+#include <QDebug>
 
 class Programmation
 {
@@ -28,7 +29,13 @@ public:
 
     int getDureeRestante(Evenement&);
 
-    QList<Evenement*> getProgrammation() const { return programmation; }
+    QList<Evenement*>* getProgrammation() { return &programmation; }
+
+    QList<Evenement*>* getWeekEvents(const QDate& monday)
+    {
+        foreach(Evenement* evenement, *this->getProgrammation())
+            qDebug() << evenement->toString();
+    }
 };
 
 #endif // PROGRAMMATION_H

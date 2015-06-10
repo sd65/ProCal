@@ -10,32 +10,25 @@
 #include "core/headers/evenement.h"
 #include "core/headers/projet.h"
 
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    //Fake activites
-    ActiviteManager& myActiviteManager = ActiviteManager::getInstance();
-
     QFont wantedFont;
     wantedFont.setPointSize(20);
 
-    // For each add
-    foreach(Activite* activite, myActiviteManager.getActivites())
+    ActiviteManager& myActiviteManager = ActiviteManager::getInstance();
+    foreach(Activite* activite, *myActiviteManager.getActivites())
     {
         QListWidgetItem * item = new  QListWidgetItem(activite->getNom());
         item->setFont(wantedFont);
         ui->listeActivites->addItem(item);
     }
 
-    //Fake activites
     ProjetManager& myProjetManager = ProjetManager::getInstance();
-
-    // For each add
-    foreach(Projet* projet, myProjetManager.getProjets())
+    foreach(Projet* projet, *myProjetManager.getProjets())
     {
         QListWidgetItem * item = new  QListWidgetItem(projet->getNom());
         item->setFont(wantedFont);
@@ -44,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->ajouterActivite, SIGNAL (clicked()), this, SLOT (boutonajouterActivite()));
     connect(ui->ajouterProjet, SIGNAL (clicked()), this, SLOT (boutonajouterProjet()));
+    connect(ui->calendrier, SIGNAL (clicked(QDate)), this, SLOT (updateLundiCourant(QDate)));
 }
 
 MainWindow::~MainWindow()
@@ -61,4 +55,12 @@ void MainWindow::boutonajouterProjet()
 {
     ajouterProjet a;
     a.exec();
+}
+
+
+void MainWindow::updateLundiCourant(const QDate & date)
+{
+    jourSelectionne = ui->calendrier->selectedDate();
+    qDebug() << jourSelectionne;
+    this->getSelectedMonday();
 }

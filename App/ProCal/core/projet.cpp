@@ -7,7 +7,7 @@ bool Projet::creerTacheUnitaire(const QString &pnom, const int &pduree, const bo
     else if (status)
     {
         status = true;
-        TacheUnitaire* newTache = new TacheUnitaire(pnom, pduree, pisPreemptive, psucc, ppred, pdisponibilite, pecheance);
+        TacheUnitaire* newTache = new TacheUnitaire(pnom, pduree, pisPreemptive, psucc, ppred, pdisponibilite, pecheance, this);
         taches.insert(pnom, newTache);
     }
     return status;
@@ -28,7 +28,7 @@ bool Projet::creerTacheComposite(const QString &pnom, const QList<Tache *> &pcom
     else if (status)
     {
         status = true;
-        TacheComposite* newTache = new TacheComposite(pnom, pcomposition, psucc, ppred, pdisponibilite, pecheance);
+        TacheComposite* newTache = new TacheComposite(pnom, pcomposition, psucc, ppred, pdisponibilite, pecheance, this);
         taches.insert(pnom, newTache);
     }
     return status;

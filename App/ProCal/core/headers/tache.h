@@ -5,6 +5,8 @@
 #include <QString>
 
 #include "evenement.h"
+#include "projet.h"
+class Projet; // Forward declare
 
 ////////////////
 // CLASS Tache
@@ -20,15 +22,17 @@ private:
 	QDate disponibilite;
     QDate echeance;
     bool is_Unitaire;
+    Projet* projet;
 
 protected:
 
-    Tache(const QString& pnom, const QList<Tache*>& psucc, const QList<Tache*>& ppred, const bool& pisUnitaire, const QDate& pdisponibilite, const QDate& pecheance) : nom(pnom), succ(psucc), pred(ppred), is_Unitaire(pisUnitaire), disponibilite(pdisponibilite), echeance(pecheance) {}
+    Tache(const QString& pnom, const QList<Tache*>& psucc, const QList<Tache*>& ppred, const bool& pisUnitaire, const QDate& pdisponibilite, const QDate& pecheance, Projet* pprojet) : nom(pnom), succ(psucc), pred(ppred), disponibilite(pdisponibilite), echeance(pecheance), is_Unitaire(pisUnitaire), projet(pprojet)  {}
 
 public:
 
     virtual QString toString() const=0;
 
+    const Projet* getProjet() const { return projet; }
     const QString& getNom() const { return nom; }
     const QList<Tache*>getSucc() const { return succ; }
     const QList<Tache*> getPred() const { return pred; }
@@ -64,7 +68,7 @@ private:
 
 public:
 
-    TacheUnitaire(const QString& pnom, const int& pduree, const bool& pisPreemptive, const QList<Tache*>& psucc, const QList<Tache*>& ppred, const QDate& pdisponibilite, const QDate& pecheance) : Tache(pnom, psucc, ppred, true, pdisponibilite, pecheance), duree(pduree), is_Preemptive(pisPreemptive)  {}
+    TacheUnitaire(const QString& pnom, const int& pduree, const bool& pisPreemptive, const QList<Tache*>& psucc, const QList<Tache*>& ppred, const QDate& pdisponibilite, const QDate& pecheance, Projet* pprojet) : Tache(pnom, psucc, ppred, true, pdisponibilite, pecheance, pprojet), duree(pduree), is_Preemptive(pisPreemptive)  {}
 
     QString toString() const;
 
@@ -94,7 +98,7 @@ private:
 
 public:
 
-    TacheComposite(const QString& pnom, const QList<Tache*>& pcomposition, const QList<Tache*>& psucc, const QList<Tache*>& ppred, const QDate& pdisponibilite, const QDate& pecheance) : Tache(pnom, psucc, ppred, false, pdisponibilite, pecheance), composition(pcomposition)  {}
+    TacheComposite(const QString& pnom, const QList<Tache*>& pcomposition, const QList<Tache*>& psucc, const QList<Tache*>& ppred, const QDate& pdisponibilite, const QDate& pecheance, Projet* pprojet) : Tache(pnom, psucc, ppred, false, pdisponibilite, pecheance, pprojet), composition(pcomposition)  {}
 
     QString toString() const;
 };

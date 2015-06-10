@@ -30,7 +30,7 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QCalendarWidget" name="calendarWidget"/>
+       <widget class="QCalendarWidget" name="calendrier"/>
       </item>
       <item>
        <widget class="QTableView" name="tableView"/>
@@ -105,7 +105,7 @@
      <x>0</x>
      <y>0</y>
      <width>1053</width>
-     <height>22</height>
+     <height>29</height>
     </rect>
    </property>
   </widget>

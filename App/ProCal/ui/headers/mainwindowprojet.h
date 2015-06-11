@@ -11,9 +11,12 @@ class MainWindowProjet : public QMainWindow
 {
     Q_OBJECT
 
+    QString nomProjet;
+
 public:
-    explicit MainWindowProjet(QWidget *parent = 0);
+    explicit MainWindowProjet(QWidget *parent, QString pprojetName);
     ~MainWindowProjet();
+
 
 private:
     Ui::MainWindowProjet *ui;

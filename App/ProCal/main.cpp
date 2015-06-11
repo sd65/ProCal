@@ -9,7 +9,7 @@
 #include "core/headers/projet.h"
 #include "core/headers/programmation.h"
 
-#define creerTacheConteneur( nom, ... )  QList<Tache*> * nom = new QList<Tache*> __VA_ARGS__;
+#define creerTacheConteneur( nom, ... ) QList<Tache*> * nom = new QList<Tache*> __VA_ARGS__;
 
 int main(int argc, char *argv[])
 {
@@ -45,8 +45,7 @@ int main(int argc, char *argv[])
 
     //    qDebug() << t1->getProjet()->getNom();
 
-    creerTacheConteneur(pred, {t1});
-    p1->creerTacheUnitaire("Tache2", 10, false, *pred);
+    p1->creerTacheUnitaire("Tache2", 10, false, t1);
     Tache* t2 = p1->getTaches()->value("Tache2");
     //    qDebug() << t2->toString();
 

@@ -7,6 +7,9 @@
 #include "headers/ajouterprojet.h"
 #include "ui_ajouterprojet.h"
 
+#include "headers/mainwindowprojet.h"
+#include "ui_mainwindowprojet.h"
+
 #include "core/headers/evenement.h"
 #include "core/headers/projet.h"
 
@@ -25,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->ajouterActivite, SIGNAL (clicked()), this, SLOT (boutonajouterActivite()));
     connect(ui->ajouterProjet, SIGNAL (clicked()), this, SLOT (boutonajouterProjet()));
     connect(ui->calendrier, SIGNAL (clicked(QDate)), this, SLOT (updateJourSelectionne(QDate)));
-    //connect(ui->listeProjets, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(projetClic(QListWidgetItem*));
+    connect(ui->listeProjets, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(projetClic(QListWidgetItem*)));
 
 }
 
@@ -64,7 +67,6 @@ void MainWindow::updateListeActivites()
         ui->listeActivites->addItem(item);
     }
     ui->listeActivites->sortItems();
-    this->getSelectedMonday();
 }
 
 void MainWindow::updateJourSelectionne(const QDate & date)
@@ -72,9 +74,16 @@ void MainWindow::updateJourSelectionne(const QDate & date)
     jourSelectionne = ui->calendrier->selectedDate();
 }
 
+void MainWindow::projetClic(QListWidgetItem *projet)
+{
+    MainWindowProjet * a = new MainWindowProjet(this, projet->text());
+    a->setAttribute(Qt::WA_DeleteOnClose);
+    a->show();
+}
+
 void MainWindow::updateVueHebdomadaire()
 {
-   //Mise à jour des labels horizontaux
+    //Mise à jour des labels horizontaux
     QStringList listeJours(getSelectedMonday().toString());
     int i;
     for(i=0;i<7;i++){

@@ -14,6 +14,7 @@ private:
 
 public:
     virtual QString toString() const =0;
+    virtual const QString& getNom() const =0;
 
     virtual QDateTime getDebut() const { return debut; }
     QDateTime getFin() const { return fin; }
@@ -40,7 +41,6 @@ public:
     Activite(const QString& n, const QString& t, const QDateTime& pdebut = QDateTime::currentDateTime().addDays(1), const QDateTime& pfin = QDateTime::currentDateTime().addDays(1).addSecs(3600)) : Evenement(pdebut, pfin), nom(n), type(t) {}
 
     QString toString() const;
-
     const QString& getNom() const { return nom; }
     const QString& getType() const { return type; }
 

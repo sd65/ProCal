@@ -10,6 +10,8 @@
 #include "core/headers/evenement.h"
 #include "core/headers/projet.h"
 
+#include "core/headers/programmation.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -17,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     this->updateListeActivites();
     this->updateListeProjets();
+    this->updateVueHebdomadaire();
 
     connect(ui->ajouterActivite, SIGNAL (clicked()), this, SLOT (boutonajouterActivite()));
     connect(ui->ajouterProjet, SIGNAL (clicked()), this, SLOT (boutonajouterProjet()));
@@ -63,6 +66,27 @@ void MainWindow::updateListeActivites()
 void MainWindow::updateLundiCourant(const QDate & date)
 {
     jourSelectionne = date;
+}
+
+void MainWindow::updateVueHebdomadaire()
+{
+   //Mise à jour des labels horizontaux
+    QStringList listeJours(getSelectedMonday().toString());
+    int i;
+    for(i=0;i<7;i++){
+        listeJours << getSelectedMonday().addDays(i).toString();
+    }
+    ui->vueHebdomadaire->setHorizontalHeaderLabels(listeJours);
+
+    qDebug() << getSelectedMonday().toString();
+
+   //Mise à jour des evenements de la semaine
+
+    Programmation& myProgrammation = Programmation::getInstance();
+
+    foreach(Evenement* evenement, *myProgrammation.getWeekEvents(getSelectedMonday()))
+        qDebug() << evenement->getNom();
+
 }
 
 void MainWindow::updateListeProjets()

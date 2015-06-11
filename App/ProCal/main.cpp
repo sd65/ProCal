@@ -5,6 +5,7 @@
 #include <QDate>
 
 #include "ui/headers/mainwindow.h"
+#include "ui_mainwindow.h"
 #include "core/headers/projet.h"
 #include "core/headers/programmation.h"
 
@@ -94,4 +95,5 @@ int main(int argc, char *argv[])
         w.showMaximized();
         return a.exec();
     }
+
 }

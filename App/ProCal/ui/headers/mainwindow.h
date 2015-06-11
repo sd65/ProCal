@@ -4,6 +4,7 @@
 #include "QDate"
 #include "QDebug"
 #include <QMainWindow>
+#include <QStandardItem>
 
 namespace Ui {
 class MainWindow;
@@ -32,6 +33,7 @@ private:
         return jourSelectionne.addDays(- jourSelectionne.dayOfWeek() + 1);
     }
 
+    void updateVueHebdomadaire();
     void updateListeActivites();
     void updateListeProjets();
 };

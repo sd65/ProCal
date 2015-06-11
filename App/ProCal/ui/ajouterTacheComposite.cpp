@@ -26,8 +26,8 @@ ajouterTacheComposite::ajouterTacheComposite(QWidget *parent, Projet* pprojet) :
     foreach(Tache* tache, *projet->getTaches())
     {
         it = new QListWidgetItem(tache->getNom());
-        it->setFlags(it->flags() | Qt::ItemIsUserCheckable); // set checkable flag
-        it->setCheckState(Qt::Unchecked); // AND initialize check state
+        it->setFlags(it->flags() | Qt::ItemIsUserCheckable);
+        it->setCheckState(Qt::Unchecked);
         ui->listeContient->addItem(it);
     }
 
@@ -59,11 +59,20 @@ void ajouterTacheComposite::accept() {
 
     if(statusOk)
     {
-//        Tache* pred = nullptr;
-//        if(ui->constraitsToogle->isChecked())
-//            pred = projet->getTaches()->value(ui->listeTachesPred->currentItem()->text());
-//        projet->creerTacheUnitaire(ui->nom->text(), ui->duree->time(), ui->preemptive->isChecked(), pred, ui->disponibilite->date(), ui->echeance->date());
-//        this->close();
+        Tache* pred = nullptr;
+        if(ui->constraitsToogle->isChecked())
+            pred = projet->getTaches()->value(ui->listeTachesPred->currentItem()->text());
+
+        QList<Tache *> contientTache;
+        for(int i = 0; i < ui->listeContient->count(); ++i)
+        {
+            QListWidgetItem* item = ui->listeContient->item(i);
+            if(item->checkState())
+                contientTache.append(projet->getTaches()->value(item->text()));
+        }
+
+        projet->creerTacheComposite(ui->nom->text(), contientTache, pred, ui->disponibilite->date(), ui->echeance->date());
+        this->close();
     }
     else
     {

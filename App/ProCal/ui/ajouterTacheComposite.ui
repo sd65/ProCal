@@ -190,5 +190,21 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>ajouterTacheComposite</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>412</x>
+     <y>530</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>412</x>
+     <y>276</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
 </ui>

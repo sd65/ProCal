@@ -1,11 +1,14 @@
-#include "headers/mainwindow.h"
+#include "headers/mainWindow.h"
 #include "ui_mainwindow.h"
 
-#include "headers/ajouteractivite.h"
+#include "headers/ajouterActivite.h"
 #include "ui_ajouteractivite.h"
 
-#include "headers/ajouterprojet.h"
+#include "headers/ajouterProjet.h"
 #include "ui_ajouterprojet.h"
+
+#include "headers/mainWindowProjet.h"
+#include "ui_mainwindowprojet.h"
 
 #include "core/headers/evenement.h"
 #include "core/headers/projet.h"
@@ -27,7 +30,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->ajouterProjet, SIGNAL (clicked()), this, SLOT (boutonajouterProjet()));
     connect(ui->calendrier, SIGNAL (clicked(QDate)), this, SLOT (updateJourSelectionne(QDate)));
     connect(ui->calendrier, SIGNAL (clicked(QDate)), this, SLOT (updateVueHebdomadaire()));
-    //connect(ui->listeProjets, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(projetClic(QListWidgetItem*));
+    connect(ui->listeProjets, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(projetClic(QListWidgetItem*)));
+
 
 }
 
@@ -66,7 +70,6 @@ void MainWindow::updateListeActivites()
         ui->listeActivites->addItem(item);
     }
     ui->listeActivites->sortItems();
-    this->getSelectedMonday();
 }
 
 void MainWindow::updateJourSelectionne(const QDate & date)
@@ -74,8 +77,15 @@ void MainWindow::updateJourSelectionne(const QDate & date)
     jourSelectionne = ui->calendrier->selectedDate();
 }
 
-void MainWindow::updateVueHebdomadaire()
+void MainWindow::projetClic(QListWidgetItem *projet)
 {
+    MainWindowProjet * a = new MainWindowProjet(this, projet->text());
+    a->setAttribute(Qt::WA_DeleteOnClose);
+    a->show();
+}
+
+void MainWindow::updateVueHebdomadaire() {
+
     //Nettoyage de l'affichage précédent
     ui->vueHebdomadaire->clearContents();
 
@@ -113,15 +123,14 @@ void MainWindow::updateVueHebdomadaire()
         ui->vueHebdomadaire->setItem(ligne,-colonne + 1,titre);
 
         ligne++;
-//        while ( ligne > ( ( evenement->getFin().time().hour()-8 ) * 4 + ( evenement->getFin().time().minute() )%15 ) ) {
-//            QTableWidgetItem * duree = new QTableWidgetItem();
-//            duree->setBackgroundColor(Qt::red);
-//            ui->vueHebdomadaire->setItem(ligne,-colonne + 1,duree);
-//            ligne++;
-//        }
-
-
-
+        qDebug() << evenement->getFin().toString();
+        while ( ligne - ((evenement->getFin().time().hour() - 8 ) * 4 + ( evenement->getFin().time().minute()/15 )) < 0 ) {
+            qDebug() << ligne;
+            QTableWidgetItem * duree = new QTableWidgetItem();
+            duree->setBackgroundColor(Qt::red);
+            ui->vueHebdomadaire->setItem(ligne,-colonne + 1,duree);
+            ligne++;
+        }
     }
 }
 

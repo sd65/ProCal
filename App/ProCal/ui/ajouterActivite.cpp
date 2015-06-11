@@ -2,7 +2,7 @@
 #include <QCloseEvent>
 #include <QMessageBox>
 
-#include "ui/headers/ajouteractivite.h"
+#include "ui/headers/ajouterActivite.h"
 #include "ui_ajouteractivite.h"
 
 #include "core/headers/evenement.h"

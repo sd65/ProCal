@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindowProjet</class>
+ <widget class="QMainWindow" name="MainWindowProjet">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Editeur de projet</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QTreeWidget" name="tree">
+      <column>
+       <property name="text">
+        <string>Nom de la tache</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QGroupBox" name="groupBox">
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>0</height>
+         </size>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QPushButton" name="addUnitaire">
+           <property name="text">
+            <string>Ajouter une tache unitaire</string>
+           </property>
+           <property name="icon">
+            <iconset resource="icons/iconsressourcefile.qrc">
+             <normaloff>:/add.svg</normaloff>:/add.svg</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="addComposite">
+           <property name="text">
+            <string>Ajouter une tache composite</string>
+           </property>
+           <property name="icon">
+            <iconset resource="icons/iconsressourcefile.qrc">
+             <normaloff>:/orange-add-folders-to-archive.svg</normaloff>:/orange-add-folders-to-archive.svg</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="Line" name="line">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton">
+           <property name="text">
+            <string>Programmer cette tache</string>
+           </property>
+           <property name="icon">
+            <iconset resource="icons/iconsressourcefile.qrc">
+             <normaloff>:/appointment.svg</normaloff>:/appointment.svg</iconset>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTextBrowser" name="detailTache">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>250</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="icons/iconsressourcefile.qrc"/>
+ </resources>
+ <connections/>
+</ui>

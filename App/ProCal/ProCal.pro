@@ -14,29 +14,35 @@ CONFIG += c++11
 
 SOURCES += main.cpp\
     core/evenement.cpp \
-    ui/mainwindow.cpp \
     core/programmation.cpp \
     core/projet.cpp \
     core/tache.cpp \
-    ui/ajouteractivite.cpp \
-    ui/ajouterprojet.cpp \
-    ui/mainwindowprojet.cpp
+    ui/ajouterTacheUnitaire.cpp \
+    ui/ajouterTacheComposite.cpp \
+    ui/ajouterActivite.cpp \
+    ui/ajouterProjet.cpp \
+    ui/mainWindow.cpp \
+    ui/mainWindowProjet.cpp
 
 HEADERS  += \
-    ui/headers/mainwindow.h \
     core/headers/evenement.h \
     core/headers/programmation.h \
     core/headers/projet.h \
     core/headers/tache.h \
-    ui/headers/ajouteractivite.h \
-    ui/headers/ajouterprojet.h \
-    ui/headers/mainwindowprojet.h
+    ui/headers/ajouterTacheUnitaire.h \
+    ui/headers/ajouterTacheComposite.h \
+    ui/headers/ajouterActivite.h \
+    ui/headers/ajouterProjet.h \
+    ui/headers/mainWindow.h \
+    ui/headers/mainWindowProjet.h
 
 FORMS    += \
-    ui/mainwindow.ui \
-    ui/ajouteractivite.ui \
-    ui/ajouterprojet.ui \
-    ui/mainwindowprojet.ui
+    ui/ajouterTacheUnitaire.ui \
+    ui/ajouterTacheComposite.ui \
+    ui/ajouterActivite.ui \
+    ui/ajouterProjet.ui \
+    ui/mainWindow.ui \
+    ui/mainWindowProjet.ui
 
 RESOURCES += \
     ui/icons/iconsressourcefile.qrc

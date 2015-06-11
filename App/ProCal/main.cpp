@@ -4,12 +4,12 @@
 #include <QDebug>
 #include <QDate>
 
-#include "ui/headers/mainwindow.h"
+#include "ui/headers/mainWindow.h"
 #include "ui_mainwindow.h"
 #include "core/headers/projet.h"
 #include "core/headers/programmation.h"
 
-#define creerTacheConteneur( nom, ... )  QList<Tache*> * nom = new QList<Tache*> __VA_ARGS__;
+#define creerTacheConteneur( nom, ... ) QList<Tache*> * nom = new QList<Tache*> __VA_ARGS__;
 
 int main(int argc, char *argv[])
 {
@@ -45,12 +45,11 @@ int main(int argc, char *argv[])
 
     //    qDebug() << t1->getProjet()->getNom();
 
-    creerTacheConteneur(pred, {t1});
-    p1->creerTacheUnitaire("Tache2", 10, false, *pred);
+    p1->creerTacheUnitaire("Tache2", QTime(0,10), false, t1);
     Tache* t2 = p1->getTaches()->value("Tache2");
     //    qDebug() << t2->toString();
 
-    creerTacheConteneur(compo, {t1, t2, t3});
+    creerTacheConteneur(compo, {t1, t2});
     p1->creerTacheComposite("TacheComposite1", *compo);
     //    qDebug() << p1->getTaches()->value("TacheComposite1")->toString();
 
@@ -74,7 +73,7 @@ int main(int argc, char *argv[])
     // Programmation
 
     Programmation& myProgrammation = Programmation::getInstance();
-    myProgrammation.programmer(a1, QDateTime::currentDateTime().addSecs(3600 * 9), QDateTime::currentDateTime().addSecs(10000));
+    myProgrammation.programmer(a1, QDateTime::currentDateTime().addSecs(3600 * 9), QDateTime::currentDateTime().addSecs(3600*10));
     myProgrammation.programmer(a2, QDateTime::currentDateTime().addDays(1), QDateTime::currentDateTime().addDays(1).addSecs(3600));
     myProgrammation.programmer(t2, QDateTime::currentDateTime().addDays(12), QDateTime::currentDateTime().addDays(13).addSecs(3600));
 

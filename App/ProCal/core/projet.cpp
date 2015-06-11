@@ -1,8 +1,8 @@
 #include "headers/projet.h"
 
-bool Projet::creerTacheUnitaire(const QString &pnom, const int &pduree, const bool &pisPreemptive, const QList<Tache *> &ppred, const QDate &pdisponibilite, const QDate &pecheance) {
+bool Projet::creerTacheUnitaire(const QString &pnom, const QTime &pduree, const bool &pisPreemptive, Tache* ppred, const QDate &pdisponibilite, const QDate &pecheance) {
     bool status = this->precheck(pdisponibilite, pecheance);
-    if(!pisPreemptive && pduree > 12)
+    if(!pisPreemptive && pduree > QTime(12,0))
         qWarning("Votre tache ne peut pas excéder 12h sans être preemptive !");
     else if (status)
     {
@@ -13,7 +13,7 @@ bool Projet::creerTacheUnitaire(const QString &pnom, const int &pduree, const bo
     return status;
 }
 
-bool Projet::creerTacheComposite(const QString &pnom, const QList<Tache *> &pcomposition, const QList<Tache *> &ppred, const QDate &pdisponibilite, const QDate &pecheance) {
+bool Projet::creerTacheComposite(const QString &pnom, const QList<Tache *> &pcomposition, Tache* ppred, const QDate &pdisponibilite, const QDate &pecheance) {
     bool status = this->precheck(pdisponibilite, pecheance);
     foreach(Tache* tache, pcomposition)
     {

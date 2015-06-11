@@ -5,16 +5,15 @@ QString Tache::toString() const {
     d.append(" | DISPO : " + this->getDisponibilite().toString());
     d.append(" | ECHEANCE : " + this->getEcheance().toString());
     d.append(" | UNITAIRE : " + this->isUnitaireToString());
-    foreach(Tache* tache, this->pred)
-    {
-        d.append(" | PRED : " + tache->getNom());
-    }
+    if (pred != nullptr)
+        d.append(" | PRED : " + pred->getNom());
+
     return d;
 }
 
 QString TacheUnitaire::toString() const {
     QString d = Tache::toString();
-    d.append(" | Duree : " + QString::number(this->getDuree()));
+    d.append(" | Duree : " + this->getDuree().toString());
     d.append(" | Preemptive : " + this->isPreemptiveToString());
     d.append(" PROGRAMMATION | debut : " + this->getDebut().toString());
     d.append(" | fin : " + this->getFin().toString());

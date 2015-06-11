@@ -5,6 +5,7 @@
 #include "QDebug"
 #include <QMainWindow>
 #include <QStandardItem>
+#include <QListWidgetItem>
 
 namespace Ui {
 class MainWindow;
@@ -24,6 +25,8 @@ public slots:
     void boutonajouterProjet();
     void updateJourSelectionne(const QDate & date);
     void updateVueHebdomadaire();
+    void projetClic(QListWidgetItem* projet);
+
 
 private:
     Ui::MainWindow *ui;
@@ -35,7 +38,7 @@ private:
     }
     void updateListeActivites();
     void updateListeProjets();
-    //projetClic(QListWidgetItem*)
+
 };
 
 #endif // MAINWINDOW_H

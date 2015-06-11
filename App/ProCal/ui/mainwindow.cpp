@@ -80,6 +80,15 @@ void MainWindow::updateVueHebdomadaire()
 
     qDebug() << getSelectedMonday().toString();
 
+   //Mise à jour des labels Verticaux
+    QStringList listeHeures;
+    QTime h(8,0) ;
+    for(i=1; i<=48; i++){
+        listeHeures << h.toString();
+        h = h.addSecs(60 * 15);
+    }
+    ui->vueHebdomadaire->setVerticalHeaderLabels(listeHeures);
+
    //Mise à jour des evenements de la semaine
 
     Programmation& myProgrammation = Programmation::getInstance();

@@ -46,8 +46,7 @@ int main(int argc, char *argv[])
     //    qDebug() << t1->getProjet()->getNom();
 
     creerTacheConteneur(pred, {t1});
-    creerTacheConteneur(succ, {t3});
-    p1->creerTacheUnitaire("Tache2", 10, false, *pred, *succ);
+    p1->creerTacheUnitaire("Tache2", 10, false, *pred);
     Tache* t2 = p1->getTaches()->value("Tache2");
     //    qDebug() << t2->toString();
 

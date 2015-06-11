@@ -1,19 +1,19 @@
 #include "headers/projet.h"
 
-bool Projet::creerTacheUnitaire(const QString &pnom, const int &pduree, const bool &pisPreemptive, const QList<Tache *> &ppred, const QList<Tache *> &psucc, const QDate &pdisponibilite, const QDate &pecheance) {
+bool Projet::creerTacheUnitaire(const QString &pnom, const int &pduree, const bool &pisPreemptive, const QList<Tache *> &ppred, const QDate &pdisponibilite, const QDate &pecheance) {
     bool status = this->precheck(pdisponibilite, pecheance);
     if(!pisPreemptive && pduree > 12)
         qWarning("Votre tache ne peut pas excéder 12h sans être preemptive !");
     else if (status)
     {
         status = true;
-        TacheUnitaire* newTache = new TacheUnitaire(pnom, pduree, pisPreemptive, psucc, ppred, pdisponibilite, pecheance, this);
+        TacheUnitaire* newTache = new TacheUnitaire(pnom, pduree, pisPreemptive, ppred, pdisponibilite, pecheance, this);
         taches.insert(pnom, newTache);
     }
     return status;
 }
 
-bool Projet::creerTacheComposite(const QString &pnom, const QList<Tache *> &pcomposition, const QList<Tache *> &psucc, const QList<Tache *> &ppred, const QDate &pdisponibilite, const QDate &pecheance) {
+bool Projet::creerTacheComposite(const QString &pnom, const QList<Tache *> &pcomposition, const QList<Tache *> &ppred, const QDate &pdisponibilite, const QDate &pecheance) {
     bool status = this->precheck(pdisponibilite, pecheance);
     foreach(Tache* tache, pcomposition)
     {
@@ -28,7 +28,7 @@ bool Projet::creerTacheComposite(const QString &pnom, const QList<Tache *> &pcom
     else if (status)
     {
         status = true;
-        TacheComposite* newTache = new TacheComposite(pnom, pcomposition, psucc, ppred, pdisponibilite, pecheance, this);
+        TacheComposite* newTache = new TacheComposite(pnom, pcomposition, ppred, pdisponibilite, pecheance, this);
         taches.insert(pnom, newTache);
     }
     return status;

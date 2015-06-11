@@ -9,10 +9,6 @@ QString Tache::toString() const {
     {
         d.append(" | PRED : " + tache->getNom());
     }
-    foreach(Tache* tache, this->succ)
-    {
-        d.append(" | SUCC : " + tache->getNom());
-    }
     return d;
 }
 

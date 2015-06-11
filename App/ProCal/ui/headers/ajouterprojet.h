@@ -17,6 +17,7 @@ public:
 
 private:
     Ui::ajouterProjet *ui;
+    void accept();
 };
 
 #endif // AJOUTERPROJET_H

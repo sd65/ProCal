@@ -43,6 +43,7 @@ void MainWindow::boutonajouterProjet()
 {
     ajouterProjet a;
     a.exec();
+    this->updateListeProjets();
 }
 
 void MainWindow::updateListeActivites()

@@ -11,6 +11,7 @@
 #include "core/headers/projet.h"
 
 #include "core/headers/programmation.h"
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

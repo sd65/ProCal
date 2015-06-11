@@ -13,7 +13,7 @@ QString Tache::toString() const {
 
 QString TacheUnitaire::toString() const {
     QString d = Tache::toString();
-    d.append(" | Duree : " + QString::number(this->getDuree()));
+    d.append(" | Duree : " + this->getDuree().toString());
     d.append(" | Preemptive : " + this->isPreemptiveToString());
     d.append(" PROGRAMMATION | debut : " + this->getDebut().toString());
     d.append(" | fin : " + this->getFin().toString());

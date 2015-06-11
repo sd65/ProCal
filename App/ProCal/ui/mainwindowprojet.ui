@@ -30,24 +30,59 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QFrame" name="frame">
+       <widget class="QGroupBox" name="groupBox">
         <property name="minimumSize">
          <size>
           <width>300</width>
           <height>0</height>
          </size>
         </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_2"/>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QPushButton" name="addUnitaire">
+           <property name="text">
+            <string>Ajouter une tache unitaire</string>
+           </property>
+           <property name="icon">
+            <iconset resource="icons/iconsressourcefile.qrc">
+             <normaloff>:/add.svg</normaloff>:/add.svg</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="addComposite">
+           <property name="text">
+            <string>Ajouter une tache composite</string>
+           </property>
+           <property name="icon">
+            <iconset resource="icons/iconsressourcefile.qrc">
+             <normaloff>:/orange-add-folders-to-archive.svg</normaloff>:/orange-add-folders-to-archive.svg</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="Line" name="line">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton">
+           <property name="text">
+            <string>Programmer cette tache</string>
+           </property>
+           <property name="icon">
+            <iconset resource="icons/iconsressourcefile.qrc">
+             <normaloff>:/appointment.svg</normaloff>:/appointment.svg</iconset>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
       <item>
-       <widget class="QTextBrowser" name="textBrowser">
+       <widget class="QTextBrowser" name="detailTache">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -67,6 +102,8 @@
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons/iconsressourcefile.qrc"/>
+ </resources>
  <connections/>
 </ui>

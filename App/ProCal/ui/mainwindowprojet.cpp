@@ -1,6 +1,10 @@
 #include "ui/headers/mainwindowprojet.h"
 #include "ui_mainwindowprojet.h"
 
+#include "headers/ajouterTacheUnitaire.h"
+#include "ui_ajouterTacheUnitaire.h"
+
+
 #include "core/headers/projet.h"
 
 #include <QDebug>
@@ -10,45 +14,48 @@ MainWindowProjet::MainWindowProjet(QWidget *parent, QString pprojetName) :
     ui(new Ui::MainWindowProjet)
 {
     ui->setupUi(this);
-    nomProjet = pprojetName;
 
     ProjetManager& myProjetManager = ProjetManager::getInstance();
-    Projet* p1 = myProjetManager.getProjets()->value(nomProjet);
-    /*
-    QMap<QString, Tache*>::iterator i = p1->getTaches()->begin();
-    bool canExit = false;
-    while(!canExit)
-    {
-        **i.getPred();
-        canExit = true;
-        if (*igetPred().isEmpty())
-        {
-            qDebug() << "INSERT NORMAL" << tache->toString();
-            QTreeWidgetItem * t = new QTreeWidgetItem();
-            t->setText(0, tache->getNom());
-            ui->tree->addTopLevelItem(t);
-            canExit = false;
-        }
-        else if (! ui->tree->findItems(tache->getPred()->getNom(), Qt::MatchExactly).isEmpty()) // Si on trouve son pred dans la liste
-        {
-            qDebug() << "INSERT TWO" << tache->toString();
-            //            QTreeWidgetItem * t = new QTreeWidgetItem();
-            //            t->setText(0, tache->getNom());
+    projet = myProjetManager.getProjets()->value(pprojetName);
 
-            //            ui->tree->addTopLevelItem(t);
-            canExit = false;
-        }
+    connect(ui->tree, SIGNAL (itemClicked(QTreeWidgetItem*,int)), this, SLOT (updateDetailTache(QTreeWidgetItem*,int)));
+    connect(ui->addUnitaire, SIGNAL (clicked()), this, SLOT (boutonAddUnitaire()));
+    connect(ui->addComposite, SIGNAL (clicked()), this, SLOT (boutonAddComposite()));
 
-        // Loop forever
-        if (i == *p1->getTaches()->end())
-            i = p1->getTaches()->begin();
-        i++;
-    }   */
-
-
+    this->updateListeTache();
 }
 
 MainWindowProjet::~MainWindowProjet()
 {
     delete ui;
+}
+
+void MainWindowProjet::updateDetailTache(QTreeWidgetItem *item, int column)
+{
+    qDebug() << "UPD" << item->text(0);
+    Tache * t1 = projet->getTaches()->value(item->text(0));
+    ui->detailTache->setPlainText(t1->toString());
+}
+
+void MainWindowProjet::boutonAddUnitaire()
+{
+    ajouterTacheUnitaire a(this, projet);
+    a.exec();
+    this->updateListeTache();
+}
+
+void MainWindowProjet::boutonAddComposite()
+{
+
+}
+
+void MainWindowProjet::updateListeTache()
+{
+    ui->tree->clear();
+    foreach(Tache* tache, *projet->getTaches())
+    {
+        QTreeWidgetItem * t = new QTreeWidgetItem();
+        t->setText(0, tache->getNom());
+        ui->tree->addTopLevelItem(t);
+    }
 }

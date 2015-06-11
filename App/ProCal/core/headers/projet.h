@@ -30,7 +30,7 @@ public:
         couleur = colors[rand() % (sizeof(colors)/sizeof(*colors))];
     }
 
-    bool creerTacheUnitaire(const QString& pnom, const int& pduree = 10, const bool& pisPreemptive = false, Tache* ppred = nullptr, const QDate& pdisponibilite = QDate::currentDate(), const QDate& pecheance = QDate::currentDate().addMonths(1)); // See CPP
+    bool creerTacheUnitaire(const QString& pnom, const QTime& pduree = QTime(0,10), const bool& pisPreemptive = false, Tache* ppred = nullptr, const QDate& pdisponibilite = QDate::currentDate(), const QDate& pecheance = QDate::currentDate().addMonths(1)); // See CPP
 
     bool creerTacheComposite(const QString& pnom, const QList<Tache*>& pcomposition, Tache* ppred = nullptr, const QDate& pdisponibilite = QDate::currentDate(), const QDate& pecheance = QDate::currentDate().addMonths(1)); // See CPP
 

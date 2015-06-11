@@ -29,7 +29,7 @@ protected:
 
 public:
 
-    virtual QString toString() const=0;
+    virtual QString toString() const;
 
     const Projet* getProjet() const { return projet; }
     const QString& getNom() const { return nom; }
@@ -59,16 +59,16 @@ class TacheUnitaire : public Tache
 
 private:
 
-	int duree;
+    QTime duree;
     bool is_Preemptive;
 
 public:
 
-    TacheUnitaire(const QString& pnom, const int& pduree, const bool& pisPreemptive, Tache* ppred, const QDate& pdisponibilite, const QDate& pecheance, Projet* pprojet) : Tache(pnom, ppred, true, pdisponibilite, pecheance, pprojet), duree(pduree), is_Preemptive(pisPreemptive)  {}
+    TacheUnitaire(const QString& pnom, const QTime& pduree, const bool& pisPreemptive, Tache* ppred, const QDate& pdisponibilite, const QDate& pecheance, Projet* pprojet) : Tache(pnom, ppred, true, pdisponibilite, pecheance, pprojet), duree(pduree), is_Preemptive(pisPreemptive)  {}
 
     QString toString() const;
 
-    int getDuree() const { return duree; }
+    QTime getDuree() const { return duree; }
     bool isPreemptive() const { return is_Preemptive; }
     QString isPreemptiveToString() const { return is_Preemptive ? "true" : "false"; }
 

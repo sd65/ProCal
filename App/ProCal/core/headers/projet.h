@@ -49,6 +49,7 @@ public:
     void setDisponibilite(const QDate &value) { disponibilite = value; }
     void setEcheance(const QDate &value) { echeance = value; }
     */
+    Tache *getParent(Tache *tacheChild);
 };
 
 // END CLASS Projet

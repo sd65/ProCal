@@ -53,6 +53,9 @@ int main(int argc, char *argv[])
     p1->creerTacheComposite("TacheComposite1", *compo);
     //    qDebug() << p1->getTaches()->value("TacheComposite1")->toString();
 
+    //        foreach(Tache* tache, *p1->getTaches())
+    //            if(tache->getParent() == nullptr)
+    //                qDebug() << tache->getNom() << p1->getParent(tache);
 
     /////////////
     // Activite
@@ -77,8 +80,8 @@ int main(int argc, char *argv[])
     myProgrammation.programmer(a2, QDateTime::currentDateTime().addDays(1), QDateTime::currentDateTime().addDays(1).addSecs(3600));
     myProgrammation.programmer(t2, QDateTime::currentDateTime().addDays(12), QDateTime::currentDateTime().addDays(13).addSecs(3600));
 
-//        foreach(Evenement* evenement, *myProgrammation.getProgrammation())
-//            qDebug() << evenement->toString();
+    //        foreach(Evenement* evenement, *myProgrammation.getProgrammation())
+    //            qDebug() << evenement->toString();
 
     //    foreach(Evenement* evenement, *myProgrammation.getWeekEvents(QDate::currentDate()))
     //        qDebug() << evenement->toString(); ou ->getColor();

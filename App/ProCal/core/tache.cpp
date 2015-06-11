@@ -25,6 +25,8 @@ QString Tache::toHtml() const {
     return d;
 }
 
+Tache *Tache::getParent() { return projet->getParent(this); }
+
 const QColor& Tache::getColor() const
 {
     return projet->getCouleur();

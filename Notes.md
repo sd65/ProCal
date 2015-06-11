@@ -25,3 +25,11 @@ Notes pour nous :
 Besoin à partir d'une tache de remonter à son nom de projet ?
 On ne peut pas faire hériter TAche UNitaire de evenement, mais tout Tache
 button Show today ?
+
+
+TODO :
+
+Afficher dans les select de ajouterTaches que les taches possibles à Rajouter
+
+Check des dates projets avant d'ajouter
+Check des dates taches inside avant add

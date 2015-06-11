@@ -42,6 +42,10 @@ public:
     bool isUnitaire() const { return is_Unitaire; }
     QString isUnitaireToString() const { return is_Unitaire ? "true" : "false"; }
 
+    virtual QList<Tache*>* getComposition() { return nullptr; };
+
+    Tache *getParent();
+
     /*
     void setNom(const QString &value) { nom = value; }
     void setDisponibilite(const QDate &value) { disponibilite = value; }
@@ -102,6 +106,8 @@ public:
 
     QString toString() const;
     QString toHtml() const;
+
+    QList<Tache*>* getComposition() { return &composition; };
 };
 
 // END CLASS Tache Composite

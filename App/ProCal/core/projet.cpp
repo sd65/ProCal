@@ -19,8 +19,8 @@ bool Projet::creerTacheComposite(const QString &pnom, const QList<Tache *> &pcom
     {
         if(pecheance < tache->getEcheance())
         {
-                qWarning("Une des taches a une date d'échéance suppérieure à la tache composite !");
-                status = false;
+            qWarning("Une des taches a une date d'échéance suppérieure à la tache composite !");
+            status = false;
         }
     }
     if(pecheance > this->getEcheance())
@@ -38,13 +38,32 @@ bool Projet::precheck (const QDate &pdisponibilite, const QDate &pecheance) cons
 {
     bool status = false;
     if(pecheance > this->echeance)
-            qWarning("Votre tache a une date d'échéance suppérieure à son projet !");
+        qWarning("Votre tache a une date d'échéance suppérieure à son projet !");
     else if(pdisponibilite > pecheance)
-            qWarning("Votre tache a une date d'échéance inférieure à sa date de disponibilité !");
+        qWarning("Votre tache a une date d'échéance inférieure à sa date de disponibilité !");
     else
         status = true;
     return status;
 
+}
+
+Tache *Projet::getParent(Tache *tacheChild)
+{
+    Tache* tacheParent = nullptr;
+    foreach(Tache* tache, *this->getTaches())
+    {
+        if(!tache->isUnitaire())
+            foreach(Tache* tacheInside, *tache->getComposition())
+            {
+                if (tacheInside == tacheChild)
+                {
+                    tacheParent = tache;
+                    goto endloops;
+                }
+            }
+    }
+endloops:
+    return tacheParent;
 }
 
 QString Projet::toString() const {

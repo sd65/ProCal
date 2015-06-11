@@ -14,6 +14,7 @@
 #include "core/headers/projet.h"
 
 #include "core/headers/programmation.h"
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -28,7 +29,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->ajouterActivite, SIGNAL (clicked()), this, SLOT (boutonajouterActivite()));
     connect(ui->ajouterProjet, SIGNAL (clicked()), this, SLOT (boutonajouterProjet()));
     connect(ui->calendrier, SIGNAL (clicked(QDate)), this, SLOT (updateJourSelectionne(QDate)));
+    connect(ui->calendrier, SIGNAL (clicked(QDate)), this, SLOT (updateVueHebdomadaire()));
     connect(ui->listeProjets, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(projetClic(QListWidgetItem*)));
+
 
 }
 
@@ -81,25 +84,54 @@ void MainWindow::projetClic(QListWidgetItem *projet)
     a->show();
 }
 
-void MainWindow::updateVueHebdomadaire()
-{
-    //Mise à jour des labels horizontaux
-    QStringList listeJours(getSelectedMonday().toString());
+void MainWindow::updateVueHebdomadaire() {
+
+    //Nettoyage de l'affichage précédent
+    ui->vueHebdomadaire->clearContents();
+
+   //Mise à jour des labels horizontaux
+    QStringList listeJours(getSelectedMonday().toString("ddd d"));
     int i;
-    for(i=0;i<7;i++){
-        listeJours << getSelectedMonday().addDays(i).toString();
+    for(i=1;i<7;i++){
+        listeJours << getSelectedMonday().addDays(i).toString("ddd d");
     }
     ui->vueHebdomadaire->setHorizontalHeaderLabels(listeJours);
 
-    qDebug() << getSelectedMonday().toString();
+   //Mise à jour des labels Verticaux
+    QStringList listeHeures;
+    QTime h(8,0) ;
+    for(i=1; i<=48; i++){
+        listeHeures << h.toString("H:m");
+        h = h.addSecs(60 * 15);
+    }
+    ui->vueHebdomadaire->setVerticalHeaderLabels(listeHeures);
 
    //Mise à jour des evenements de la semaine
-
     Programmation& myProgrammation = Programmation::getInstance();
+    foreach(Evenement* evenement, *myProgrammation.getWeekEvents(getSelectedMonday())){
+        QTableWidgetItem * titre = new QTableWidgetItem(evenement->getNom());
+        titre->setBackgroundColor(evenement->getColor());
+        int colonne = evenement->getDebut().date().daysTo(getSelectedMonday());
 
-    foreach(Evenement* evenement, *myProgrammation.getWeekEvents(getSelectedMonday()))
-        qDebug() << evenement->getNom();
+        int ligne = (evenement->getDebut().time().hour() - 8) * 4;
+        if(15 <= evenement->getDebut().time().minute() < 30)
+            ligne = ligne + 1;
+        else if(30 <= evenement->getDebut().time().minute() < 45)
+            ligne = ligne + 2;
+        else if(45 <= evenement->getDebut().time().minute())
+            ligne = ligne + 3;
+        ui->vueHebdomadaire->setItem(ligne,-colonne + 1,titre);
 
+        ligne++;
+        qDebug() << evenement->getFin().toString();
+        while ( ligne - ((evenement->getFin().time().hour() - 8 ) * 4 + ( evenement->getFin().time().minute()/15 )) < 0 ) {
+            qDebug() << ligne;
+            QTableWidgetItem * duree = new QTableWidgetItem();
+            duree->setBackgroundColor(Qt::red);
+            ui->vueHebdomadaire->setItem(ligne,-colonne + 1,duree);
+            ligne++;
+        }
+    }
 }
 
 void MainWindow::updateListeProjets()

@@ -29,6 +29,7 @@ protected:
 
 public:
 
+
     virtual QString toString() const;
     const QColor& getColor() const;
     virtual QString toHtml() const;

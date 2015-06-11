@@ -12,6 +12,19 @@ QString Tache::toString() const {
     return d;
 }
 
+QString Tache::toHtml() const {
+    QString d;
+    d.append("<h1>" + this->getNom() + "</h1>");
+    d.append("<p>Date de disponibilité : " + this->getDisponibilite().toString() + "</p>");
+    d.append("<p>Date d'échéance : " + this->getEcheance().toString() + "</p>");
+    d.append("<p>Unitaire : " + this->isUnitaireToString() + "</p>");
+    if (pred != nullptr)
+        d.append("<p>Prédécesseur : " + pred->getNom() + "</p>");
+    if (!this->getDebut().isNull())
+        d.append("<p>Programmé de " + this->getDebut().toString() + " à " + this->getFin().toString() + "</p>");
+    return d;
+}
+
 const QColor& Tache::getColor() const
 {
     return projet->getCouleur();
@@ -26,11 +39,29 @@ QString TacheUnitaire::toString() const {
     return d;
 }
 
+QString TacheUnitaire::toHtml() const {
+    QString d = Tache::toHtml();
+    d.append("<p>Durée : " + this->getDuree().toString()+ "</p>");
+    d.append("<p>Preemptive : " + this->isPreemptiveToString()+ "</p>");
+    return d;
+}
+
 QString TacheComposite::toString() const {
     QString d = Tache::toString();
     foreach(Tache* tache, this->composition)
     {
         d.append(" | CONTIENT : " + tache->getNom());
     }
+    return d;
+}
+
+QString TacheComposite::toHtml() const {
+    QString d = Tache::toHtml();
+    d.append("<p>Contient :</p><ul>");
+    foreach(Tache* tache, this->composition)
+    {
+        d.append("<li>" + tache->getNom()+ "</li>");
+    }
+    d.append("</ul>");
     return d;
 }

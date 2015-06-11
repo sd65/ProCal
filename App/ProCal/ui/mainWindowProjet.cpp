@@ -35,7 +35,7 @@ MainWindowProjet::~MainWindowProjet()
 void MainWindowProjet::updateDetailTache(QTreeWidgetItem *item, int column)
 {
     Tache * t1 = projet->getTaches()->value(item->text(0));
-    ui->detailTache->setPlainText(t1->toString());
+    ui->detailTache->setHtml(t1->toHtml());
 }
 
 void MainWindowProjet::boutonAddUnitaire()

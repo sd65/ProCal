@@ -110,7 +110,7 @@ void MainWindow::updateVueHebdomadaire() {
     Programmation& myProgrammation = Programmation::getInstance();
     foreach(Evenement* evenement, *myProgrammation.getWeekEvents(getSelectedMonday())){
         QTableWidgetItem * titre = new QTableWidgetItem(evenement->getNom());
-        titre->setBackgroundColor(evenement->);
+        titre->setBackgroundColor(Qt::red);
         int colonne = evenement->getDebut().date().daysTo(getSelectedMonday());
 
         int ligne = (evenement->getDebut().time().hour() - 8) * 4;

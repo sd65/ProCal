@@ -4,6 +4,8 @@
 #include "headers/ajouterTacheUnitaire.h"
 #include "ui_ajouterTacheUnitaire.h"
 
+#include "headers/ajouterTacheComposite.h"
+#include "ui_ajouterTacheComposite.h"
 
 #include "core/headers/projet.h"
 
@@ -33,7 +35,7 @@ MainWindowProjet::~MainWindowProjet()
 void MainWindowProjet::updateDetailTache(QTreeWidgetItem *item, int column)
 {
     Tache * t1 = projet->getTaches()->value(item->text(0));
-    ui->detailTache->setPlainText(t1->toString());
+    ui->detailTache->setHtml(t1->toHtml());
 }
 
 void MainWindowProjet::boutonAddUnitaire()
@@ -45,7 +47,9 @@ void MainWindowProjet::boutonAddUnitaire()
 
 void MainWindowProjet::boutonAddComposite()
 {
-
+    ajouterTacheComposite a(this, projet);
+    a.exec();
+    this->updateListeTache();
 }
 
 void MainWindowProjet::updateListeTache()

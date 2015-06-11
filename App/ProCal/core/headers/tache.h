@@ -29,7 +29,11 @@ protected:
 
 public:
 
-    virtual QString toString() const=0;
+
+    virtual QString toString() const;
+    const QColor& getColor() const;
+    virtual QString toHtml() const;
+
     const Projet* getProjet() const { return projet; }
     const QString& getNom() const { return nom; }
     Tache* getPred() const { return pred; }
@@ -66,6 +70,7 @@ public:
     TacheUnitaire(const QString& pnom, const QTime& pduree, const bool& pisPreemptive, Tache* ppred, const QDate& pdisponibilite, const QDate& pecheance, Projet* pprojet) : Tache(pnom, ppred, true, pdisponibilite, pecheance, pprojet), duree(pduree), is_Preemptive(pisPreemptive)  {}
 
     QString toString() const;
+    QString toHtml() const;
 
     QTime getDuree() const { return duree; }
     bool isPreemptive() const { return is_Preemptive; }
@@ -96,6 +101,7 @@ public:
     TacheComposite(const QString& pnom, const QList<Tache*>& pcomposition, Tache* ppred, const QDate& pdisponibilite, const QDate& pecheance, Projet* pprojet) : Tache(pnom, ppred, false, pdisponibilite, pecheance, pprojet), composition(pcomposition)  {}
 
     QString toString() const;
+    QString toHtml() const;
 };
 
 // END CLASS Tache Composite

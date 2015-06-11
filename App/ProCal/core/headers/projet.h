@@ -39,7 +39,7 @@ public:
     QString toString() const; // See CPP
 
     QMap<QString, Tache*>* getTaches() { return &taches; }
-    QColor getCouleur() const { return couleur; }
+    const QColor& getCouleur() const { return couleur; }
     const QString getNom() const { return nom; }
     const QDate getDisponibilite() const { return disponibilite; }
     const QDate getEcheance() const { return echeance; }

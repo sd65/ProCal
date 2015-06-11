@@ -23,6 +23,7 @@ public slots:
     void boutonajouterActivite();
     void boutonajouterProjet();
     void updateJourSelectionne(const QDate & date);
+    void updateVueHebdomadaire();
 
 private:
     Ui::MainWindow *ui;
@@ -32,8 +33,6 @@ private:
     {
         return jourSelectionne.addDays(- jourSelectionne.dayOfWeek() + 1);
     }
-
-    void updateVueHebdomadaire();
     void updateListeActivites();
     void updateListeProjets();
     //projetClic(QListWidgetItem*)

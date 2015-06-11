@@ -30,7 +30,6 @@ protected:
 public:
 
     virtual QString toString() const=0;
-
     const Projet* getProjet() const { return projet; }
     const QString& getNom() const { return nom; }
     const QList<Tache*> getPred() const { return pred; }

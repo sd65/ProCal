@@ -15,6 +15,7 @@ private:
 public:
     virtual QString toString() const =0;
     virtual const QString& getNom() const =0;
+    virtual
 
     virtual QDateTime getDebut() const { return debut; }
     QDateTime getFin() const { return fin; }

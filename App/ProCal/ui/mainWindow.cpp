@@ -105,9 +105,15 @@ void MainWindow::updateVueHebdomadaire() {
     ui->vueHebdomadaire->setVerticalHeaderLabels(listeHeures);
 
    //Mise à jour des evenements de la semaine
+
+    QFont policeTitre;
+    policeTitre.setPointSize(12);
+
     Programmation& myProgrammation = Programmation::getInstance();
     foreach(Evenement* evenement, *myProgrammation.getWeekEvents(getSelectedMonday())){
         QTableWidgetItem * titre = new QTableWidgetItem(evenement->getNom());
+        titre->setFont(policeTitre);
+        titre->setTextAlignment(Qt::AlignCenter);
         titre->setBackgroundColor(evenement->getColor());
         int colonne = evenement->getDebut().date().daysTo(getSelectedMonday());
 
@@ -125,7 +131,7 @@ void MainWindow::updateVueHebdomadaire() {
         while ( ligne - ((evenement->getFin().time().hour() - 8 ) * 4 + ( evenement->getFin().time().minute()/15 )) < 0 ) {
             qDebug() << ligne;
             QTableWidgetItem * duree = new QTableWidgetItem();
-            duree->setBackgroundColor(Qt::red);
+            duree->setBackgroundColor(evenement->getColor());
             ui->vueHebdomadaire->setItem(ligne,-colonne + 1,duree);
             ligne++;
         }

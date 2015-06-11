@@ -18,13 +18,15 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    jourSelectionne = QDate::currentDate();
     this->updateListeActivites();
     this->updateListeProjets();
     this->updateVueHebdomadaire();
 
     connect(ui->ajouterActivite, SIGNAL (clicked()), this, SLOT (boutonajouterActivite()));
     connect(ui->ajouterProjet, SIGNAL (clicked()), this, SLOT (boutonajouterProjet()));
-    connect(ui->calendrier, SIGNAL (clicked(QDate)), this, SLOT (updateLundiCourant(QDate)));
+    connect(ui->calendrier, SIGNAL (clicked(QDate)), this, SLOT (updateJourSelectionne(QDate)));
+    //connect(ui->listeProjets, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(projetClic(QListWidgetItem*));
 
 }
 
@@ -63,11 +65,12 @@ void MainWindow::updateListeActivites()
         ui->listeActivites->addItem(item);
     }
     ui->listeActivites->sortItems();
+    this->getSelectedMonday();
 }
 
-void MainWindow::updateLundiCourant(const QDate & date)
+void MainWindow::updateJourSelectionne(const QDate & date)
 {
-    jourSelectionne = date;
+    jourSelectionne = ui->calendrier->selectedDate();
 }
 
 void MainWindow::updateVueHebdomadaire()
@@ -113,6 +116,7 @@ void MainWindow::updateListeProjets()
     {
         QListWidgetItem * item = new  QListWidgetItem(projet->getNom());
         item->setFont(wantedFont);
+        item->setIcon(QIcon(":/edit-find.svg"));
         ui->listeProjets->addItem(item);
     }
     ui->listeProjets->sortItems();

@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     core/projet.cpp \
     core/tache.cpp \
     ui/ajouteractivite.cpp \
-    ui/ajouterprojet.cpp
+    ui/ajouterprojet.cpp \
+    ui/mainwindowprojet.cpp
 
 HEADERS  += \
     ui/headers/mainwindow.h \
@@ -28,12 +29,14 @@ HEADERS  += \
     core/headers/projet.h \
     core/headers/tache.h \
     ui/headers/ajouteractivite.h \
-    ui/headers/ajouterprojet.h
+    ui/headers/ajouterprojet.h \
+    ui/headers/mainwindowprojet.h
 
 FORMS    += \
     ui/mainwindow.ui \
     ui/ajouteractivite.ui \
-    ui/ajouterprojet.ui
+    ui/ajouterprojet.ui \
+    ui/mainwindowprojet.ui
 
 RESOURCES += \
     ui/icons/iconsressourcefile.qrc

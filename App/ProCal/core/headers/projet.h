@@ -30,9 +30,9 @@ public:
         couleur = colors[rand() % (sizeof(colors)/sizeof(*colors))];
     }
 
-    bool creerTacheUnitaire(const QString& pnom, const int& pduree = 10, const bool& pisPreemptive = false, const QList<Tache*>& ppred = QList<Tache*>(), const QList<Tache*>& psucc = QList<Tache*>(), const QDate& pdisponibilite = QDate::currentDate(), const QDate& pecheance = QDate::currentDate().addMonths(1)); // See CPP
+    bool creerTacheUnitaire(const QString& pnom, const int& pduree = 10, const bool& pisPreemptive = false, const QList<Tache*>& ppred = QList<Tache*>(), const QDate& pdisponibilite = QDate::currentDate(), const QDate& pecheance = QDate::currentDate().addMonths(1)); // See CPP
 
-    bool creerTacheComposite(const QString& pnom, const QList<Tache*>& pcomposition, const QList<Tache*>& psucc = QList<Tache*>(), const QList<Tache*>& ppred = QList<Tache*>(), const QDate& pdisponibilite = QDate::currentDate(), const QDate& pecheance = QDate::currentDate().addMonths(1)); // See CPP
+    bool creerTacheComposite(const QString& pnom, const QList<Tache*>& pcomposition, const QList<Tache*>& ppred = QList<Tache*>(), const QDate& pdisponibilite = QDate::currentDate(), const QDate& pecheance = QDate::currentDate().addMonths(1)); // See CPP
 
     bool precheck(const QDate &pdisponibilite, const QDate &pecheance) const; // See CPP
 

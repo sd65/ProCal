@@ -5,7 +5,8 @@ QString Tache::toString() const {
     d.append(" | DISPO : " + this->getDisponibilite().toString());
     d.append(" | ECHEANCE : " + this->getEcheance().toString());
     d.append(" | UNITAIRE : " + this->isUnitaireToString());
-    d.append(" | PRED : " + this->getPred()->getNom());
+    if (pred != nullptr)
+        d.append(" | PRED : " + pred->getNom());
 
     return d;
 }

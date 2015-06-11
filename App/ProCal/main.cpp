@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
     Tache* t2 = p1->getTaches()->value("Tache2");
     //    qDebug() << t2->toString();
 
-    creerTacheConteneur(compo, {t1, t2, t3});
+    creerTacheConteneur(compo, {t1, t2});
     p1->creerTacheComposite("TacheComposite1", *compo);
     //    qDebug() << p1->getTaches()->value("TacheComposite1")->toString();
 

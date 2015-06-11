@@ -77,11 +77,11 @@ int main(int argc, char *argv[])
     myProgrammation.programmer(a2, QDateTime::currentDateTime().addDays(1), QDateTime::currentDateTime().addDays(1).addSecs(3600));
     myProgrammation.programmer(t2, QDateTime::currentDateTime().addDays(12), QDateTime::currentDateTime().addDays(13).addSecs(3600));
 
-    //    foreach(Evenement* evenement, *myProgrammation.getProgrammation())
-    //        qDebug() << evenement->toString();
+//        foreach(Evenement* evenement, *myProgrammation.getProgrammation())
+//            qDebug() << evenement->toString();
 
     //    foreach(Evenement* evenement, *myProgrammation.getWeekEvents(QDate::currentDate()))
-    //        qDebug() << evenement->toString();
+    //        qDebug() << evenement->toString(); ou ->getColor();
 
     ////////
     // UI

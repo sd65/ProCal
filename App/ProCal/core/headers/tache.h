@@ -30,6 +30,7 @@ protected:
 public:
 
     virtual QString toString() const;
+    const QColor& getColor() const;
 
     const Projet* getProjet() const { return projet; }
     const QString& getNom() const { return nom; }

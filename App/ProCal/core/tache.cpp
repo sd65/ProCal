@@ -5,10 +5,16 @@ QString Tache::toString() const {
     d.append(" | DISPO : " + this->getDisponibilite().toString());
     d.append(" | ECHEANCE : " + this->getEcheance().toString());
     d.append(" | UNITAIRE : " + this->isUnitaireToString());
+    d.append(" | color : " + this->getColor().name());
     if (pred != nullptr)
         d.append(" | PRED : " + pred->getNom());
 
     return d;
+}
+
+const QColor& Tache::getColor() const
+{
+    return projet->getCouleur();
 }
 
 QString TacheUnitaire::toString() const {

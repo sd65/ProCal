@@ -4,6 +4,8 @@
 #include "headers/ajouterTacheUnitaire.h"
 #include "ui_ajouterTacheUnitaire.h"
 
+#include "headers/ajouterTacheComposite.h"
+#include "ui_ajouterTacheComposite.h"
 
 #include "core/headers/projet.h"
 
@@ -45,7 +47,9 @@ void MainWindowProjet::boutonAddUnitaire()
 
 void MainWindowProjet::boutonAddComposite()
 {
-
+    ajouterTacheComposite a(this, projet);
+    a.exec();
+    this->updateListeTache();
 }
 
 void MainWindowProjet::updateListeTache()

@@ -4,7 +4,7 @@
 #include <QDebug>
 #include <QDate>
 
-#include "ui/headers/mainwindow.h"
+#include "ui/headers/mainWindow.h"
 #include "ui_mainwindow.h"
 #include "core/headers/projet.h"
 #include "core/headers/programmation.h"

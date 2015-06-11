@@ -1,13 +1,13 @@
-#include "headers/mainwindow.h"
+#include "headers/mainWindow.h"
 #include "ui_mainwindow.h"
 
-#include "headers/ajouteractivite.h"
+#include "headers/ajouterActivite.h"
 #include "ui_ajouteractivite.h"
 
-#include "headers/ajouterprojet.h"
+#include "headers/ajouterProjet.h"
 #include "ui_ajouterprojet.h"
 
-#include "headers/mainwindowprojet.h"
+#include "headers/mainWindowProjet.h"
 #include "ui_mainwindowprojet.h"
 
 #include "core/headers/evenement.h"

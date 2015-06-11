@@ -1,4 +1,4 @@
-#include "ui/headers/mainwindowprojet.h"
+#include "ui/headers/mainWindowProjet.h"
 #include "ui_mainwindowprojet.h"
 
 #include "headers/ajouterTacheUnitaire.h"
@@ -32,7 +32,6 @@ MainWindowProjet::~MainWindowProjet()
 
 void MainWindowProjet::updateDetailTache(QTreeWidgetItem *item, int column)
 {
-    qDebug() << "UPD" << item->text(0);
     Tache * t1 = projet->getTaches()->value(item->text(0));
     ui->detailTache->setPlainText(t1->toString());
 }

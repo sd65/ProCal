@@ -95,10 +95,12 @@ int main(int argc, char *argv[])
     //    foreach(Evenement* evenement, *myProgrammation.getWeekEvents(QDate::currentDate()))
     //        qDebug() << evenement->toString(); ou ->getColor();
 
+    //qDebug() << myProgrammation.progExistanteEntre(QDateTime::currentDateTime().addDays(1).addSecs(-200), QDateTime::currentDateTime().addDays(1).addSecs(-100));
+
     ////////
     // UI
 
-    bool launchUI = true;
+    bool launchUI = false;
     if(launchUI) {
         QApplication a(argc, argv);
         MainWindow w;

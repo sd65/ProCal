@@ -62,6 +62,7 @@ void MainWindowProjet::boutonProgrammerTache()
     Tache* ptache = projet->getTaches()->value(ui->tree->currentItem()->text(0));
     programmerUneTache a(this, ptache);
     a.exec();
+    this->updateListeTache();
 }
 
 void MainWindowProjet::updateListeTache()

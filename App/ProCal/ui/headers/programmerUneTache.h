@@ -21,6 +21,7 @@ public:
 
 private:
     Ui::programmerUneTache *ui;
+    void accept();
 };
 
 #endif // PROGRAMMERUNETACHE_H

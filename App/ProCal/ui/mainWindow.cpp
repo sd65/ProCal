@@ -24,14 +24,14 @@ MainWindow::MainWindow(QWidget *parent) :
     // Style calendar
     ui->calendrier->setVerticalHeaderFormat(QCalendarWidget::NoVerticalHeader);
     QTextCharFormat weekendFormat;
-    weekendFormat.setForeground(QBrush(QColor("pink"), Qt::SolidPattern));
+    weekendFormat.setForeground(QBrush(QColor(26,128,182,90), Qt::SolidPattern));
     ui->calendrier->setWeekdayTextFormat(Qt::Saturday, weekendFormat);
     ui->calendrier->setWeekdayTextFormat(Qt::Sunday, weekendFormat);
     QTableView *view = ui->calendrier->findChild<QTableView*>("qt_calendar_calendarview");
     if (view)
     {
         QPalette pal = view->palette();
-        pal.setColor(QPalette::Highlight, QColor("pink"));
+        pal.setColor(QPalette::Highlight, QColor(26,128,182,250));
         view->setPalette(pal);
     }
 

@@ -28,7 +28,6 @@ button Show today ?
 
 TODO SD
 
-CLEAN UP
 Calendar month -> carré de couleur quand prog inside
 THEN Doc doxygen
 XML ?

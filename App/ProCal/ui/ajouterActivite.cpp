@@ -27,7 +27,7 @@ void ajouterActivite::accept() {
     bool statusOk = true;
     QString message;
 
-    if(ui->nom->text().isEmpty() || ui->type->toPlainText().isEmpty())
+    if(ui->nom->text().isEmpty() || ui->description->toPlainText().isEmpty())
     {
         message += "Remplissez tous les champs !";
         statusOk = false;
@@ -42,7 +42,7 @@ void ajouterActivite::accept() {
     if(statusOk)
     {
         ActiviteManager& myActiviteManager = ActiviteManager::getInstance();
-        Activite * myActivite = myActiviteManager.creerActivite(ui->nom->text(), ui->type->toPlainText());
+        Activite * myActivite = myActiviteManager.creerActivite(ui->nom->text(), ui->description->toPlainText());
 
         Programmation& myProgrammationManager = Programmation::getInstance();
         myProgrammationManager.programmer(myActivite,ui->debut->dateTime(),ui->fin->dateTime());

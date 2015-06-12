@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
     ////////
     // UI
 
-    bool launchUI = false;
+    bool launchUI = true;
     if(launchUI) {
         QApplication a(argc, argv);
         MainWindow w;

@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     ui/ajouterActivite.cpp \
     ui/ajouterProjet.cpp \
     ui/mainWindow.cpp \
-    ui/mainWindowProjet.cpp
+    ui/mainWindowProjet.cpp \
+    ui/programmerUneTache.cpp
 
 HEADERS  += \
     core/headers/evenement.h \
@@ -35,7 +36,8 @@ HEADERS  += \
     ui/headers/ajouterActivite.h \
     ui/headers/ajouterProjet.h \
     ui/headers/mainWindow.h \
-    ui/headers/mainWindowProjet.h
+    ui/headers/mainWindowProjet.h \
+    ui/headers/programmerUneTache.h
 
 FORMS    += \
     ui/ajouterTacheUnitaire.ui \
@@ -43,7 +45,8 @@ FORMS    += \
     ui/ajouterActivite.ui \
     ui/ajouterProjet.ui \
     ui/mainWindow.ui \
-    ui/mainWindowProjet.ui
+    ui/mainWindowProjet.ui \
+    ui/programmerUneTache.ui
 
 RESOURCES += \
     ui/icons/iconsressourcefile.qrc

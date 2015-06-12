@@ -25,6 +25,7 @@ public slots:
     void updateDetailTache(QTreeWidgetItem *item, int column);
     void boutonAddUnitaire();
     void boutonAddComposite();
+    void boutonProgrammerTache();
 
 private:
     Ui::MainWindowProjet *ui;

@@ -7,6 +7,9 @@
 #include "headers/ajouterTacheComposite.h"
 #include "ui_ajouterTacheComposite.h"
 
+#include "headers/programmerUneTache.h"
+#include "ui_programmerUneTache.h"
+
 #include "core/headers/projet.h"
 
 #include <QDebug>
@@ -23,6 +26,7 @@ MainWindowProjet::MainWindowProjet(QWidget *parent, QString pprojetName) :
     connect(ui->tree, SIGNAL (itemClicked(QTreeWidgetItem*,int)), this, SLOT (updateDetailTache(QTreeWidgetItem*,int)));
     connect(ui->addUnitaire, SIGNAL (clicked()), this, SLOT (boutonAddUnitaire()));
     connect(ui->addComposite, SIGNAL (clicked()), this, SLOT (boutonAddComposite()));
+    connect(ui->addProg, SIGNAL (clicked()), this, SLOT (boutonProgrammerTache()));
 
     this->updateListeTache();
 }
@@ -51,6 +55,13 @@ void MainWindowProjet::boutonAddComposite()
     ajouterTacheComposite a(this, projet);
     a.exec();
     this->updateListeTache();
+}
+
+void MainWindowProjet::boutonProgrammerTache()
+{
+    Tache* ptache = projet->getTaches()->value(ui->tree->currentItem()->text(0));
+    programmerUneTache a(this, ptache);
+    a.exec();
 }
 
 void MainWindowProjet::updateListeTache()

@@ -29,6 +29,7 @@ public:
 
     int getDureeRestante(Evenement&);
 
+
     QList<Evenement*>* getProgrammation() { return &programmation; }
 
     QList<Evenement*>* getWeekEvents(const QDate& monday);

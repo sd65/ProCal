@@ -105,6 +105,7 @@ void MainWindow::updateVueHebdomadaire() {
 
     //Nettoyage de l'affichage précédent
     ui->vueHebdomadaire->clearContents();
+    ui->vueHebdomadaire->clearSpans();
 
     //Mise à jour des labels horizontaux
     QStringList listeJours(getSelectedMonday().toString("ddd d"));
@@ -117,11 +118,24 @@ void MainWindow::updateVueHebdomadaire() {
     //Mise à jour des labels Verticaux
     QStringList listeHeures;
     QTime h(8,0) ;
-    for(i=1; i<=49; i++){
-        listeHeures << h.toString("H:m");
-        h = h.addSecs(60 * 15);
+    for(i=0; i<=72; i++){
+        if(i%6 == 0){
+           listeHeures << h.toString("H:mm");
+           h = h.addSecs(3600);
+           int j=0;
+//           while(j!=7){
+//               ui->vueHebdomadaire->setSpan(i,j,6,1);
+//               j++;
+//           }
+           j=0;
+        }
+        else
+            listeHeures << QString("");
+
+        ui->vueHebdomadaire->verticalHeader()->setStyleSheet("QHeaderView::section {border : none;}");
     }
     ui->vueHebdomadaire->setVerticalHeaderLabels(listeHeures);
+
 
     //Mise à jour des evenements de la semaine
 
@@ -135,20 +149,14 @@ void MainWindow::updateVueHebdomadaire() {
         titre->setFont(policeTitre);
         titre->setTextAlignment(Qt::AlignCenter);
         titre->setBackgroundColor(evenement->getColor());
+
         int colonne = (evenement->getDebut().date().daysTo(getSelectedMonday())) + 1;
 
-        int ligne = (evenement->getDebut().time().hour() - 8) * 4;
-        ligne = ligne + evenement->getFin().time().minute() / 15;
-
+        int ligne = (evenement->getDebut().time().hour() - 8) * 6;
+        ligne = ligne + evenement->getFin().time().minute() / 10;
         ui->vueHebdomadaire->setItem(ligne,-colonne + 1,titre);
+        ui->vueHebdomadaire->setSpan(ligne,-colonne + 1,evenement->getDebut().time().secsTo(evenement->getFin().time()) / 600,1);
 
-        ligne++;
-        while ( ligne - ((evenement->getFin().time().hour() - 8 ) * 4 + ( evenement->getFin().time().minute()/15 )) < 0 ) {
-            QTableWidgetItem * duree = new QTableWidgetItem();
-            duree->setBackgroundColor(evenement->getColor());
-            ui->vueHebdomadaire->setItem(ligne,-colonne + 1,duree);
-            ligne++;
-        }
     }
 }
 

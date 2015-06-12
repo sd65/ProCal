@@ -76,7 +76,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="addProg">
            <property name="text">
             <string>Programmer cette tache</string>
            </property>

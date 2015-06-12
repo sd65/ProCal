@@ -83,6 +83,7 @@ void MainWindow::updateListeActivites()
     {
         QListWidgetItem * item = new  QListWidgetItem(activite->getNom());
         item->setFont(wantedFont);
+        item->setIcon(QIcon(":/pink-document-open.svg"));
         ui->listeActivites->addItem(item);
     }
     ui->listeActivites->sortItems();
@@ -96,7 +97,7 @@ void MainWindow::updateJourSelectionne(const QDate & date)
 
 void MainWindow::projetClic(QListWidgetItem *projet)
 {
-    MainWindowProjet * a = new MainWindowProjet(this, projet->text());
+    MainWindowProjet * a = new MainWindowProjet(this, projet->text().mid(4)); // Mid to delete the crayon icon
     a->setAttribute(Qt::WA_DeleteOnClose);
     a->show();
 }
@@ -171,9 +172,10 @@ void MainWindow::updateListeProjets()
     ProjetManager& myProjetManager = ProjetManager::getInstance();
     foreach(Projet* projet, *myProjetManager.getProjets())
     {
-        QListWidgetItem * item = new  QListWidgetItem(projet->getNom());
+        QListWidgetItem * item = new  QListWidgetItem(" ✎  " + projet->getNom());
         item->setFont(wantedFont);
-        item->setIcon(QIcon(":/edit-find.svg"));
+        item->setToolTip("Cliquer pour éditer le projet");
+        item->setIcon(QIcon(":/yellow-document-open.svg"));
         ui->listeProjets->addItem(item);
     }
     ui->listeProjets->sortItems();

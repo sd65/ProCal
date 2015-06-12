@@ -37,15 +37,14 @@ int main(int argc, char *argv[])
     p1->creerTacheUnitaire("Tache1");
     p1->creerTacheUnitaire("Tache3");
 
-    //    foreach(Tache* tache, *p1->getTaches())
-    //        qDebug() << tache->toString();
+
 
     Tache* t1 = p1->getTaches()->value("Tache1");
     //Tache* t3 = p1->getTaches()->value("Tache3");
 
     //    qDebug() << t1->getProjet()->getNom();
 
-    p1->creerTacheUnitaire("Tache2", QTime(0,10), false, t1);
+    p1->creerTacheUnitaire("Tache2", QTime(0,10), false, t1 , QDate::currentDate().addDays(1), QDate::currentDate().addDays(2));
     Tache* t2 = p1->getTaches()->value("Tache2");
 
     p1->creerTacheUnitaire("TacheInside1");
@@ -65,6 +64,9 @@ int main(int argc, char *argv[])
     //        foreach(Tache* tache, *p1->getTaches())
     //            if(tache->getParent() == nullptr)
     //                qDebug() << tache->getNom() << p1->getParent(tache);
+
+    //        foreach(Tache* tache, *p1->getTaches())
+    //            qDebug() << tache->toString();
 
     /////////////
     // Activite
@@ -94,6 +96,8 @@ int main(int argc, char *argv[])
 
     //    foreach(Evenement* evenement, *myProgrammation.getWeekEvents(QDate::currentDate()))
     //        qDebug() << evenement->toString(); ou ->getColor();
+
+    //qDebug() << myProgrammation.progExistanteEntre(QDateTime::currentDateTime().addDays(1).addSecs(-200), QDateTime::currentDateTime().addDays(1).addSecs(-100));
 
     ////////
     // UI

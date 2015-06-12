@@ -27,12 +27,12 @@
    <item>
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Type</string>
+      <string>Description</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QTextEdit" name="type"/>
+    <widget class="QTextEdit" name="description"/>
    </item>
    <item>
     <widget class="QLabel" name="label_3">

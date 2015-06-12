@@ -14,7 +14,13 @@ ajouterTacheUnitaire::ajouterTacheUnitaire(QWidget *parent, Projet* pprojet) :
     ui->setupUi(this);
     projet = pprojet;
     ui->disponibilite->setDate(QDate::currentDate());
+    ui->disponibilite->setMinimumDate(projet->getDisponibilite());
+    ui->disponibilite->setMaximumDate(projet->getEcheance());
+
     ui->echeance->setDate(QDate::currentDate().addMonths(1));
+    ui->echeance->setMinimumDate(projet->getDisponibilite());
+    ui->echeance->setMaximumDate(projet->getEcheance());
+
     ui->boxconst->setDisabled(true);
 
     QListWidgetItem *it;
@@ -58,6 +64,12 @@ void ajouterTacheUnitaire::accept() {
     if(ui->disponibilite->date() > ui->echeance->date())
     {
         message += "\nL'échéance est antérieure à la date de disponibilité !";
+        statusOk = false;
+    }
+
+    if(ui->constraitsToogle->isChecked() && ui->echeance->date() < projet->getTaches()->value(ui->listeTachesPred->currentItem()->text())->getEcheance())
+    {
+        message += "\nL'échéance de votre tache précédente est supérieure à la date d'échance de cette tache !";
         statusOk = false;
     }
 

@@ -1,37 +1,39 @@
-#include <QDebug>
-#include <QCloseEvent>
-#include <QMessageBox>
-
-#include "ui/headers/ajouterActivite.h"
-#include "ui_ajouterActivite.h"
+#include "ui/headers/programmerUneTache.h"
+#include "ui_programmerUneTache.h"
 
 #include "core/headers/programmation.h"
 
-#include "core/headers/evenement.h"
+#include <QMessageBox>
+#include <QRadioButton>
 
-ajouterActivite::ajouterActivite(QWidget *parent) :
+
+programmerUneTache::programmerUneTache(QWidget *parent, Tache *ptache) :
     QDialog(parent),
-    ui(new Ui::ajouterActivite)
+    ui(new Ui::programmerUneTache)
 {
     ui->setupUi(this);
+    tache = ptache;
+
     ui->debut->setDateTime(QDateTime::currentDateTime());
-    ui->fin->setDateTime(QDateTime::currentDateTime().addSecs(3600));
+    ui->debut->setMinimumDate(tache->getDisponibilite());
+    ui->debut->setMaximumDate(tache->getEcheance());
+
+    ui->fin->setDateTime(QDateTime::currentDateTime().addDays(1));
+    ui->fin->setMinimumDate(tache->getDisponibilite());
+    ui->fin->setMaximumDate(tache->getEcheance());
+
+    ui->resume->setHtml(tache->toHtml());
+
 }
 
-ajouterActivite::~ajouterActivite()
+programmerUneTache::~programmerUneTache()
 {
     delete ui;
 }
 
-void ajouterActivite::accept() {
+void programmerUneTache::accept() {
     bool statusOk = true;
     QString message;
-
-    if(ui->nom->text().isEmpty() || ui->description->toPlainText().isEmpty())
-    {
-        message += "Remplissez tous les champs !";
-        statusOk = false;
-    }
 
     if(ui->debut->dateTime() > ui->fin->dateTime())
     {
@@ -48,11 +50,7 @@ void ajouterActivite::accept() {
 
     if(statusOk)
     {
-        ActiviteManager& myActiviteManager = ActiviteManager::getInstance();
-        Activite * myActivite = myActiviteManager.creerActivite(ui->nom->text(), ui->description->toPlainText());
-
-        myProgrammationManager.programmer(myActivite,ui->debut->dateTime(),ui->fin->dateTime());
-
+        myProgrammationManager.programmer(tache,ui->debut->dateTime(),ui->fin->dateTime());
         this->close();
     }
     else
@@ -64,6 +62,3 @@ void ajouterActivite::accept() {
         }
     }
 }
-
-
-

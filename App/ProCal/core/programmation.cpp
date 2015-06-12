@@ -11,6 +11,17 @@ bool Programmation::programmer(Evenement * e, const QDateTime& d, const QDateTim
     return status;
 }
 
+bool Programmation::progExistanteEntre(const QDateTime &d, const QDateTime &f)
+{
+    bool ok = false;
+    foreach (Evenement* prog, programmation) {
+        if (prog->getDebut().date() == d.date())
+            if (d.time() > prog->getDebut().time() && d.time() < prog->getFin().time() || f.time() > prog->getDebut().time() && f.time() < prog->getFin().time() || d.time() < prog->getDebut().time() && f.time() > prog->getFin().time() )
+                ok=true;
+    }
+    return ok;
+}
+
 QList<Evenement *> *Programmation::getWeekEvents(const QDate &monday)
 {
     QList<Evenement*>* weekEvents = new QList<Evenement*>;

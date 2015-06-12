@@ -57,10 +57,16 @@ void MainWindowProjet::boutonAddComposite()
 
 void MainWindowProjet::boutonProgrammerTache()
 {
-    Tache* ptache = projet->getTaches()->value(ui->tree->currentItem()->text(0));
-    programmerUneTache a(this, ptache);
-    a.exec();
-    this->updateListeTache();
+    if(ui->tree->currentItem() != nullptr)
+    {
+        Tache* ptache = projet->getTaches()->value(ui->tree->currentItem()->text(0));
+        if(ptache->isUnitaire())
+        {
+            programmerUneTache a(this, ptache);
+            a.exec();
+            this->updateListeTache();
+        }
+    }
 }
 
 void MainWindowProjet::updateListeTache()

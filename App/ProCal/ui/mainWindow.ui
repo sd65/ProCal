@@ -34,7 +34,14 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QCalendarWidget" name="calendrier"/>
+       <widget class="QCalendarWidget" name="calendrier">
+        <property name="gridVisible">
+         <bool>false</bool>
+        </property>
+        <property name="dateEditEnabled">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QTableWidget" name="vueHebdomadaire">
@@ -72,7 +79,7 @@
          <number>7</number>
         </property>
         <attribute name="horizontalHeaderVisible">
-         <bool>true</bool>
+         <bool>false</bool>
         </attribute>
         <attribute name="horizontalHeaderCascadingSectionResizes">
          <bool>true</bool>
@@ -90,7 +97,7 @@
          <bool>true</bool>
         </attribute>
         <attribute name="verticalHeaderVisible">
-         <bool>true</bool>
+         <bool>false</bool>
         </attribute>
         <row/>
         <row/>

@@ -22,9 +22,25 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     jourSelectionne = QDate::currentDate();
+
+    // Style calendar
+    ui->calendrier->setVerticalHeaderFormat(QCalendarWidget::NoVerticalHeader);
+    QTextCharFormat weekendFormat;
+    weekendFormat.setForeground(QBrush(QColor("pink"), Qt::SolidPattern));
+    ui->calendrier->setWeekdayTextFormat(Qt::Saturday, weekendFormat);
+    ui->calendrier->setWeekdayTextFormat(Qt::Sunday, weekendFormat);
+    QTableView *view = ui->calendrier->findChild<QTableView*>("qt_calendar_calendarview");
+    if (view)
+    {
+        QPalette pal = view->palette();
+        pal.setColor(QPalette::Highlight, QColor("pink"));
+        view->setPalette(pal);
+    }
+
     this->updateListeActivites();
     this->updateListeProjets();
     this->updateVueHebdomadaire();
+
 
     connect(ui->ajouterActivite, SIGNAL (clicked()), this, SLOT (boutonajouterActivite()));
     connect(ui->ajouterProjet, SIGNAL (clicked()), this, SLOT (boutonajouterProjet()));
@@ -57,7 +73,7 @@ void MainWindow::boutonajouterProjet()
 void MainWindow::updateListeActivites()
 {
     while(ui->listeActivites->count()>0)
-      ui->listeActivites->takeItem(0);
+        ui->listeActivites->takeItem(0);
 
     QFont wantedFont;
     wantedFont.setPointSize(20);
@@ -89,7 +105,7 @@ void MainWindow::updateVueHebdomadaire() {
     //Nettoyage de l'affichage précédent
     ui->vueHebdomadaire->clearContents();
 
-   //Mise à jour des labels horizontaux
+    //Mise à jour des labels horizontaux
     QStringList listeJours(getSelectedMonday().toString("ddd d"));
     int i;
     for(i=1;i<7;i++){
@@ -97,7 +113,7 @@ void MainWindow::updateVueHebdomadaire() {
     }
     ui->vueHebdomadaire->setHorizontalHeaderLabels(listeJours);
 
-   //Mise à jour des labels Verticaux
+    //Mise à jour des labels Verticaux
     QStringList listeHeures;
     QTime h(8,0) ;
     for(i=1; i<=49; i++){
@@ -106,7 +122,7 @@ void MainWindow::updateVueHebdomadaire() {
     }
     ui->vueHebdomadaire->setVerticalHeaderLabels(listeHeures);
 
-   //Mise à jour des evenements de la semaine
+    //Mise à jour des evenements de la semaine
 
     QFont policeTitre;
     policeTitre.setPointSize(12);
@@ -138,7 +154,7 @@ void MainWindow::updateVueHebdomadaire() {
 void MainWindow::updateListeProjets()
 {
     while(ui->listeProjets->count()>0)
-      ui->listeProjets->takeItem(0);
+        ui->listeProjets->takeItem(0);
 
     QFont wantedFont;
     wantedFont.setPointSize(20);

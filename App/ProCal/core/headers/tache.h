@@ -107,7 +107,7 @@ public:
     QString toString() const;
     QString toHtml() const;
 
-    QList<Tache*>* getComposition() { return &composition; };
+    QList<Tache*>* getComposition() { return &composition; }
 };
 
 // END CLASS Tache Composite

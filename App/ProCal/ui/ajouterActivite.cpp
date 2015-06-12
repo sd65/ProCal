@@ -44,7 +44,6 @@ void ajouterActivite::accept() {
         ActiviteManager& myActiviteManager = ActiviteManager::getInstance();
         Activite * myActivite = myActiviteManager.creerActivite(ui->nom->text(), ui->type->toPlainText());
 
-
         Programmation& myProgrammationManager = Programmation::getInstance();
         myProgrammationManager.programmer(myActivite,ui->debut->dateTime(),ui->fin->dateTime());
 

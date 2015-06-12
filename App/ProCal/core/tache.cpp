@@ -12,9 +12,10 @@ const QColor& Tache::getColor() const
 
 const QString &Tache::getDesc() const
 {
-    QString& desc = *new QString(getDebut().toString("hh:mm"));
-    desc += " - " ;
-    desc += getFin().toString("hh:mm") += "\n";
+    QString& desc = *new QString(this->getNom());
+    desc += "\n";
+    desc += getDebut().toString("hh:mm") += " - " ;
+    desc += getFin().toString("hh:mm") += "\nProjet : ";
     return desc += projet->getNom();
 }
 

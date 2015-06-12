@@ -112,14 +112,15 @@ void MainWindow::updateVueHebdomadaire() {
     ui->vueHebdomadaire->clearSpans();
 
     //Mise à jour des labels horizontaux
-    QStringList listeJours(getSelectedMonday().toString("ddd d"));
+    QStringList listeJours(getSelectedMonday().toString("dddd d"));
     int i;
     for(i=1;i<7;i++){
-        listeJours << getSelectedMonday().addDays(i).toString("ddd d");
+        listeJours << getSelectedMonday().addDays(i).toString("dddd d");
     }
     ui->vueHebdomadaire->setHorizontalHeaderLabels(listeJours);
 
     //Mise à jour des labels Verticaux et style du tableau
+
     QStringList listeHeures;
     QTime h(8,0) ;
     ui->vueHebdomadaire->setStyleSheet("gridline-color: white;");
@@ -139,7 +140,6 @@ void MainWindow::updateVueHebdomadaire() {
     }
     ui->vueHebdomadaire->verticalHeader()->setStyleSheet("QHeaderView::section {border : none;}");
     ui->vueHebdomadaire->setVerticalHeaderLabels(listeHeures);
-
 
     //Mise à jour des evenements de la semaine
 

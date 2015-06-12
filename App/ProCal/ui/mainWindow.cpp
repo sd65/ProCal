@@ -100,7 +100,7 @@ void MainWindow::updateVueHebdomadaire() {
    //Mise à jour des labels Verticaux
     QStringList listeHeures;
     QTime h(8,0) ;
-    for(i=1; i<=48; i++){
+    for(i=1; i<=49; i++){
         listeHeures << h.toString("H:m");
         h = h.addSecs(60 * 15);
     }
@@ -113,6 +113,7 @@ void MainWindow::updateVueHebdomadaire() {
 
     Programmation& myProgrammation = Programmation::getInstance();
     foreach(Evenement* evenement, *myProgrammation.getWeekEvents(getSelectedMonday())){
+        qDebug() << evenement->getNom();
         QTableWidgetItem * titre = new QTableWidgetItem(evenement->getNom());
         titre->setFont(policeTitre);
         titre->setTextAlignment(Qt::AlignCenter);
@@ -129,9 +130,7 @@ void MainWindow::updateVueHebdomadaire() {
         ui->vueHebdomadaire->setItem(ligne,-colonne + 1,titre);
 
         ligne++;
-        qDebug() << evenement->getFin().toString();
         while ( ligne - ((evenement->getFin().time().hour() - 8 ) * 4 + ( evenement->getFin().time().minute()/15 )) < 0 ) {
-            qDebug() << ligne;
             QTableWidgetItem * duree = new QTableWidgetItem();
             duree->setBackgroundColor(evenement->getColor());
             ui->vueHebdomadaire->setItem(ligne,-colonne + 1,duree);

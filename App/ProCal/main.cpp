@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
     // Programmation
 
     Programmation& myProgrammation = Programmation::getInstance();
-    myProgrammation.programmer(a1, QDateTime::currentDateTime().addSecs(3600 * 9), QDateTime::currentDateTime().addSecs(3600*10));
+    myProgrammation.programmer(a1, QDateTime::currentDateTime().addSecs(3600), QDateTime::currentDateTime().addSecs(3600));
     myProgrammation.programmer(a2, QDateTime::currentDateTime().addDays(1), QDateTime::currentDateTime().addDays(1).addSecs(3600));
     myProgrammation.programmer(t2, QDateTime::currentDateTime().addDays(12), QDateTime::currentDateTime().addDays(13).addSecs(3600));
 

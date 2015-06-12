@@ -81,10 +81,11 @@ public:
     }
     // End Singleton
 
-    void creerActivite(const QString& n, const QString& t)
+    Activite* creerActivite(const QString& n, const QString& t)
     {
         Activite* newActivite= new Activite(n, t);
         activites.insert(n, newActivite);
+        return newActivite;
     }
 
     QMap<QString, Activite*>* getActivites() { return &activites; }

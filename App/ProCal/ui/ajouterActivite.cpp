@@ -5,6 +5,8 @@
 #include "ui/headers/ajouterActivite.h"
 #include "ui_ajouteractivite.h"
 
+#include "core/headers/programmation.h"
+
 #include "core/headers/evenement.h"
 
 ajouterActivite::ajouterActivite(QWidget *parent) :
@@ -40,7 +42,12 @@ void ajouterActivite::accept() {
     if(statusOk)
     {
         ActiviteManager& myActiviteManager = ActiviteManager::getInstance();
-        myActiviteManager.creerActivite(ui->nom->text(), ui->type->toPlainText());
+        Activite * myActivite = myActiviteManager.creerActivite(ui->nom->text(), ui->type->toPlainText());
+
+
+        Programmation& myProgrammationManager = Programmation::getInstance();
+        myProgrammationManager.programmer(myActivite,ui->debut->dateTime(),ui->fin->dateTime());
+
         this->close();
     }
     else

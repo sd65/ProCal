@@ -13,14 +13,14 @@ class ajouterTacheUnitaire : public QDialog
     Q_OBJECT
 
     Projet* projet;
+    Ui::ajouterTacheUnitaire *ui;
+
+    void accept();
 
 public:
     explicit ajouterTacheUnitaire(QWidget *parent = 0, Projet* projet = 0);
     ~ajouterTacheUnitaire();
 
-private:
-    Ui::ajouterTacheUnitaire *ui;
-    void accept();
 };
 
 #endif // AJOUTERTACHEUNITAIRE_H

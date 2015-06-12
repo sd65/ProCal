@@ -1,8 +1,10 @@
-#include "ui/headers/ajouterProjet.h"
-#include "ui_ajouterProjet.h"
 #include <QMessageBox>
 
 #include "core/headers/projet.h"
+
+#include "ui/headers/ajouterProjet.h"
+#include "ui_ajouterProjet.h"
+#include "ui/headers/uiHelpers.h"
 
 ajouterProjet::ajouterProjet(QWidget *parent) :
     QDialog(parent),
@@ -17,7 +19,6 @@ ajouterProjet::~ajouterProjet()
 {
     delete ui;
 }
-
 
 void ajouterProjet::accept() {
     bool statusOk = true;
@@ -42,11 +43,6 @@ void ajouterProjet::accept() {
         this->close();
     }
     else
-    {
-        QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Attention !", message + "\n\nRééssayer ?", QMessageBox::Yes|QMessageBox::No);
-        if (reply == QMessageBox::No) {
+        if (showErrorsAndAskWhatToDo(message))
             this->close();
-        }
-    }
 }

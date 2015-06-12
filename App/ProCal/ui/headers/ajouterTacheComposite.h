@@ -12,14 +12,16 @@ class ajouterTacheComposite;
 class ajouterTacheComposite : public QDialog
 {
     Q_OBJECT
+
     Projet* projet;
+    Ui::ajouterTacheComposite *ui;
+
+    void accept();
+
 public:
     explicit ajouterTacheComposite(QWidget *parent = 0, Projet* projet = 0);
     ~ajouterTacheComposite();
 
-private:
-    Ui::ajouterTacheComposite *ui;
-    void accept();
 };
 
 #endif // AJOUTERTACHECOMPOSITE_H

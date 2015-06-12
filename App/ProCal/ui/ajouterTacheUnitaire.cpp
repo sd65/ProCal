@@ -1,11 +1,11 @@
-#include "ui/headers/ajouterTacheUnitaire.h"
-#include "ui_ajouterTacheUnitaire.h"
-
-#include "core/headers/projet.h"
-
 #include <QMessageBox>
 #include <QRadioButton>
 
+#include "core/headers/projet.h"
+
+#include "ui/headers/ajouterTacheUnitaire.h"
+#include "ui_ajouterTacheUnitaire.h"
+#include "ui/headers/uiHelpers.h"
 
 ajouterTacheUnitaire::ajouterTacheUnitaire(QWidget *parent, Projet* pprojet) :
     QDialog(parent),
@@ -29,9 +29,6 @@ ajouterTacheUnitaire::ajouterTacheUnitaire(QWidget *parent, Projet* pprojet) :
         it= new QListWidgetItem(tache->getNom());
         ui->listeTachesPred->addItem(it);
     }
-
-
-
 }
 
 ajouterTacheUnitaire::~ajouterTacheUnitaire()
@@ -82,11 +79,6 @@ void ajouterTacheUnitaire::accept() {
         this->close();
     }
     else
-    {
-        QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Attention !", message + "\n\nRééssayer ?", QMessageBox::Yes|QMessageBox::No);
-        if (reply == QMessageBox::No) {
+        if (showErrorsAndAskWhatToDo(message))
             this->close();
-        }
-    }
 }

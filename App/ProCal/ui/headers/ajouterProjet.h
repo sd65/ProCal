@@ -11,13 +11,14 @@ class ajouterProjet : public QDialog
 {
     Q_OBJECT
 
+    Ui::ajouterProjet *ui;
+
+    void accept();
+
 public:
     explicit ajouterProjet(QWidget *parent = 0);
     ~ajouterProjet();
 
-private:
-    Ui::ajouterProjet *ui;
-    void accept();
 };
 
 #endif // AJOUTERPROJET_H

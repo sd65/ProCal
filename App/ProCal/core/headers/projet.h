@@ -6,11 +6,10 @@
 #include <QColor>
 #include <QDebug>
 
-
 #include "tache.h"
+
+
 class Tache; // Forward declare
-////////////////
-// CLASS Projet
 
 class Projet
 {
@@ -30,34 +29,17 @@ public:
         couleur = colors[rand() % (sizeof(colors)/sizeof(*colors))];
     }
 
-    bool creerTacheUnitaire(const QString& pnom, const QTime& pduree = QTime(0,10), const bool& pisPreemptive = false, Tache* ppred = nullptr, const QDate& pdisponibilite = QDate::currentDate(), const QDate& pecheance = QDate::currentDate().addMonths(1)); // See CPP
+    void creerTacheUnitaire(const QString& pnom, const QTime& pduree = QTime(0,10), const bool& pisPreemptive = false, Tache* ppred = nullptr, const QDate& pdisponibilite = QDate::currentDate(), const QDate& pecheance = QDate::currentDate().addMonths(1));
 
-    bool creerTacheComposite(const QString& pnom, const QList<Tache*>& pcomposition, Tache* ppred = nullptr, const QDate& pdisponibilite = QDate::currentDate(), const QDate& pecheance = QDate::currentDate().addMonths(1)); // See CPP
-
-    bool precheck(const QDate &pdisponibilite, const QDate &pecheance) const; // See CPP
-
-    QString toString() const; // See CPP
+    void creerTacheComposite(const QString& pnom, const QList<Tache*>& pcomposition, Tache* ppred = nullptr, const QDate& pdisponibilite = QDate::currentDate(), const QDate& pecheance = QDate::currentDate().addMonths(1));
 
     QMap<QString, Tache*>* getTaches() { return &taches; }
     const QColor& getCouleur() const { return couleur; }
     const QString getNom() const { return nom; }
     const QDate getDisponibilite() const { return disponibilite; }
     const QDate getEcheance() const { return echeance; }
-
-    /* Unused setters
-    void setNom(const QString &value) { nom = value; }
-    void setDisponibilite(const QDate &value) { disponibilite = value; }
-    void setEcheance(const QDate &value) { echeance = value; }
-    */
     Tache *getParent(Tache *tacheChild);
 };
-
-// END CLASS Projet
-//////////////////////////
-
-
-//////////////////////
-// CLASS ProjetManager
 
 class ProjetManager
 {
@@ -91,10 +73,6 @@ public:
     QMap<QString, Projet*>* getProjets() { return &projets; }
 
 };
-
-
-// END CLASS ProjetManager
-///////////////////////////
 
 
 #endif // PROJET_H

@@ -14,9 +14,9 @@ private:
     QDateTime fin;
 
 public:
-    virtual QString toString() const =0;
-    virtual const QString& getNom() const =0;
-    virtual const QColor& getColor() const =0;
+
+    virtual const QString& getNom() const = 0;
+    virtual const QColor& getColor() const = 0;
 
     virtual QDateTime getDebut() const { return debut; }
     QDateTime getFin() const { return fin; }
@@ -41,22 +41,13 @@ private:
 
 public:
 
-    Activite(const QString& n, const QString& t, const QDateTime& pdebut = QDateTime::currentDateTime().addDays(1), const QDateTime& pfin = QDateTime::currentDateTime().addDays(1).addSecs(3600)) : Evenement(pdebut, pfin), nom(n), type(t), color(QColor(255, 0, 0, 127)) {}
+    Activite(const QString& n, const QString& t, const QDateTime& pdebut, const QDateTime& pfin) : Evenement(pdebut, pfin), nom(n), type(t), color(QColor(255, 0, 0, 127)) {}
 
-    QString toString() const;
     const QString& getNom() const { return nom; }
     const QString& getType() const { return type; }
     const QColor& getColor() const { return color; }
 
-    /*
-    void setNom(const QString &value) { nom = value; }
-    void setType(const QString &value) { type = value; }
-    */
-
 };
-
-//////////////////////
-// CLASS ActiviteManager
 
 class ActiviteManager
 {
@@ -81,9 +72,9 @@ public:
     }
     // End Singleton
 
-    Activite* creerActivite(const QString& n, const QString& t)
+    Activite* creerActivite(const QString& n, const QString& t, const QDateTime& pdebut = QDateTime::currentDateTime().addDays(1), const QDateTime& pfin = QDateTime::currentDateTime().addDays(1).addSecs(3600))
     {
-        Activite* newActivite= new Activite(n, t);
+        Activite* newActivite= new Activite(n, t, pdebut, pfin);
         activites.insert(n, newActivite);
         return newActivite;
     }
@@ -91,10 +82,5 @@ public:
     QMap<QString, Activite*>* getActivites() { return &activites; }
 
 };
-
-
-// END CLASS ActiviteManager
-///////////////////////////
-
 
 #endif // EVENEMENT_H

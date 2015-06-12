@@ -1,20 +1,18 @@
-#include "headers/mainWindow.h"
-#include "ui_mainWindow.h"
-
-#include "headers/ajouterActivite.h"
-#include "ui_ajouterActivite.h"
-
-#include "headers/ajouterProjet.h"
-#include "ui_ajouterProjet.h"
-
-#include "headers/mainWindowProjet.h"
-#include "ui_mainWindowProjet.h"
+#include <QDebug>
 
 #include "core/headers/evenement.h"
 #include "core/headers/projet.h"
-
 #include "core/headers/programmation.h"
-#include <QDebug>
+
+#include "headers/mainWindow.h"
+#include "ui_mainWindow.h"
+#include "headers/ajouterActivite.h"
+#include "ui_ajouterActivite.h"
+#include "headers/ajouterProjet.h"
+#include "ui_ajouterProjet.h"
+#include "headers/mainWindowProjet.h"
+#include "ui_mainWindowProjet.h"
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -70,6 +68,11 @@ void MainWindow::boutonajouterProjet()
     this->updateVueHebdomadaire();
 }
 
+const QDate MainWindow::getSelectedMonday()
+{
+    return jourSelectionne.addDays(- jourSelectionne.dayOfWeek() + 1);
+}
+
 void MainWindow::updateListeActivites()
 {
     while(ui->listeActivites->count()>0)
@@ -121,14 +124,8 @@ void MainWindow::updateVueHebdomadaire() {
     QTime h(8,0) ;
     for(i=0; i<=72; i++){
         if(i%6 == 0){
-           listeHeures << h.toString("H:mm");
-           h = h.addSecs(3600);
-           int j=0;
-//           while(j!=7){
-//               ui->vueHebdomadaire->setSpan(i,j,6,1);
-//               j++;
-//           }
-           j=0;
+            listeHeures << h.toString("H:mm");
+            h = h.addSecs(3600);
         }
         else
             listeHeures << QString("");
@@ -145,7 +142,6 @@ void MainWindow::updateVueHebdomadaire() {
 
     Programmation& myProgrammation = Programmation::getInstance();
     foreach(Evenement* evenement, *myProgrammation.getWeekEvents(getSelectedMonday())){
-        qDebug() << evenement->getNom();
         QTableWidgetItem * titre = new QTableWidgetItem(evenement->getNom());
         titre->setFont(policeTitre);
         titre->setTextAlignment(Qt::AlignCenter);

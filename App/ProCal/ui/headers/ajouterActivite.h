@@ -11,14 +11,13 @@ class ajouterActivite : public QDialog
 {
     Q_OBJECT
 
-public:
-    explicit ajouterActivite(QWidget *parent = 0);
-    ~ajouterActivite();
-
-private:
     Ui::ajouterActivite *ui;
 
     void accept();
+
+public:
+    explicit ajouterActivite(QWidget *parent = 0);
+    ~ajouterActivite();
 
 };
 

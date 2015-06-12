@@ -1,10 +1,11 @@
-#include "ui/headers/ajouterTacheComposite.h"
-#include "ui_ajouterTacheComposite.h"
+#include <QMessageBox>
+#include <QRadioButton>
 
 #include "core/headers/projet.h"
 
-#include <QMessageBox>
-#include <QRadioButton>
+#include "ui/headers/ajouterTacheComposite.h"
+#include "ui_ajouterTacheComposite.h"
+#include "ui/headers/uiHelpers.h"
 
 ajouterTacheComposite::ajouterTacheComposite(QWidget *parent, Projet* pprojet) :
     QDialog(parent),
@@ -100,11 +101,6 @@ void ajouterTacheComposite::accept() {
         this->close();
     }
     else
-    {
-        QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Attention !", message + "\n\nRééssayer ?", QMessageBox::Yes|QMessageBox::No);
-        if (reply == QMessageBox::No) {
+        if (showErrorsAndAskWhatToDo(message))
             this->close();
-        }
-    }
 }

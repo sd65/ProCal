@@ -1,13 +1,12 @@
-#include <QDebug>
 #include <QCloseEvent>
 #include <QMessageBox>
 
+#include "core/headers/programmation.h"
+#include "core/headers/evenement.h"
+
 #include "ui/headers/ajouterActivite.h"
 #include "ui_ajouterActivite.h"
-
-#include "core/headers/programmation.h"
-
-#include "core/headers/evenement.h"
+#include "ui/headers/uiHelpers.h"
 
 ajouterActivite::ajouterActivite(QWidget *parent) :
     QDialog(parent),
@@ -56,13 +55,8 @@ void ajouterActivite::accept() {
         this->close();
     }
     else
-    {
-        QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Attention !", message + "\n\nRééssayer ?", QMessageBox::Yes|QMessageBox::No);
-        if (reply == QMessageBox::No) {
+        if (showErrorsAndAskWhatToDo(message))
             this->close();
-        }
-    }
 }
 
 

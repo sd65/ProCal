@@ -15,13 +15,13 @@ class programmerUneTache : public QDialog
 
     Tache* tache;
 
+    Ui::programmerUneTache *ui;
+    void accept();
+
 public:
     explicit programmerUneTache(QWidget *parent = 0, Tache* ptache = 0);
     ~programmerUneTache();
 
-private:
-    Ui::programmerUneTache *ui;
-    void accept();
 };
 
 #endif // PROGRAMMERUNETACHE_H

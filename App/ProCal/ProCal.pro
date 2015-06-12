@@ -51,4 +51,4 @@ FORMS    += \
 RESOURCES += \
     ui/icons/iconsressourcefile.qrc
 
-ICON = ui/icon/icon.icns
+#ICON = ui/icon/icon.icns

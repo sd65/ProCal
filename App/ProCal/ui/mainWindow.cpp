@@ -121,13 +121,16 @@ void MainWindow::updateVueHebdomadaire() {
     QTime h(8,0) ;
     for(i=0; i<=72; i++){
         if(i%6 == 0){
+           QTableWidgetItem * cellule_vide = new QTableWidgetItem;
+           cellule_vide->setb
            listeHeures << h.toString("H:mm");
            h = h.addSecs(3600);
            int j=0;
-//           while(j!=7){
-//               ui->vueHebdomadaire->setSpan(i,j,6,1);
-//               j++;
-//           }
+           while(j!=7){
+               ui->vueHebdomadaire-
+                       setStyleSheet("color:red");
+               j++;
+           }
            j=0;
         }
         else
@@ -146,16 +149,16 @@ void MainWindow::updateVueHebdomadaire() {
     Programmation& myProgrammation = Programmation::getInstance();
     foreach(Evenement* evenement, *myProgrammation.getWeekEvents(getSelectedMonday())){
         qDebug() << evenement->getNom();
-        QTableWidgetItem * titre = new QTableWidgetItem(evenement->getNom());
-        titre->setFont(policeTitre);
-        titre->setTextAlignment(Qt::AlignCenter);
-        titre->setBackgroundColor(evenement->getColor());
+        QTableWidgetItem * case_event = new QTableWidgetItem(evenement->getNom());
+        case_event->setFont(policeTitre);
+        case_event->setTextAlignment(Qt::AlignCenter);
+        case_event->setBackgroundColor(evenement->getColor());
 
         int colonne = (evenement->getDebut().date().daysTo(getSelectedMonday())) + 1;
 
         int ligne = (evenement->getDebut().time().hour() - 8) * 6;
         ligne = ligne + evenement->getFin().time().minute() / 10;
-        ui->vueHebdomadaire->setItem(ligne,-colonne + 1,titre);
+        ui->vueHebdomadaire->setItem(ligne,-colonne + 1,case_event);
         ui->vueHebdomadaire->setSpan(ligne,-colonne + 1,evenement->getDebut().time().secsTo(evenement->getFin().time()) / 600,1);
 
     }

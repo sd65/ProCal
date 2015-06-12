@@ -30,7 +30,7 @@ public:
 
     int getDureeRestante(Evenement&);
 
-    bool progExistanteEntre(const QDateTime &d, const QDateTime &f);
+    Evenement* progExistanteEntre(const QDateTime &d, const QDateTime &f);
 
     QList<Evenement*>* getProgrammation() { return &programmation; }
     QList<Evenement*>* getWeekEvents(const QDate& monday);

@@ -123,6 +123,4 @@ foreach(Evenement* evenement, *myProgrammation.getProgrammation())
 foreach(Evenement* evenement, *myProgrammation.getWeekEvents(QDate::currentDate()))
     qDebug() << evenement->toString(); ou ->getColor();
 
-qDebug() << myProgrammation.progExistanteEntre(QDateTime::currentDateTime().addDays(1).addSecs(-200), QDateTime::currentDateTime().addDays(1).addSecs(-100));
-
 */

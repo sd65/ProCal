@@ -32,7 +32,7 @@ protected:
             painter->drawText(rect, Qt::AlignLeft, "♢");
             haveWritten = true;
         }
-        if(myProgrammationManager.progExistanteEntre(QDateTime(date, QTime(0,0,0,1)), QDateTime(date, QTime(23,59,59,59))) && this->selectedDate() != date)
+        if(myProgrammationManager.progExistanteEntre(QDateTime(date, QTime(0,0,0,1)), QDateTime(date, QTime(23,59,59,59))) != nullptr && this->selectedDate() != date)
         {
             painter->fillRect(rect, QColor(229, 127, 73, 170));
             haveWritten = true;

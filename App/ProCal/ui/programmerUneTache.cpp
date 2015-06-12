@@ -42,9 +42,10 @@ void programmerUneTache::accept() {
     }
 
     Programmation& myProgrammationManager = Programmation::getInstance();
-    if(myProgrammationManager.progExistanteEntre(ui->debut->dateTime(), ui->fin->dateTime()))
+    Evenement* e = myProgrammationManager.progExistanteEntre(ui->debut->dateTime(), ui->fin->dateTime());
+    if( e != nullptr)
     {
-        message += "\nIl y a déjà quelque chose de prévu à ce moment !";
+        message += "\nIl y a déjà '" + e->getNom() + "' de prévu à ce moment !";
         statusOk = false;
     }
 

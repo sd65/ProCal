@@ -26,16 +26,18 @@ protected:
         Programmation& myProgrammationManager = Programmation::getInstance();
         bool haveWritten = false;
         painter->save();
-        if(myProgrammationManager.progExistanteEntre(QDateTime(date, QTime(0,0,0,1)), QDateTime(date, QTime(23,59,59,59))))
-        {
-            painter->fillRect(rect, QColor(229, 127, 73, 170));
-            haveWritten = true;
-        }
+
         if(date == QDate::currentDate())
         {
             painter->drawText(rect, Qt::AlignLeft, "♢");
             haveWritten = true;
         }
+        if(myProgrammationManager.progExistanteEntre(QDateTime(date, QTime(0,0,0,1)), QDateTime(date, QTime(23,59,59,59))) && this->selectedDate() != date)
+        {
+            painter->fillRect(rect, QColor(229, 127, 73, 170));
+            haveWritten = true;
+        }
+
         if (haveWritten)
             painter->drawText(rect, Qt::AlignCenter, QString::number(date.day()));
 

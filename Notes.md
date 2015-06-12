@@ -18,7 +18,7 @@ Singleton sur ProjetManaer et Programmation
 Composite sur tache
 set minmum et max in tache according to projet
 Rééemplenter notre propre widget pour les dates avec eve highlighted
-
+On ne programme pas de tache Composite
 
 Notes pour nous :
 

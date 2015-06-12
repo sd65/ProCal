@@ -46,5 +46,3 @@ FORMS    += \
 
 RESOURCES += \
     ui/icons/iconsressourcefile.qrc
-
-DISTFILES +=

@@ -32,7 +32,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->calendrier, SIGNAL (clicked(QDate)), this, SLOT (updateVueHebdomadaire()));
     connect(ui->listeProjets, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(projetClic(QListWidgetItem*)));
 
-
 }
 
 MainWindow::~MainWindow()
@@ -45,6 +44,7 @@ void MainWindow::boutonajouterActivite()
     ajouterActivite a;
     a.exec();
     this->updateListeActivites();
+    this->updateVueHebdomadaire();
 }
 
 void MainWindow::boutonajouterProjet()
@@ -52,6 +52,7 @@ void MainWindow::boutonajouterProjet()
     ajouterProjet a;
     a.exec();
     this->updateListeProjets();
+    this->updateVueHebdomadaire();
 }
 
 void MainWindow::updateListeActivites()
@@ -118,15 +119,11 @@ void MainWindow::updateVueHebdomadaire() {
         titre->setFont(policeTitre);
         titre->setTextAlignment(Qt::AlignCenter);
         titre->setBackgroundColor(evenement->getColor());
-        int colonne = evenement->getDebut().date().daysTo(getSelectedMonday());
+        int colonne = (evenement->getDebut().date().daysTo(getSelectedMonday())) + 1;
 
         int ligne = (evenement->getDebut().time().hour() - 8) * 4;
-        if(15 <= evenement->getDebut().time().minute() < 30)
-            ligne = ligne + 1;
-        else if(30 <= evenement->getDebut().time().minute() < 45)
-            ligne = ligne + 2;
-        else if(45 <= evenement->getDebut().time().minute())
-            ligne = ligne + 3;
+        ligne = ligne + evenement->getFin().time().minute() / 15;
+
         ui->vueHebdomadaire->setItem(ligne,-colonne + 1,titre);
 
         ligne++;

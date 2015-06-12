@@ -1,5 +1,5 @@
 #include "ui/headers/ajouterProjet.h"
-#include "ui_ajouterprojet.h"
+#include "ui_ajouterProjet.h"
 #include <QMessageBox>
 
 #include "core/headers/projet.h"

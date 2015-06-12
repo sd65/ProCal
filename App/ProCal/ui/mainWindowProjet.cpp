@@ -1,5 +1,5 @@
 #include "ui/headers/mainWindowProjet.h"
-#include "ui_mainwindowprojet.h"
+#include "ui_mainWindowProjet.h"
 
 #include "headers/ajouterTacheUnitaire.h"
 #include "ui_ajouterTacheUnitaire.h"
@@ -34,6 +34,7 @@ MainWindowProjet::~MainWindowProjet()
 
 void MainWindowProjet::updateDetailTache(QTreeWidgetItem *item, int column)
 {
+    Q_UNUSED(column);
     Tache * t1 = projet->getTaches()->value(item->text(0));
     ui->detailTache->setHtml(t1->toHtml());
 }
@@ -55,10 +56,43 @@ void MainWindowProjet::boutonAddComposite()
 void MainWindowProjet::updateListeTache()
 {
     ui->tree->clear();
-    foreach(Tache* tache, *projet->getTaches())
+    QMap<Tache*, QTreeWidgetItem *> alreadyInTable;
+    QTreeWidgetItem * t;
+    int nbInserted = 0;
+    const int nbTotal = (projet->getTaches())->size();
+
+    while(nbInserted != nbTotal)
     {
-        QTreeWidgetItem * t = new QTreeWidgetItem();
-        t->setText(0, tache->getNom());
-        ui->tree->addTopLevelItem(t);
+        foreach(Tache* tache, *projet->getTaches())
+        {
+            if (!alreadyInTable.contains(tache))
+            {
+                if(tache->getParent() == nullptr)
+                {
+                    t = new QTreeWidgetItem();
+                    t->setText(0, tache->getNom());
+                    qDebug() << tache->getNom();
+                    if (tache->getPred() != nullptr)
+                        t->setText(1, tache->getPred()->getNom());
+                    else
+                        t->setText(1, "✘ Aucune");
+                    ui->tree->addTopLevelItem(t);
+                    alreadyInTable.insert(tache, t);
+                    nbInserted++;
+                }
+                else if (alreadyInTable.contains(tache->getParent()))
+                {
+                    t = new QTreeWidgetItem(alreadyInTable.value(tache->getParent()));
+                    t->setText(0, tache->getNom());
+                    if (tache->getPred() != nullptr)
+                        t->setText(1, tache->getPred()->getNom());
+                    else
+                        t->setText(1, "✘ Aucune");
+                    alreadyInTable.insert(tache, t);
+                    nbInserted++;
+                }
+            }
+        }
     }
+    ui->tree->expandAll();
 }

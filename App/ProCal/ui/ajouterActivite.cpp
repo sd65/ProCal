@@ -3,7 +3,7 @@
 #include <QMessageBox>
 
 #include "ui/headers/ajouterActivite.h"
-#include "ui_ajouteractivite.h"
+#include "ui_ajouterActivite.h"
 
 #include "core/headers/programmation.h"
 

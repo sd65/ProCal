@@ -1,14 +1,14 @@
 #include "headers/mainWindow.h"
-#include "ui_mainwindow.h"
+#include "ui_mainWindow.h"
 
 #include "headers/ajouterActivite.h"
-#include "ui_ajouteractivite.h"
+#include "ui_ajouterActivite.h"
 
 #include "headers/ajouterProjet.h"
-#include "ui_ajouterprojet.h"
+#include "ui_ajouterProjet.h"
 
 #include "headers/mainWindowProjet.h"
-#include "ui_mainwindowprojet.h"
+#include "ui_mainWindowProjet.h"
 
 #include "core/headers/evenement.h"
 #include "core/headers/projet.h"
@@ -90,6 +90,7 @@ void MainWindow::updateListeActivites()
 
 void MainWindow::updateJourSelectionne(const QDate & date)
 {
+    Q_UNUSED(date);
     jourSelectionne = ui->calendrier->selectedDate();
 }
 

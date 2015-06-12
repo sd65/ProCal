@@ -5,7 +5,7 @@
 #include <QDate>
 
 #include "ui/headers/mainWindow.h"
-#include "ui_mainwindow.h"
+#include "ui_mainWindow.h"
 #include "core/headers/projet.h"
 #include "core/headers/programmation.h"
 
@@ -41,16 +41,25 @@ int main(int argc, char *argv[])
     //        qDebug() << tache->toString();
 
     Tache* t1 = p1->getTaches()->value("Tache1");
-    Tache* t3 = p1->getTaches()->value("Tache3");
+    //Tache* t3 = p1->getTaches()->value("Tache3");
 
     //    qDebug() << t1->getProjet()->getNom();
 
     p1->creerTacheUnitaire("Tache2", QTime(0,10), false, t1);
     Tache* t2 = p1->getTaches()->value("Tache2");
-    //    qDebug() << t2->toString();
 
-    creerTacheConteneur(compo, {t1, t2});
+    p1->creerTacheUnitaire("TacheInside1");
+    p1->creerTacheUnitaire("TacheInside2");
+    Tache* ti1 = p1->getTaches()->value("TacheInside1");
+    Tache* ti2 = p1->getTaches()->value("TacheInside2");
+
+    creerTacheConteneur(compo0, {ti1, ti2});
+    p1->creerTacheComposite("TacheComposite0", *compo0);
+    Tache* tc0 = p1->getTaches()->value("TacheComposite0");
+
+    creerTacheConteneur(compo, {t1, t2, tc0});
     p1->creerTacheComposite("TacheComposite1", *compo);
+
     //    qDebug() << p1->getTaches()->value("TacheComposite1")->toString();
 
     //        foreach(Tache* tache, *p1->getTaches())

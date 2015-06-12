@@ -17,7 +17,7 @@ Les activités ont forcement une date de prévu
 Singleton sur ProjetManaer et Programmation
 Composite sur tache
 set minmum et max in tache according to projet
-
+Rééemplenter notre propre widget pour les dates avec eve highlighted
 
 
 Notes pour nous :

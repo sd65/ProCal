@@ -73,10 +73,9 @@ void MainWindowProjet::updateListeTache()
 {
     ui->tree->clear();
     QMap<Tache*, QTreeWidgetItem *> alreadyInTable;
-    QTreeWidgetItem * t;
     int nbInserted = 0;
     const int nbTotal = (projet->getTaches())->size();
-
+    QTreeWidgetItem * t;
     while(nbInserted != nbTotal)
     {
         foreach(Tache* tache, *projet->getTaches())
@@ -86,28 +85,34 @@ void MainWindowProjet::updateListeTache()
                 if(tache->getParent() == nullptr)
                 {
                     t = new QTreeWidgetItem();
-                    t->setText(0, tache->getNom());
-                    if (tache->getPred() != nullptr)
-                        t->setText(1, tache->getPred()->getNom());
-                    else
-                        t->setText(1, "✘ Aucune");
+                    this->insertTacheInTree(t, tache, &alreadyInTable);
                     ui->tree->addTopLevelItem(t);
-                    alreadyInTable.insert(tache, t);
                     nbInserted++;
                 }
                 else if (alreadyInTable.contains(tache->getParent()))
                 {
                     t = new QTreeWidgetItem(alreadyInTable.value(tache->getParent()));
-                    t->setText(0, tache->getNom());
-                    if (tache->getPred() != nullptr)
-                        t->setText(1, tache->getPred()->getNom());
-                    else
-                        t->setText(1, "✘ Aucune");
-                    alreadyInTable.insert(tache, t);
+                    this->insertTacheInTree(t, tache, &alreadyInTable);
                     nbInserted++;
                 }
             }
         }
     }
     ui->tree->expandAll();
+}
+
+void MainWindowProjet::insertTacheInTree(QTreeWidgetItem * t, Tache* tache, QMap<Tache*, QTreeWidgetItem *>* alreadyInTable)
+{
+    t->setText(0, tache->getNom());
+    if (tache->getPred() != nullptr)
+        t->setText(1, tache->getPred()->getNom());
+    else
+        t->setText(1, "✘ Aucune");
+    if(tache->getDebut().isNull())
+        t->setText(2, "✘");
+    else
+        t->setText(2, "✔");
+    t->setTextAlignment(1, Qt::AlignHCenter);
+    t->setTextAlignment(2, Qt::AlignHCenter);
+    alreadyInTable->insert(tache, t);
 }

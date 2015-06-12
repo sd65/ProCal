@@ -19,7 +19,7 @@ class MainWindowProjet : public QMainWindow
     Projet* projet;
 
     void updateListeTache();
-
+    void insertTacheInTree(QTreeWidgetItem *t, Tache *tache, QMap<Tache *, QTreeWidgetItem *> *alreadyInTable);
 public:
     explicit MainWindowProjet(QWidget *parent, QString pprojetName);
     ~MainWindowProjet();

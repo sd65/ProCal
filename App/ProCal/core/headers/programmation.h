@@ -2,11 +2,12 @@
 #define PROGRAMMATION_H
 
 #include "evenement.h"
-#include <QDebug>
 
 class Programmation
 {
+
 private:
+
     QList<Evenement*> programmation;
 
     // Singleton
@@ -25,14 +26,13 @@ public:
     }
     // End Singleton
 
-    bool programmer(Evenement *e, const QDateTime &d, const QDateTime &f);
+    void programmer(Evenement *e, const QDateTime &d, const QDateTime &f);
 
     int getDureeRestante(Evenement&);
 
     bool progExistanteEntre(const QDateTime &d, const QDateTime &f);
 
     QList<Evenement*>* getProgrammation() { return &programmation; }
-
     QList<Evenement*>* getWeekEvents(const QDate& monday);
 };
 

@@ -1,11 +1,11 @@
-#include "ui/headers/programmerUneTache.h"
-#include "ui_programmerUneTache.h"
-
-#include "core/headers/programmation.h"
-
 #include <QMessageBox>
 #include <QRadioButton>
 
+#include "core/headers/programmation.h"
+
+#include "ui/headers/programmerUneTache.h"
+#include "ui_programmerUneTache.h"
+#include "ui/headers/uiHelpers.h"
 
 programmerUneTache::programmerUneTache(QWidget *parent, Tache *ptache) :
     QDialog(parent),
@@ -18,7 +18,7 @@ programmerUneTache::programmerUneTache(QWidget *parent, Tache *ptache) :
     ui->debut->setMinimumDate(tache->getDisponibilite());
     ui->debut->setMaximumDate(tache->getEcheance());
 
-    ui->fin->setDateTime(QDateTime::currentDateTime().addDays(1));
+    ui->fin->setDateTime(QDateTime::currentDateTime().addSecs(3600 * 2));
     ui->fin->setMinimumDate(tache->getDisponibilite());
     ui->fin->setMaximumDate(tache->getEcheance());
 
@@ -54,11 +54,6 @@ void programmerUneTache::accept() {
         this->close();
     }
     else
-    {
-        QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Attention !", message + "\n\nRééssayer ?", QMessageBox::Yes|QMessageBox::No);
-        if (reply == QMessageBox::No) {
+        if (showErrorsAndAskWhatToDo(message))
             this->close();
-        }
-    }
 }

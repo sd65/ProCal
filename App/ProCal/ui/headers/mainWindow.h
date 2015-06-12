@@ -1,9 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "QDate"
-#include "QDebug"
 #include <QMainWindow>
+#include <QDate>
 #include <QStandardItem>
 #include <QListWidgetItem>
 
@@ -16,6 +15,14 @@ class MainWindow : public QMainWindow
 
     Q_OBJECT
 
+    Ui::MainWindow *ui;
+    QDate jourSelectionne;
+
+    const QDate getSelectedMonday();
+    void updateListeActivites();
+    void updateListeProjets();
+
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -26,18 +33,6 @@ public slots:
     void updateJourSelectionne(const QDate & date);
     void updateVueHebdomadaire();
     void projetClic(QListWidgetItem* projet);
-
-
-private:
-    Ui::MainWindow *ui;
-    QDate jourSelectionne;
-
-    const QDate getSelectedMonday()
-    {
-        return jourSelectionne.addDays(- jourSelectionne.dayOfWeek() + 1);
-    }
-    void updateListeActivites();
-    void updateListeProjets();
 
 };
 

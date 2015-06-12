@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     ui/ajouterProjet.cpp \
     ui/mainWindow.cpp \
     ui/mainWindowProjet.cpp \
-    ui/programmerUneTache.cpp
+    ui/programmerUneTache.cpp \
+    ui/uiHelpers.cpp
 
 HEADERS  += \
     core/headers/evenement.h \
@@ -37,7 +38,8 @@ HEADERS  += \
     ui/headers/ajouterProjet.h \
     ui/headers/mainWindow.h \
     ui/headers/mainWindowProjet.h \
-    ui/headers/programmerUneTache.h
+    ui/headers/programmerUneTache.h \
+    ui/headers/uiHelpers.h
 
 FORMS    += \
     ui/ajouterTacheUnitaire.ui \

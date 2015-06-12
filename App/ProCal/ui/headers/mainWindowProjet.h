@@ -15,22 +15,21 @@ class MainWindowProjet : public QMainWindow
 {
     Q_OBJECT
 
+    Ui::MainWindowProjet *ui;
     Projet* projet;
+
+    void updateListeTache();
 
 public:
     explicit MainWindowProjet(QWidget *parent, QString pprojetName);
     ~MainWindowProjet();
 
 public slots:
-    void updateDetailTache(QTreeWidgetItem *item, int column);
+    void updateDetailTache();
     void boutonAddUnitaire();
     void boutonAddComposite();
     void boutonProgrammerTache();
 
-private:
-    Ui::MainWindowProjet *ui;
-
-    void updateListeTache();
 };
 
 #endif // MAINWINDOWPROJET_H

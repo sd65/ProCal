@@ -1,20 +1,18 @@
-#include "headers/mainWindow.h"
-#include "ui_mainWindow.h"
-
-#include "headers/ajouterActivite.h"
-#include "ui_ajouterActivite.h"
-
-#include "headers/ajouterProjet.h"
-#include "ui_ajouterProjet.h"
-
-#include "headers/mainWindowProjet.h"
-#include "ui_mainWindowProjet.h"
+#include <QDebug>
 
 #include "core/headers/evenement.h"
 #include "core/headers/projet.h"
-
 #include "core/headers/programmation.h"
-#include <QDebug>
+
+#include "headers/mainWindow.h"
+#include "ui_mainWindow.h"
+#include "headers/ajouterActivite.h"
+#include "ui_ajouterActivite.h"
+#include "headers/ajouterProjet.h"
+#include "ui_ajouterProjet.h"
+#include "headers/mainWindowProjet.h"
+#include "ui_mainWindowProjet.h"
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -70,6 +68,11 @@ void MainWindow::boutonajouterProjet()
     this->updateVueHebdomadaire();
 }
 
+const QDate MainWindow::getSelectedMonday()
+{
+    return jourSelectionne.addDays(- jourSelectionne.dayOfWeek() + 1);
+}
+
 void MainWindow::updateListeActivites()
 {
     while(ui->listeActivites->count()>0)
@@ -122,16 +125,18 @@ void MainWindow::updateVueHebdomadaire() {
     for(i=0; i<=72; i++){
         if(i%6 == 0){
            QTableWidgetItem * cellule_vide = new QTableWidgetItem;
-           cellule_vide->setb
+//           cellule_vide->setb
            listeHeures << h.toString("H:mm");
            h = h.addSecs(3600);
            int j=0;
            while(j!=7){
-               ui->vueHebdomadaire-
-                       setStyleSheet("color:red");
+//               ui->vueHebdomadaire-
+//                       setStyleSheet("color:red");
                j++;
            }
            j=0;
+            listeHeures << h.toString("H:mm");
+            h = h.addSecs(3600);
         }
         else
             listeHeures << QString("");
@@ -153,6 +158,10 @@ void MainWindow::updateVueHebdomadaire() {
         case_event->setFont(policeTitre);
         case_event->setTextAlignment(Qt::AlignCenter);
         case_event->setBackgroundColor(evenement->getColor());
+        QTableWidgetItem * titre = new QTableWidgetItem(evenement->getNom());
+        titre->setFont(policeTitre);
+        titre->setTextAlignment(Qt::AlignCenter);
+        titre->setBackgroundColor(evenement->getColor());
 
         int colonne = (evenement->getDebut().date().daysTo(getSelectedMonday())) + 1;
 

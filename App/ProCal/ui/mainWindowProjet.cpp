@@ -1,18 +1,16 @@
-#include "ui/headers/mainWindowProjet.h"
-#include "ui_mainWindowProjet.h"
-
-#include "headers/ajouterTacheUnitaire.h"
-#include "ui_ajouterTacheUnitaire.h"
-
-#include "headers/ajouterTacheComposite.h"
-#include "ui_ajouterTacheComposite.h"
-
-#include "headers/programmerUneTache.h"
-#include "ui_programmerUneTache.h"
+#include <QDebug>
 
 #include "core/headers/projet.h"
 
-#include <QDebug>
+#include "ui/headers/mainWindowProjet.h"
+#include "ui_mainWindowProjet.h"
+#include "headers/ajouterTacheUnitaire.h"
+#include "ui_ajouterTacheUnitaire.h"
+#include "headers/ajouterTacheComposite.h"
+#include "ui_ajouterTacheComposite.h"
+#include "headers/programmerUneTache.h"
+#include "ui_programmerUneTache.h"
+
 
 MainWindowProjet::MainWindowProjet(QWidget *parent, QString pprojetName) :
     QMainWindow(parent),
@@ -23,7 +21,8 @@ MainWindowProjet::MainWindowProjet(QWidget *parent, QString pprojetName) :
     ProjetManager& myProjetManager = ProjetManager::getInstance();
     projet = myProjetManager.getProjets()->value(pprojetName);
 
-    connect(ui->tree, SIGNAL (itemClicked(QTreeWidgetItem*,int)), this, SLOT (updateDetailTache(QTreeWidgetItem*,int)));
+    connect(ui->tree, SIGNAL (itemClicked(QTreeWidgetItem*,int)), this, SLOT (updateDetailTache()));
+    connect(ui->tree, SIGNAL (itemSelectionChanged()), this, SLOT (updateDetailTache()));
     connect(ui->addUnitaire, SIGNAL (clicked()), this, SLOT (boutonAddUnitaire()));
     connect(ui->addComposite, SIGNAL (clicked()), this, SLOT (boutonAddComposite()));
     connect(ui->addProg, SIGNAL (clicked()), this, SLOT (boutonProgrammerTache()));
@@ -36,10 +35,9 @@ MainWindowProjet::~MainWindowProjet()
     delete ui;
 }
 
-void MainWindowProjet::updateDetailTache(QTreeWidgetItem *item, int column)
+void MainWindowProjet::updateDetailTache()
 {
-    Q_UNUSED(column);
-    Tache * t1 = projet->getTaches()->value(item->text(0));
+    Tache * t1 = projet->getTaches()->value(ui->tree->currentItem()->text(0));
     ui->detailTache->setHtml(t1->toHtml());
 }
 

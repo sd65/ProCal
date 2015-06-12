@@ -39,12 +39,18 @@ void ajouterActivite::accept() {
         statusOk = false;
     }
 
+    Programmation& myProgrammationManager = Programmation::getInstance();
+    if(myProgrammationManager.progExistanteEntre(ui->debut->dateTime(), ui->fin->dateTime()))
+    {
+        message += "\nIl y a déjà quelque chose de prévu à ce moment !";
+        statusOk = false;
+    }
+
     if(statusOk)
     {
         ActiviteManager& myActiviteManager = ActiviteManager::getInstance();
         Activite * myActivite = myActiviteManager.creerActivite(ui->nom->text(), ui->description->toPlainText());
 
-        Programmation& myProgrammationManager = Programmation::getInstance();
         myProgrammationManager.programmer(myActivite,ui->debut->dateTime(),ui->fin->dateTime());
 
         this->close();

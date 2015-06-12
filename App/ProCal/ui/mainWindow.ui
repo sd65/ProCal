@@ -53,8 +53,11 @@
         <property name="autoFillBackground">
          <bool>false</bool>
         </property>
+        <property name="verticalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOn</enum>
+        </property>
         <property name="horizontalScrollBarPolicy">
-         <enum>Qt::ScrollBarAsNeeded</enum>
+         <enum>Qt::ScrollBarAlwaysOff</enum>
         </property>
         <property name="sizeAdjustPolicy">
          <enum>QAbstractScrollArea::AdjustIgnored</enum>
@@ -115,6 +118,9 @@
         </attribute>
         <attribute name="verticalHeaderMinimumSectionSize">
          <number>1</number>
+        </attribute>
+        <attribute name="verticalHeaderStretchLastSection">
+         <bool>true</bool>
         </attribute>
         <row/>
         <row/>

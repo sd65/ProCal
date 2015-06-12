@@ -34,11 +34,13 @@ MainWindow::MainWindow(QWidget *parent) :
         pal.setColor(QPalette::Highlight, QColor(26,128,182,250));
         view->setPalette(pal);
     }
+    // Style week view
+    QHeaderView* header = ui->vueHebdomadaire->horizontalHeader();
+    header->setSectionResizeMode(QHeaderView::Stretch);
 
     this->updateListeActivites();
     this->updateListeProjets();
     this->updateVueHebdomadaire();
-
 
     connect(ui->ajouterActivite, SIGNAL (clicked()), this, SLOT (boutonajouterActivite()));
     connect(ui->ajouterProjet, SIGNAL (clicked()), this, SLOT (boutonajouterProjet()));
@@ -127,13 +129,13 @@ void MainWindow::updateVueHebdomadaire() {
     int j;
     for(i=0; i<=72; i++){
         if(i%6 == 0){
-           for(j=0;j<7;j++){
-               QTableWidgetItem * case_heure = new QTableWidgetItem();
-               case_heure->setBackgroundColor(QColor("#F5F5F5"));
-               ui->vueHebdomadaire->setItem(i,j,case_heure);
-           }
-           listeHeures << h.toString("H:mm");
-           h = h.addSecs(3600);
+            for(j=0;j<7;j++){
+                QTableWidgetItem * case_heure = new QTableWidgetItem();
+                case_heure->setBackgroundColor(QColor("#F5F5F5"));
+                ui->vueHebdomadaire->setItem(i,j,case_heure);
+            }
+            listeHeures << h.toString("H:mm");
+            h = h.addSecs(3600);
         }
         else
             listeHeures << QString("");

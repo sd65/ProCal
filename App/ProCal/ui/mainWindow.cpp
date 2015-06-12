@@ -119,30 +119,25 @@ void MainWindow::updateVueHebdomadaire() {
     }
     ui->vueHebdomadaire->setHorizontalHeaderLabels(listeJours);
 
-    //Mise à jour des labels Verticaux
+    //Mise à jour des labels Verticaux et style du tableau
     QStringList listeHeures;
     QTime h(8,0) ;
+    ui->vueHebdomadaire->setStyleSheet("gridline-color: white;");
+    int j;
     for(i=0; i<=72; i++){
         if(i%6 == 0){
-           QTableWidgetItem * cellule_vide = new QTableWidgetItem;
-//           cellule_vide->setb
+           for(j=0;j<7;j++){
+               QTableWidgetItem * case_heure = new QTableWidgetItem();
+               case_heure->setBackgroundColor(QColor("#F5F5F5"));
+               ui->vueHebdomadaire->setItem(i,j,case_heure);
+           }
            listeHeures << h.toString("H:mm");
            h = h.addSecs(3600);
-           int j=0;
-           while(j!=7){
-//               ui->vueHebdomadaire-
-//                       setStyleSheet("color:red");
-               j++;
-           }
-           j=0;
-            listeHeures << h.toString("H:mm");
-            h = h.addSecs(3600);
         }
         else
             listeHeures << QString("");
-
-        ui->vueHebdomadaire->verticalHeader()->setStyleSheet("QHeaderView::section {border : none;}");
     }
+    ui->vueHebdomadaire->verticalHeader()->setStyleSheet("QHeaderView::section {border : none;}");
     ui->vueHebdomadaire->setVerticalHeaderLabels(listeHeures);
 
 
@@ -153,20 +148,19 @@ void MainWindow::updateVueHebdomadaire() {
 
     Programmation& myProgrammation = Programmation::getInstance();
     foreach(Evenement* evenement, *myProgrammation.getWeekEvents(getSelectedMonday())){
-        qDebug() << evenement->getNom();
+
         QTableWidgetItem * case_event = new QTableWidgetItem(evenement->getNom());
         case_event->setFont(policeTitre);
         case_event->setTextAlignment(Qt::AlignCenter);
         case_event->setBackgroundColor(evenement->getColor());
-        QTableWidgetItem * titre = new QTableWidgetItem(evenement->getNom());
-        titre->setFont(policeTitre);
-        titre->setTextAlignment(Qt::AlignCenter);
-        titre->setBackgroundColor(evenement->getColor());
+        case_event->setToolTip(evenement->getDesc());
 
-        int colonne = (evenement->getDebut().date().daysTo(getSelectedMonday())) + 1;
+        int colonne = evenement->getDebut().date().daysTo(getSelectedMonday()) + 1;
 
-        int ligne = (evenement->getDebut().time().hour() - 8) * 6;
-        ligne = ligne + evenement->getFin().time().minute() / 10;
+        int ligne = (evenement->getDebut().time().hour() - 8) * 6; //Heures
+        ligne = ligne + evenement->getFin().time().minute() / 10; //Minutes
+
+        ui->vueHebdomadaire->removeCellWidget(ligne,-colonne + 1);
         ui->vueHebdomadaire->setItem(ligne,-colonne + 1,case_event);
         ui->vueHebdomadaire->setSpan(ligne,-colonne + 1,evenement->getDebut().time().secsTo(evenement->getFin().time()) / 600,1);
 

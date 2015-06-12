@@ -10,6 +10,14 @@ const QColor& Tache::getColor() const
     return projet->getCouleur();
 }
 
+const QString &Tache::getDesc() const
+{
+    QString& desc = *new QString(getDebut().toString("hh:mm"));
+    desc += " - " ;
+    desc += getFin().toString("hh:mm") += "\n";
+    return desc += projet->getNom();
+}
+
 QString Tache::toHtml() const {
     QString d;
     d.append("<h1>" + this->getNom() + "</h1>");

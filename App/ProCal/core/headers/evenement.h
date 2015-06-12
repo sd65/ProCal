@@ -17,6 +17,7 @@ public:
 
     virtual const QString& getNom() const = 0;
     virtual const QColor& getColor() const = 0;
+    virtual const QString& getDesc() const = 0;
 
     virtual QDateTime getDebut() const { return debut; }
     QDateTime getFin() const { return fin; }
@@ -44,7 +45,7 @@ public:
     Activite(const QString& n, const QString& t, const QDateTime& pdebut, const QDateTime& pfin) : Evenement(pdebut, pfin), nom(n), type(t), color(QColor(255, 0, 0, 127)) {}
 
     const QString& getNom() const { return nom; }
-    const QString& getType() const { return type; }
+    const QString& getDesc() const;
     const QColor& getColor() const { return color; }
 
 };

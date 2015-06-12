@@ -11,6 +11,7 @@ class Projet; // Forward declare
 
 class Tache : public Evenement
 {
+    friend class TacheUnitaire;
 
 private:
 
@@ -31,6 +32,7 @@ public:
 
     Tache* getParent();
     const QColor& getColor() const;
+    const QString& getDesc() const;
     const Projet* getProjet() const { return projet; }
     const QString& getNom() const { return nom; }
     const Tache* getPred() const { return pred; }
@@ -45,7 +47,6 @@ public:
 
 class TacheUnitaire : public Tache
 {
-
 private:
 
     QTime duree;
@@ -56,11 +57,9 @@ public:
     TacheUnitaire(const QString& pnom, const QTime& pduree, const bool& pisPreemptive, Tache* ppred, const QDate& pdisponibilite, const QDate& pecheance, Projet* pprojet) : Tache(pnom, ppred, true, pdisponibilite, pecheance, pprojet), duree(pduree), is_Preemptive(pisPreemptive)  {}
 
     QString toHtml() const;
-
     QTime getDuree() const { return duree; }
     bool isPreemptive() const { return is_Preemptive; }
     QString isPreemptiveToString() const { return is_Preemptive ? "true" : "false"; }
-
 };
 
 class TacheComposite : public Tache

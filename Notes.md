@@ -16,20 +16,27 @@ Some macros
 Les activités ont forcement une date de prévu
 Singleton sur ProjetManaer et Programmation
 Composite sur tache
-
+set minmum et max in tache according to projet
 
 
 
 Notes pour nous :
 
-Besoin à partir d'une tache de remonter à son nom de projet ?
 On ne peut pas faire hériter TAche UNitaire de evenement, mais tout Tache
 button Show today ?
 
 
-TODO :
+TODO SD
 
-Afficher dans les select de ajouterTaches que les taches possibles à Rajouter
+CLEAN UP
+Calendar month -> carré de couleur quand prog inside
+THEN Doc doxygen
+XML ?
+ 
 
-Check des dates projets avant d'ajouter
-Check des dates taches inside avant add
+TODO LM
+
+Survoler activité pour description (tooltip)
+Update UML
+Rapport
+Vidéo

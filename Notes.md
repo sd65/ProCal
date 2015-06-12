@@ -20,6 +20,9 @@ set minmum et max in tache according to projet
 Rééemplenter notre propre widget pour les dates avec eve highlighted
 On ne programme pas de tache Composite
 Tooltips !
+Revenir ) today
+Auto sized days
+Unicode for some icons
 
 Notes pour nous :
 
@@ -29,13 +32,12 @@ button Show today ?
 
 TODO SD
 
-THEN Doc doxygen
+Doc doxygen
 XML ?
  
 
 TODO LM
 
-Survoler activité pour description (tooltip)
 Update UML
 Rapport
 Vidéo

@@ -34,7 +34,7 @@ protected:
         }
         if(myProgrammationManager.progExistanteEntre(QDateTime(date, QTime(0,0,0,1)), QDateTime(date, QTime(23,59,59,59))) != nullptr && this->selectedDate() != date)
         {
-            painter->fillRect(rect, QColor(229, 127, 73, 170));
+            painter->fillRect(rect, QColor(236,64,122,180));
             haveWritten = true;
         }
 

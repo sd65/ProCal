@@ -35,6 +35,12 @@
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="ourCalendarWidget" name="calendrier">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>300</height>
+         </size>
+        </property>
         <property name="gridVisible">
          <bool>false</bool>
         </property>

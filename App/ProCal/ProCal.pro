@@ -8,6 +8,7 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = ProCal
+
 TEMPLATE = app
 
 CONFIG += c++11
@@ -46,3 +47,5 @@ FORMS    += \
 
 RESOURCES += \
     ui/icons/iconsressourcefile.qrc
+
+ICON = ui/icon/icon.icns

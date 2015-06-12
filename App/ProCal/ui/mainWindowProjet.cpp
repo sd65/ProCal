@@ -71,7 +71,6 @@ void MainWindowProjet::updateListeTache()
                 {
                     t = new QTreeWidgetItem();
                     t->setText(0, tache->getNom());
-                    qDebug() << tache->getNom();
                     if (tache->getPred() != nullptr)
                         t->setText(1, tache->getPred()->getNom());
                     else

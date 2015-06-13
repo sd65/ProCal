@@ -150,7 +150,6 @@ void MainWindow::updateVueHebdomadaire() {
 
     Programmation& myProgrammation = Programmation::getInstance();
     foreach(Evenement* evenement, *myProgrammation.getWeekEvents(getSelectedMonday())){
-
         QTableWidgetItem * case_event = new QTableWidgetItem(evenement->getNom());
         case_event->setFont(policeTitre);
         case_event->setTextAlignment(Qt::AlignCenter);

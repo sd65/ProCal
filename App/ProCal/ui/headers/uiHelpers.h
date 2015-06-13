@@ -29,12 +29,12 @@ protected:
 
         if(date == QDate::currentDate())
         {
-            painter->drawText(rect, Qt::AlignLeft, "⬤");
+            painter->drawText(rect, Qt::AlignLeft, "◉");
             haveWritten = true;
         }
         if(myProgrammationManager.progExistanteEntre(QDateTime(date, QTime(0,0,0,1)), QDateTime(date, QTime(23,59,59,59))) != nullptr && this->selectedDate() != date)
         {
-            painter->fillRect(rect, QColor(236,64,122,180));
+            painter->fillRect(rect, QColor(236,64,122,100));
             haveWritten = true;
         }
 

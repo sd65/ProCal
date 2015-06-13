@@ -8,7 +8,7 @@
         <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
         <meta name="generator" content="Doxygen 1.8.9.1"/>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <title>Project Calendar: programmerUneTache Class Reference</title>
+        <title>Project Calendar: ExportManager Class Reference</title>
         <!--<link href="tabs.css" rel="stylesheet" type="text/css"/>-->
         <script type="text/javascript" src="dynsections.js"></script>
         <link href="search/search.css" rel="stylesheet" type="text/css"/>
@@ -90,29 +90,88 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="classprogrammerUneTache-members.html">List of all members</a>  </div>
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="classExportManager-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">programmerUneTache Class Reference</div>  </div>
+<div class="title">ExportManager Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="dynheader">
-Inheritance diagram for programmerUneTache:</div>
-<div class="dyncontent">
- <div class="center">
-  <img src="classprogrammerUneTache.png" usemap="#programmerUneTache_map" alt=""/>
-  <map id="programmerUneTache_map" name="programmerUneTache_map">
-</map>
- </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9466cd8fce80e68e2d8f785231286d0d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9466cd8fce80e68e2d8f785231286d0d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>programmerUneTache</b> (QWidget *parent=0, <a class="el" href="classTache.html">Tache</a> *ptache=0)</td></tr>
-<tr class="separator:a9466cd8fce80e68e2d8f785231286d0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a494edf3635b9ddd2956eea5b9cc8311a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a494edf3635b9ddd2956eea5b9cc8311a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ExportManager</b> (QFile *pfile, int ptype=ExportManager::EXPORT_XML())</td></tr>
+<tr class="separator:a494edf3635b9ddd2956eea5b9cc8311a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac813502f04eb1f4ba1d3da24ecf884a6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExportManager.html#ac813502f04eb1f4ba1d3da24ecf884a6">exportProjet</a> (<a class="el" href="classProjet.html">Projet</a> *projet)</td></tr>
+<tr class="memdesc:ac813502f04eb1f4ba1d3da24ecf884a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save in XML or TXT (depeding of class contructor parameter) a projet and all his tasks.  <a href="#ac813502f04eb1f4ba1d3da24ecf884a6">More...</a><br /></td></tr>
+<tr class="separator:ac813502f04eb1f4ba1d3da24ecf884a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a415869192d773bbe4f03efc5383eb48d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExportManager.html#a415869192d773bbe4f03efc5383eb48d">exportEvents</a> (QList&lt; <a class="el" href="classEvenement.html">Evenement</a> * &gt; *events)</td></tr>
+<tr class="memdesc:a415869192d773bbe4f03efc5383eb48d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save in XML or TXT (depeding of class contructor parameter) all week events.  <a href="#a415869192d773bbe4f03efc5383eb48d">More...</a><br /></td></tr>
+<tr class="separator:a415869192d773bbe4f03efc5383eb48d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:abb4719dd5a910182985d41ddcd3a12d4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abb4719dd5a910182985d41ddcd3a12d4"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>EXPORT_XML</b> ()</td></tr>
+<tr class="separator:abb4719dd5a910182985d41ddcd3a12d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa28fb9f34efe98e8165a98540c118d0e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa28fb9f34efe98e8165a98540c118d0e"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>EXPORT_TXT</b> ()</td></tr>
+<tr class="separator:aa28fb9f34efe98e8165a98540c118d0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a415869192d773bbe4f03efc5383eb48d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ExportManager::exportEvents </td>
+          <td>(</td>
+          <td class="paramtype">QList&lt; <a class="el" href="classEvenement.html">Evenement</a> * &gt; *&#160;</td>
+          <td class="paramname"><em>events</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Save in XML or TXT (depeding of class contructor parameter) all week events. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">QList&lt;Evenement*&gt;*</td><td>events </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>done or errors </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac813502f04eb1f4ba1d3da24ecf884a6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ExportManager::exportProjet </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classProjet.html">Projet</a> *&#160;</td>
+          <td class="paramname"><em>projet</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Save in XML or TXT (depeding of class contructor parameter) a projet and all his tasks. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">projet</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>done or errors </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/sd/Documents/Boulot/LO21/ProCal/App/ProCal/ui/headers/<a class="el" href="programmerUneTache_8h_source.html">programmerUneTache.h</a></li>
-<li>/home/sd/Documents/Boulot/LO21/ProCal/App/ProCal/ui/programmerUneTache.cpp</li>
+<li>/home/sd/Documents/Boulot/LO21/ProCal/App/ProCal/core/headers/<a class="el" href="exportManager_8h_source.html">exportManager.h</a></li>
+<li>/home/sd/Documents/Boulot/LO21/ProCal/App/ProCal/core/exportManager.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.8-->

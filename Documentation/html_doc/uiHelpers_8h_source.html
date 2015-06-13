@@ -105,53 +105,54 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keywordtype">bool</span> showErrorsAndAskWhatToDo(<span class="keyword">const</span> QString&amp; message);</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classourCalendarWidget.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="classourCalendarWidget.html">ourCalendarWidget</a> : <span class="keyword">public</span> QCalendarWidget</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="classourCalendarWidget.html">ourCalendarWidget</a>(QWidget *parent = 0) : QCalendarWidget(parent){}</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    ~<a class="code" href="classourCalendarWidget.html">ourCalendarWidget</a>() {}</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classourCalendarWidget.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="classourCalendarWidget.html">ourCalendarWidget</a> : <span class="keyword">public</span> QCalendarWidget</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="classourCalendarWidget.html">ourCalendarWidget</a>(QWidget *parent = 0) : QCalendarWidget(parent){}</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    ~<a class="code" href="classourCalendarWidget.html">ourCalendarWidget</a>() {}</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classourCalendarWidget.html#ac1f6c52077936748c3055c9456a7baf1">   33</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classourCalendarWidget.html#ac1f6c52077936748c3055c9456a7baf1">paintCell</a>(QPainter *painter, <span class="keyword">const</span> QRect &amp;rect, <span class="keyword">const</span> QDate &amp;date)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <a class="code" href="classProgrammation.html">Programmation</a>&amp; myProgrammationManager = Programmation::getInstance();</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordtype">bool</span> haveWritten = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        painter-&gt;save();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">if</span>(date == QDate::currentDate())</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            painter-&gt;drawText(rect, Qt::AlignLeft, <span class="stringliteral">&quot;⬤&quot;</span>);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            haveWritten = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        }</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">if</span>(myProgrammationManager.<a class="code" href="classProgrammation.html#a7ec80b94d5d92872a7a3d2d2e0803b29">progExistanteEntre</a>(QDateTime(date, QTime(0,0,0,1)), QDateTime(date, QTime(23,59,59,59))) != <span class="keyword">nullptr</span> &amp;&amp; this-&gt;selectedDate() != date)</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            painter-&gt;fillRect(rect, QColor(236,64,122,180));</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            haveWritten = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">if</span> (haveWritten)</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            painter-&gt;drawText(rect, Qt::AlignCenter, QString::number(date.day()));</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        painter-&gt;restore();</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">if</span> (haveWritten == <span class="keyword">false</span>)</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        { <span class="comment">// if our conditions are not matching, show the default way.</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            QCalendarWidget::paintCell(painter, rect, date);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        }</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classourCalendarWidget.html#a1949c5fa6840c38402c0af6e8d3e4c7c">mousePressEvent</a>(QMouseEvent *e);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;};</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#endif // UIHELPERS_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classourCalendarWidget.html#ac1f6c52077936748c3055c9456a7baf1">   34</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classourCalendarWidget.html#ac1f6c52077936748c3055c9456a7baf1">paintCell</a>(QPainter *painter, <span class="keyword">const</span> QRect &amp;rect, <span class="keyword">const</span> QDate &amp;date)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <a class="code" href="classProgrammation.html">Programmation</a>&amp; myProgrammationManager = Programmation::getInstance();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordtype">bool</span> haveWritten = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        painter-&gt;save();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">if</span>(date == QDate::currentDate())</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            painter-&gt;drawText(rect, Qt::AlignLeft, <span class="stringliteral">&quot;◉&quot;</span>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            haveWritten = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">if</span>(myProgrammationManager.<a class="code" href="classProgrammation.html#a7ec80b94d5d92872a7a3d2d2e0803b29">progExistanteEntre</a>(QDateTime(date, QTime(0,0,0,1)), QDateTime(date, QTime(23,59,59,59))) != <span class="keyword">nullptr</span> &amp;&amp; this-&gt;selectedDate() != date)</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            painter-&gt;fillRect(rect, QColor(236,64,122,170));</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            haveWritten = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">if</span> (haveWritten)</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            painter-&gt;drawText(rect, Qt::AlignCenter, QString::number(date.day()));</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        painter-&gt;restore();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">if</span> (haveWritten == <span class="keyword">false</span>)</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        { <span class="comment">// if our conditions are not matching, show the default way.</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            QCalendarWidget::paintCell(painter, rect, date);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classourCalendarWidget.html#a1949c5fa6840c38402c0af6e8d3e4c7c">mousePressEvent</a>(QMouseEvent *e);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;};</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#endif // UIHELPERS_H</span></div>
 <div class="ttc" id="classProgrammation_html"><div class="ttname"><a href="classProgrammation.html">Programmation</a></div><div class="ttdef"><b>Definition:</b> programmation.h:6</div></div>
-<div class="ttc" id="classourCalendarWidget_html_ac1f6c52077936748c3055c9456a7baf1"><div class="ttname"><a href="classourCalendarWidget.html#ac1f6c52077936748c3055c9456a7baf1">ourCalendarWidget::paintCell</a></div><div class="ttdeci">void paintCell(QPainter *painter, const QRect &amp;rect, const QDate &amp;date) const </div><div class="ttdoc">Override the method of the parent class and add some indicators to show today and days with scheduled...</div><div class="ttdef"><b>Definition:</b> uiHelpers.h:33</div></div>
-<div class="ttc" id="classourCalendarWidget_html"><div class="ttname"><a href="classourCalendarWidget.html">ourCalendarWidget</a></div><div class="ttdoc">Our custom widget inherited by QCalendarWidget. </div><div class="ttdef"><b>Definition:</b> uiHelpers.h:16</div></div>
+<div class="ttc" id="classourCalendarWidget_html_ac1f6c52077936748c3055c9456a7baf1"><div class="ttname"><a href="classourCalendarWidget.html#ac1f6c52077936748c3055c9456a7baf1">ourCalendarWidget::paintCell</a></div><div class="ttdeci">void paintCell(QPainter *painter, const QRect &amp;rect, const QDate &amp;date) const </div><div class="ttdoc">Override the method of the parent class and add some indicators to show today and days with scheduled...</div><div class="ttdef"><b>Definition:</b> uiHelpers.h:34</div></div>
+<div class="ttc" id="classourCalendarWidget_html"><div class="ttname"><a href="classourCalendarWidget.html">ourCalendarWidget</a></div><div class="ttdoc">Our custom widget inherited by QCalendarWidget. </div><div class="ttdef"><b>Definition:</b> uiHelpers.h:17</div></div>
 <div class="ttc" id="classProgrammation_html_a7ec80b94d5d92872a7a3d2d2e0803b29"><div class="ttname"><a href="classProgrammation.html#a7ec80b94d5d92872a7a3d2d2e0803b29">Programmation::progExistanteEntre</a></div><div class="ttdeci">Evenement * progExistanteEntre(const QDateTime &amp;d, const QDateTime &amp;f)</div><div class="ttdoc">If an event is scheduled between those two dates return the pointer to this event otherwise return nu...</div><div class="ttdef"><b>Definition:</b> programmation.cpp:22</div></div>
 <div class="ttc" id="classourCalendarWidget_html_a1949c5fa6840c38402c0af6e8d3e4c7c"><div class="ttname"><a href="classourCalendarWidget.html#a1949c5fa6840c38402c0af6e8d3e4c7c">ourCalendarWidget::mousePressEvent</a></div><div class="ttdeci">void mousePressEvent(QMouseEvent *e)</div><div class="ttdoc">Override a mouse event in our custom widget. </div><div class="ttdef"><b>Definition:</b> uiHelpers.cpp:24</div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -163,7 +164,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 </div>
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jun 13 2015 11:34:18 for Project Calendar by &#160;<a href="http://www.doxygen.org/index.html"> Doxygen</a> 1.8.9.1
+Generated on Sat Jun 13 2015 22:08:05 for Project Calendar by &#160;<a href="http://www.doxygen.org/index.html"> Doxygen</a> 1.8.9.1
 </small></address>
 </body>
 </html>

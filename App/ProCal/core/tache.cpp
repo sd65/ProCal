@@ -1,5 +1,9 @@
 #include "headers/tache.h"
 
+/*!
+   Return the parent of this tache should not be called.
+   \return Tache* The parent tache or nullptr
+ */
 Tache *Tache::getParent()
 {
     return projet->getParent(this);
@@ -19,6 +23,10 @@ const QString &Tache::getDesc() const
     return desc += projet->getNom();
 }
 
+/*!
+  Format a tache to html
+   \return QString the html
+ */
 QString Tache::toHtml() const {
     QString d;
     d.append("<h1>" + this->getNom() + "</h1>");
@@ -32,6 +40,10 @@ QString Tache::toHtml() const {
     return d;
 }
 
+/*!
+  Format a tache to html
+   \return QString the html
+ */
 QString TacheUnitaire::toHtml() const {
     QString d = Tache::toHtml();
     d.append("<p><b>Durée : </b>" + this->getDuree().toString()+ "</p>");
@@ -39,6 +51,10 @@ QString TacheUnitaire::toHtml() const {
     return d;
 }
 
+/*!
+  Format a tache to html
+   \return QString the html
+ */
 QString TacheComposite::toHtml() const {
     QString d = Tache::toHtml();
     d.append("<p><b>Contient :</b></p><ul>");

@@ -1,5 +1,11 @@
 #include "headers/programmation.h"
 
+/*!
+  Schedule an event
+   \param e Evenement * The event
+   \param d const QDateTime&The start time
+   \param f const QDateTime&The end time
+ */
 void Programmation::programmer(Evenement * e, const QDateTime& d, const QDateTime& f)
 {
     e->setDebut(d);
@@ -7,6 +13,12 @@ void Programmation::programmer(Evenement * e, const QDateTime& d, const QDateTim
     programmation.append(e);
 }
 
+/*!
+  If an event is scheduled between those two dates return the pointer to this event otherwise return nullptr
+   \param d const QDateTime& The start date time
+   \param f const QDateTime& The end date time
+   \return Evenement*
+ */
 Evenement* Programmation::progExistanteEntre(const QDateTime &d, const QDateTime &f)
 {
     foreach (Evenement* prog, programmation) {
@@ -17,6 +29,11 @@ Evenement* Programmation::progExistanteEntre(const QDateTime &d, const QDateTime
     return nullptr;
 }
 
+/*!
+  Return a list of all events scheduled this week
+   \param monday The first day of this week
+   \return QList<Evenement *> * The list
+ */
 QList<Evenement *> *Programmation::getWeekEvents(const QDate &monday)
 {
     QList<Evenement*>* weekEvents = new QList<Evenement*>;

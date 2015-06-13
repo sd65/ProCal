@@ -35,12 +35,18 @@ MainWindowProjet::~MainWindowProjet()
     delete ui;
 }
 
+/*!
+  Click capture event
+ */
 void MainWindowProjet::updateDetailTache()
 {
     Tache * t1 = projet->getTaches()->value(ui->tree->currentItem()->text(0));
     ui->detailTache->setHtml(t1->toHtml());
 }
 
+/*!
+  Click capture event
+ */
 void MainWindowProjet::boutonAddUnitaire()
 {
     ajouterTacheUnitaire a(this, projet);
@@ -48,6 +54,9 @@ void MainWindowProjet::boutonAddUnitaire()
     this->updateListeTache();
 }
 
+/*!
+  Click capture event
+ */
 void MainWindowProjet::boutonAddComposite()
 {
     ajouterTacheComposite a(this, projet);
@@ -55,6 +64,9 @@ void MainWindowProjet::boutonAddComposite()
     this->updateListeTache();
 }
 
+/*!
+  Click capture event
+ */
 void MainWindowProjet::boutonProgrammerTache()
 {
     if(ui->tree->currentItem() != nullptr)
@@ -101,6 +113,12 @@ void MainWindowProjet::updateListeTache()
     ui->tree->expandAll();
 }
 
+/*!
+  Insert a tache in the tree view of a projet editor
+   \param QTreeWidgetItem * t The item
+   \param Tache* tache The tache
+   \param QTreeWidgetItem *>*  alreadyInTable Table to save what's already in the tree
+ */
 void MainWindowProjet::insertTacheInTree(QTreeWidgetItem * t, Tache* tache, QMap<Tache*, QTreeWidgetItem *>* alreadyInTable)
 {
     t->setText(0, tache->getNom());

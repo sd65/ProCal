@@ -19,6 +19,7 @@ public:
     static int EXPORT_TXT() { return 2; }
 
     bool exportProjet(Projet* projet);
+    bool exportEvents(QList<Evenement *> *events);
 };
 
 #endif // ExportManager_H

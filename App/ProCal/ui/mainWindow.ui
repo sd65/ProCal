@@ -50,6 +50,17 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="exportWeek">
+        <property name="text">
+         <string>Exporter les événements de la semaine</string>
+        </property>
+        <property name="icon">
+         <iconset resource="icons/iconsressourcefile.qrc">
+          <normaloff>:/document-save.svg</normaloff>:/document-save.svg</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QTableWidget" name="vueHebdomadaire">
         <property name="font">
          <font>

@@ -35,6 +35,7 @@ public slots:
     void updateVueHebdomadaire();
     void projetClic(QListWidgetItem* projet);
     void updateExportProjet();
+    void boutonExportWeek();
 
 };
 

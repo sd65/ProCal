@@ -47,6 +47,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->ajouterActivite, SIGNAL (clicked()), this, SLOT (boutonajouterActivite()));
     connect(ui->ajouterProjet, SIGNAL (clicked()), this, SLOT (boutonajouterProjet()));
     connect(ui->exportProjet, SIGNAL (clicked()), this, SLOT (boutonExportProjet()));
+    connect(ui->exportWeek, SIGNAL (clicked()), this, SLOT (boutonExportWeek()));
     connect(ui->calendrier, SIGNAL (clicked(QDate)), this, SLOT (updateJourSelectionne(QDate)));
     connect(ui->calendrier, SIGNAL (clicked(QDate)), this, SLOT (updateVueHebdomadaire()));
     connect(ui->listeProjets, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(projetClic(QListWidgetItem*)));
@@ -68,6 +69,33 @@ void MainWindow::boutonajouterActivite()
     this->updateListeActivites();
     this->updateVueHebdomadaire();
 }
+
+
+void MainWindow::boutonExportWeek()
+{
+    QString * selectedFilter = new QString();
+    QString fileName = QFileDialog::getSaveFileName(this, "Exporter la semaine",  QDir::current().absolutePath(), "XML(*.xml);;Texte brut(*.txt)", selectedFilter);
+    Programmation& myProgrammation = Programmation::getInstance();
+    QList<Evenement*>* events = myProgrammation.getWeekEvents(this->getSelectedMonday());
+    if(*selectedFilter == "XML(*.xml)")
+    {
+        QFile * f = new QFile(fileName + ".xml");
+        ExportManager exp(f, ExportManager::EXPORT_XML());
+        exp.exportEvents(events);
+        f->close();
+        delete f;
+    }
+    else
+    {
+        QFile * f = new QFile(fileName+ ".txt");
+        ExportManager exp(f, ExportManager::EXPORT_TXT());
+        exp.exportEvents(events);
+        f->close();
+        delete f;
+    }
+    delete selectedFilter;
+}
+
 
 void MainWindow::boutonExportProjet()
 {

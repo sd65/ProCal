@@ -175,14 +175,14 @@ void MainWindow::updateVueHebdomadaire() {
         case_event->setBackgroundColor(evenement->getColor());
         case_event->setToolTip(evenement->getDesc());
 
-        int colonne = evenement->getDebut().date().daysTo(getSelectedMonday()) + 1;
+        int colonne = evenement->getDebut()->date().daysTo(getSelectedMonday()) + 1;
 
-        int ligne = (evenement->getDebut().time().hour() - 8) * 6; //Heures
-        ligne = ligne + evenement->getFin().time().minute() / 10; //Minutes
+        int ligne = (evenement->getDebut()->time().hour() - 8) * 6; //Heures
+        ligne = ligne + evenement->getFin()->time().minute() / 10; //Minutes
 
         ui->vueHebdomadaire->removeCellWidget(ligne,-colonne + 1);
         ui->vueHebdomadaire->setItem(ligne,-colonne + 1,case_event);
-        ui->vueHebdomadaire->setSpan(ligne,-colonne + 1,evenement->getDebut().time().secsTo(evenement->getFin().time()) / 600,1);
+        ui->vueHebdomadaire->setSpan(ligne,-colonne + 1,evenement->getDebut()->time().secsTo(evenement->getFin()->time()) / 600,1);
 
     }
 }

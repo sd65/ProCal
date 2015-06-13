@@ -18,10 +18,6 @@ programmerUneTache::programmerUneTache(QWidget *parent, Tache *ptache) :
     ui->debut->setMinimumDate(tache->getDisponibilite());
     ui->debut->setMaximumDate(tache->getEcheance());
 
-    ui->fin->setDateTime(QDateTime::currentDateTime().addSecs(3600 * 2));
-    ui->fin->setMinimumDate(tache->getDisponibilite());
-    ui->fin->setMaximumDate(tache->getEcheance());
-
     ui->resume->setHtml(tache->toHtml());
 
 }
@@ -31,6 +27,7 @@ programmerUneTache::~programmerUneTache()
     delete ui;
 }
 
+
 /*!
   Override default behaviour of accept buttons or enter key. Performs checks before insert datas.
  */
@@ -39,23 +36,25 @@ void programmerUneTache::accept() {
     bool statusOk = true;
     QString message;
 
-    if(ui->debut->dateTime() > ui->fin->dateTime())
-    {
-        message += "\nLa fin est antérieure au début !";
-        statusOk = false;
-    }
+    QDateTime fin = QDateTime(ui->debut->date(), ui->debut->time().addSecs(tache->getDuree()->second() + tache->getDuree()->hour() * 3600 + tache->getDuree()->minute() * 60));
 
     Programmation& myProgrammationManager = Programmation::getInstance();
-    Evenement* e = myProgrammationManager.progExistanteEntre(ui->debut->dateTime(), ui->fin->dateTime());
+    Evenement* e = myProgrammationManager.progExistanteEntre(ui->debut->dateTime(), fin);
     if( e != nullptr)
     {
         message += "\nIl y a déjà '" + e->getNom() + "' de prévu à ce moment !";
         statusOk = false;
     }
 
+    if(tache->getPred() != nullptr && *tache->getPred()->getFin() > ui->debut->dateTime())
+    {
+        message += "\nLa fin la tache prédente de cette tache est programée pour après le début de cette tache !";
+        statusOk = false;
+    }
+
     if(statusOk)
     {
-        myProgrammationManager.programmer(tache,ui->debut->dateTime(),ui->fin->dateTime());
+        myProgrammationManager.programmer(tache,ui->debut->dateTime(), fin);
         this->close();
     }
     else

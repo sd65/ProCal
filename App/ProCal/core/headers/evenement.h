@@ -20,8 +20,8 @@ public:
     virtual const QColor& getColor() const = 0;
     virtual const QString& getDesc() const = 0;
 
-    virtual QDateTime getDebut() const { return debut; }
-    QDateTime getFin() const { return fin; }
+    virtual const QDateTime* getDebut() const { return &debut; }
+    virtual const QDateTime* getFin() const { return &fin; }
 
     void setDebut(const QDateTime &value) { debut = value; }
     void setFin(const QDateTime &value) { fin = value; }

@@ -84,6 +84,7 @@ void MainWindowProjet::boutonProgrammerTache()
             this->updateListeTache();
         }
     }
+    ui->addProg->setDisabled(true);
 }
 
 void MainWindowProjet::updateListeTache()
@@ -131,7 +132,7 @@ void MainWindowProjet::insertTacheInTree(QTreeWidgetItem * t, Tache* tache, QMap
         t->setText(1, tache->getPred()->getNom());
     else
         t->setText(1, "✘ Aucune");
-    if(tache->getDebut().isNull())
+    if(tache->getDebut()->isNull())
         t->setText(2, "✘");
     else
         t->setText(2, "✔");

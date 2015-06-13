@@ -49,23 +49,6 @@
         </property>
        </widget>
       </item>
-      <item>
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Fin</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QDateTimeEdit" name="fin">
-        <property name="displayFormat">
-         <string>dddd dd MMMM yyyy à HH:mm</string>
-        </property>
-        <property name="calendarPopup">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
    </item>
@@ -115,22 +98,6 @@
     <hint type="destinationlabel">
      <x>286</x>
      <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>debut</sender>
-   <signal>dateChanged(QDate)</signal>
-   <receiver>fin</receiver>
-   <slot>setDate(QDate)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>265</x>
-     <y>340</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>265</x>
-     <y>404</y>
     </hint>
    </hints>
   </connection>

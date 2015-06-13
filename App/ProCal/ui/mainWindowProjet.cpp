@@ -27,6 +27,7 @@ MainWindowProjet::MainWindowProjet(QWidget *parent, QString pprojetName) :
     connect(ui->addComposite, SIGNAL (clicked()), this, SLOT (boutonAddComposite()));
     connect(ui->addProg, SIGNAL (clicked()), this, SLOT (boutonProgrammerTache()));
 
+    ui->addProg->setDisabled(true);
     this->updateListeTache();
 }
 
@@ -35,12 +36,22 @@ MainWindowProjet::~MainWindowProjet()
     delete ui;
 }
 
+/*!
+  Click capture event
+ */
 void MainWindowProjet::updateDetailTache()
 {
     Tache * t1 = projet->getTaches()->value(ui->tree->currentItem()->text(0));
     ui->detailTache->setHtml(t1->toHtml());
+    if(t1->isUnitaire())
+        ui->addProg->setDisabled(false);
+    else
+       ui->addProg->setDisabled(true);
 }
 
+/*!
+  Click capture event
+ */
 void MainWindowProjet::boutonAddUnitaire()
 {
     ajouterTacheUnitaire a(this, projet);
@@ -48,6 +59,9 @@ void MainWindowProjet::boutonAddUnitaire()
     this->updateListeTache();
 }
 
+/*!
+  Click capture event
+ */
 void MainWindowProjet::boutonAddComposite()
 {
     ajouterTacheComposite a(this, projet);
@@ -55,6 +69,9 @@ void MainWindowProjet::boutonAddComposite()
     this->updateListeTache();
 }
 
+/*!
+  Click capture event
+ */
 void MainWindowProjet::boutonProgrammerTache()
 {
     if(ui->tree->currentItem() != nullptr)
@@ -67,6 +84,7 @@ void MainWindowProjet::boutonProgrammerTache()
             this->updateListeTache();
         }
     }
+    ui->addProg->setDisabled(true);
 }
 
 void MainWindowProjet::updateListeTache()
@@ -101,6 +119,12 @@ void MainWindowProjet::updateListeTache()
     ui->tree->expandAll();
 }
 
+/*!
+  Insert a tache in the tree view of a projet editor
+   \param QTreeWidgetItem * t The item
+   \param Tache* tache The tache
+   \param QTreeWidgetItem *>*  alreadyInTable Table to save what's already in the tree
+ */
 void MainWindowProjet::insertTacheInTree(QTreeWidgetItem * t, Tache* tache, QMap<Tache*, QTreeWidgetItem *>* alreadyInTable)
 {
     t->setText(0, tache->getNom());
@@ -108,7 +132,7 @@ void MainWindowProjet::insertTacheInTree(QTreeWidgetItem * t, Tache* tache, QMap
         t->setText(1, tache->getPred()->getNom());
     else
         t->setText(1, "✘ Aucune");
-    if(tache->getDebut().isNull())
+    if(tache->getDebut()->isNull())
         t->setText(2, "✘");
     else
         t->setText(2, "✔");

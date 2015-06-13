@@ -36,6 +36,9 @@ ajouterTacheUnitaire::~ajouterTacheUnitaire()
     delete ui;
 }
 
+/*!
+  Override default behaviour of accept buttons or enter key. Performs checks before insert datas.
+ */
 void ajouterTacheUnitaire::accept() {
     bool statusOk = true;
     QString message;

@@ -54,6 +54,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+/*!
+  Click capture event
+ */
 void MainWindow::boutonajouterActivite()
 {
     ajouterActivite a;
@@ -62,6 +65,9 @@ void MainWindow::boutonajouterActivite()
     this->updateVueHebdomadaire();
 }
 
+/*!
+  Click capture event
+ */
 void MainWindow::boutonajouterProjet()
 {
     ajouterProjet a;
@@ -70,6 +76,10 @@ void MainWindow::boutonajouterProjet()
     this->updateVueHebdomadaire();
 }
 
+/*!
+  Return the monday in the current week of calendar widget
+   \return const QDate Date
+ */
 const QDate MainWindow::getSelectedMonday()
 {
     return jourSelectionne.addDays(- jourSelectionne.dayOfWeek() + 1);
@@ -94,12 +104,20 @@ void MainWindow::updateListeActivites()
     ui->listeActivites->sortItems();
 }
 
+/*!
+  Slot to save current date selected
+   \param date unused
+ */
 void MainWindow::updateJourSelectionne(const QDate & date)
 {
     Q_UNUSED(date);
     jourSelectionne = ui->calendrier->selectedDate();
 }
 
+/*!
+  Launch the projet editor corresponding the the item clicked
+   \param QListWidgetItem * projet the clicked item
+ */
 void MainWindow::projetClic(QListWidgetItem *projet)
 {
     MainWindowProjet * a = new MainWindowProjet(this, projet->text().mid(4)); // Mid to delete the crayon icon
@@ -156,14 +174,14 @@ void MainWindow::updateVueHebdomadaire() {
         case_event->setBackgroundColor(evenement->getColor());
         case_event->setToolTip(evenement->getDesc());
 
-        int colonne = evenement->getDebut().date().daysTo(getSelectedMonday()) + 1;
+        int colonne = evenement->getDebut()->date().daysTo(getSelectedMonday()) + 1;
 
-        int ligne = (evenement->getDebut().time().hour() - 8) * 6; //Heures
-        ligne = ligne + evenement->getFin().time().minute() / 10; //Minutes
+        int ligne = (evenement->getDebut()->time().hour() - 8) * 6; //Heures
+        ligne = ligne + evenement->getFin()->time().minute() / 10; //Minutes
 
         ui->vueHebdomadaire->removeCellWidget(ligne,-colonne + 1);
         ui->vueHebdomadaire->setItem(ligne,-colonne + 1,case_event);
-        ui->vueHebdomadaire->setSpan(ligne,-colonne + 1,evenement->getDebut().time().secsTo(evenement->getFin().time()) / 600,1);
+        ui->vueHebdomadaire->setSpan(ligne,-colonne + 1,evenement->getDebut()->time().secsTo(evenement->getFin()->time()) / 600,1);
 
     }
 }

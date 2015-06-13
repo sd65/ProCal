@@ -1,3 +1,7 @@
+/**
+@file main.cpp
+*/
+
 #include <algorithm>
 
 #include <QApplication>
@@ -15,6 +19,12 @@
 
 void initWithSomeData();
 
+/*!
+    The main function of the program
+   \param argc Unused
+   \param argv Unused
+   \return exec status code
+ */
 int main(int argc, char *argv[])
 {
 
@@ -30,6 +40,10 @@ int main(int argc, char *argv[])
 
 }
 
+/*!
+  This function can populate some data before entering the gui. Useful for debug or presentation purposes.
+   \return none
+ */
 void initWithSomeData ()
 {
     ////////////////

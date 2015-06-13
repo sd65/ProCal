@@ -47,7 +47,9 @@ ajouterTacheComposite::~ajouterTacheComposite()
     delete ui;
 }
 
-
+/*!
+  Override default behaviour of accept buttons or enter key. Performs checks before insert datas.
+ */
 void ajouterTacheComposite::accept() {
     bool statusOk = true;
     QString message;

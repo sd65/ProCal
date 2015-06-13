@@ -5,7 +5,11 @@
 
 #include "ui/headers/uiHelpers.h"
 
-
+/*!
+  Display an confirmation message box and ask what to do
+   \param const String& message The message to dispay
+   \return true if clicked yes
+ */
 bool showErrorsAndAskWhatToDo(const QString& message)
 {
     QMessageBox::StandardButton reply;
@@ -13,6 +17,10 @@ bool showErrorsAndAskWhatToDo(const QString& message)
     return (reply == QMessageBox::No);
 }
 
+/*!
+  Override a mouse event in our custom widget. Display a msg box to show today
+   \param e The mouse event
+ */
 void ourCalendarWidget::mousePressEvent(QMouseEvent *e)
 {
     Q_UNUSED(e);

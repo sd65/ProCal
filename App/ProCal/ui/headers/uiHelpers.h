@@ -9,6 +9,10 @@
 
 bool showErrorsAndAskWhatToDo(const QString& message);
 
+/*!
+  \class ourCalendarWidget
+  \brief Our custom widget inherited by QCalendarWidget
+ */
 class ourCalendarWidget : public QCalendarWidget
 {
 
@@ -20,6 +24,12 @@ public:
 
 
 protected:
+    /*!
+       Override the method of the parent class and add some indicators to show today and days with scheduled events
+       \param painter default
+       \param rect default
+       \param date default
+     */
     void paintCell(QPainter *painter, const QRect &rect, const QDate &date) const
     {
 

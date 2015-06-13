@@ -29,10 +29,12 @@ public:
 
 public slots:
     void boutonajouterActivite();
+    void boutonExportProjet();
     void boutonajouterProjet();
     void updateJourSelectionne(const QDate & date);
     void updateVueHebdomadaire();
     void projetClic(QListWidgetItem* projet);
+    void updateExportProjet();
 
 };
 

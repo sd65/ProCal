@@ -9,6 +9,7 @@
 
 bool showErrorsAndAskWhatToDo(const QString& message);
 
+
 /*!
   \class ourCalendarWidget
   \brief Our custom widget inherited by QCalendarWidget

@@ -31,7 +31,7 @@ Evenement* Programmation::progExistanteEntre(const QDateTime &d, const QDateTime
 
 /*!
   Return a list of all events scheduled this week
-   \param monday The first day of this week
+   \param monday const QDate The first day of this week
    \return QList<Evenement *> * The list
  */
 QList<Evenement *> *Programmation::getWeekEvents(const QDate &monday)

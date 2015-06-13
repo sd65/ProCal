@@ -27,6 +27,7 @@ MainWindowProjet::MainWindowProjet(QWidget *parent, QString pprojetName) :
     connect(ui->addComposite, SIGNAL (clicked()), this, SLOT (boutonAddComposite()));
     connect(ui->addProg, SIGNAL (clicked()), this, SLOT (boutonProgrammerTache()));
 
+    ui->addProg->setDisabled(true);
     this->updateListeTache();
 }
 
@@ -42,6 +43,10 @@ void MainWindowProjet::updateDetailTache()
 {
     Tache * t1 = projet->getTaches()->value(ui->tree->currentItem()->text(0));
     ui->detailTache->setHtml(t1->toHtml());
+    if(t1->isUnitaire())
+        ui->addProg->setDisabled(false);
+    else
+       ui->addProg->setDisabled(true);
 }
 
 /*!

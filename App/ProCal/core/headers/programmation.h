@@ -28,7 +28,6 @@ public:
 
     void programmer(Evenement *e, const QDateTime &d, const QDateTime &f);
 
-    int getDureeRestante(Evenement&);
 
     Evenement* progExistanteEntre(const QDateTime &d, const QDateTime &f);
 

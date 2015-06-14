@@ -2,6 +2,9 @@
 @file main.cpp
 */
 
+// Do you want the GUI ?
+#define launchGUI true
+
 #include <algorithm>
 
 #include <QApplication>
@@ -11,9 +14,12 @@
 #include "core/headers/projet.h"
 #include "core/headers/programmation.h"
 
+#include "core/headers/exportManager.h"
+
+#if launchGUI
 #include "ui/headers/mainWindow.h"
 #include "ui_mainWindow.h"
-
+#endif
 
 #define creerTacheConteneur( nom, ... ) QList<Tache*> * nom = new QList<Tache*> __VA_ARGS__;
 
@@ -30,13 +36,14 @@ int main(int argc, char *argv[])
 
     initWithSomeData();
 
-    bool launchUI = true;
-    if(launchUI) {
-        QApplication a(argc, argv);
-        MainWindow w;
-        w.showMaximized();
-        return a.exec();
-    }
+    #if launchGUI
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.showMaximized();
+    return a.exec();
+    #else
+    return 0;
+    #endif
 
 }
 
@@ -81,6 +88,10 @@ void initWithSomeData ()
     creerTacheConteneur(compo2, {t1, t2, tc0});
     p1->creerTacheComposite("TacheComposite1", *compo2);
 
+    QFile * f = new QFile("/home/sd/export.xml");
+    ExportManager exp (f, ExportManager::EXPORT_TXT());
+    exp.exportProjet(p1);
+//    //delete f;
 
     /////////////
     // Activites

@@ -9,6 +9,7 @@
 
 bool showErrorsAndAskWhatToDo(const QString& message);
 
+
 /*!
   \class ourCalendarWidget
   \brief Our custom widget inherited by QCalendarWidget
@@ -44,7 +45,7 @@ protected:
         }
         if(myProgrammationManager.progExistanteEntre(QDateTime(date, QTime(0,0,0,1)), QDateTime(date, QTime(23,59,59,59))) != nullptr && this->selectedDate() != date)
         {
-            painter->fillRect(rect, QColor(236,64,122,100));
+            painter->fillRect(rect, QColor(236,64,122,170));
             haveWritten = true;
         }
 

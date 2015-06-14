@@ -1,8 +1,10 @@
 #include <QDebug>
+#include <QFileDialog>
 
 #include "core/headers/evenement.h"
 #include "core/headers/projet.h"
 #include "core/headers/programmation.h"
+#include "core/headers/exportManager.h"
 
 #include "headers/mainWindow.h"
 #include "ui_mainWindow.h"
@@ -44,9 +46,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->ajouterActivite, SIGNAL (clicked()), this, SLOT (boutonajouterActivite()));
     connect(ui->ajouterProjet, SIGNAL (clicked()), this, SLOT (boutonajouterProjet()));
+    connect(ui->exportProjet, SIGNAL (clicked()), this, SLOT (boutonExportProjet()));
+    connect(ui->exportWeek, SIGNAL (clicked()), this, SLOT (boutonExportWeek()));
     connect(ui->calendrier, SIGNAL (clicked(QDate)), this, SLOT (updateJourSelectionne(QDate)));
     connect(ui->calendrier, SIGNAL (clicked(QDate)), this, SLOT (updateVueHebdomadaire()));
     connect(ui->listeProjets, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(projetClic(QListWidgetItem*)));
+    connect(ui->listeProjets, SIGNAL(itemSelectionChanged()), this, SLOT(updateExportProjet()));
 }
 
 MainWindow::~MainWindow()
@@ -63,6 +68,58 @@ void MainWindow::boutonajouterActivite()
     a.exec();
     this->updateListeActivites();
     this->updateVueHebdomadaire();
+}
+
+
+void MainWindow::boutonExportWeek()
+{
+    QString * selectedFilter = new QString();
+    QString fileName = QFileDialog::getSaveFileName(this, "Exporter la semaine",  QDir::current().absolutePath(), "XML(*.xml);;Texte brut(*.txt)", selectedFilter);
+    Programmation& myProgrammation = Programmation::getInstance();
+    QList<Evenement*>* events = myProgrammation.getWeekEvents(this->getSelectedMonday());
+    if(*selectedFilter == "XML(*.xml)")
+    {
+        QFile * f = new QFile(fileName + ".xml");
+        ExportManager exp(f, ExportManager::EXPORT_XML());
+        exp.exportEvents(events);
+        f->close();
+        delete f;
+    }
+    else
+    {
+        QFile * f = new QFile(fileName+ ".txt");
+        ExportManager exp(f, ExportManager::EXPORT_TXT());
+        exp.exportEvents(events);
+        f->close();
+        delete f;
+    }
+    delete selectedFilter;
+}
+
+
+void MainWindow::boutonExportProjet()
+{
+    QString * selectedFilter = new QString();
+    QString fileName = QFileDialog::getSaveFileName(this, "Exporter un projet",  QDir::current().absolutePath(), "XML(*.xml);;Texte brut(*.txt)", selectedFilter);
+    ProjetManager& myProjetManager = ProjetManager::getInstance();
+    Projet* p = myProjetManager.getProjets()->value(ui->listeProjets->currentItem()->text().mid(4));
+    if(*selectedFilter == "XML(*.xml)")
+    {
+        QFile * f = new QFile(fileName + ".xml");
+        ExportManager exp(f, ExportManager::EXPORT_XML());
+        exp.exportProjet(p);
+        f->close();
+        delete f;
+    }
+    else
+    {
+        QFile * f = new QFile(fileName+ ".txt");
+        ExportManager exp(f, ExportManager::EXPORT_TXT());
+        exp.exportProjet(p);
+        f->close();
+        delete f;
+    }
+    delete selectedFilter;
 }
 
 /*!
@@ -123,6 +180,11 @@ void MainWindow::projetClic(QListWidgetItem *projet)
     MainWindowProjet * a = new MainWindowProjet(this, projet->text().mid(4)); // Mid to delete the crayon icon
     a->setAttribute(Qt::WA_DeleteOnClose);
     a->show();
+}
+
+void MainWindow::updateExportProjet()
+{
+    ui->exportProjet->setDisabled(false);
 }
 
 void MainWindow::updateVueHebdomadaire() {
@@ -204,4 +266,5 @@ void MainWindow::updateListeProjets()
         ui->listeProjets->addItem(item);
     }
     ui->listeProjets->sortItems();
+    ui->exportProjet->setDisabled(true);
 }

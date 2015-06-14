@@ -34,8 +34,6 @@ button Show today ?
 
 TODO SD
 
-XML ?
- 
 
 TODO LM
 

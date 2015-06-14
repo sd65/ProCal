@@ -34,7 +34,7 @@ Evenement* Programmation::progExistanteEntre(const QDateTime &d, const QDateTime
    \param monday const QDate The first day of this week
    \return QList<Evenement *> * The list
  */
-QList<Evenement *> *Programmation::getWeekEvents(const QDate &monday)
+QList<Evenement *>* Programmation::getWeekEvents(const QDate &monday)
 {
     QList<Evenement*>* weekEvents = new QList<Evenement*>;
     const QDate sunday = monday.addDays(6);

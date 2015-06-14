@@ -8,7 +8,7 @@
         <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
         <meta name="generator" content="Doxygen 1.8.9.1"/>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <title>Project Calendar: /home/sd/Documents/Boulot/LO21/ProCal/App/ProCal/ui/headers/ajouterTacheComposite.h Source File</title>
+        <title>Project Calendar: /home/sd/Documents/Boulot/LO21/ProCal/App/ProCal/core/headers/exportManager.h Source File</title>
         <!--<link href="tabs.css" rel="stylesheet" type="text/css"/>-->
         <script type="text/javascript" src="dynsections.js"></script>
         <link href="search/search.css" rel="stylesheet" type="text/css"/>
@@ -86,44 +86,43 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_b1617d756d2224e91d37255e84e89ba2.html">App</a></li><li class="navelem"><a class="el" href="dir_3ea073a100c8469b52c18606dee15af8.html">ProCal</a></li><li class="navelem"><a class="el" href="dir_1e133606f98f7003900316b9e93927e3.html">ui</a></li><li class="navelem"><a class="el" href="dir_86ad998ecf075ded5d118a75158e3fce.html">headers</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_b1617d756d2224e91d37255e84e89ba2.html">App</a></li><li class="navelem"><a class="el" href="dir_3ea073a100c8469b52c18606dee15af8.html">ProCal</a></li><li class="navelem"><a class="el" href="dir_022d0d6a91a015216454e6f23345fb76.html">core</a></li><li class="navelem"><a class="el" href="dir_081d19b551e5fb851194ee442dd798e8.html">headers</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">ajouterTacheComposite.h</div>  </div>
+<div class="title">exportManager.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef AJOUTERTACHECOMPOSITE_H</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define AJOUTERTACHECOMPOSITE_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef ExportManager_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define ExportManager_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QDialog&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;core/headers/projet.h&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceUi.html">Ui</a> {</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">class </span><a class="code" href="classajouterTacheComposite.html">ajouterTacheComposite</a>;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;}</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classajouterTacheComposite.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="classajouterTacheComposite.html">ajouterTacheComposite</a> : <span class="keyword">public</span> QDialog</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QXmlStreamWriter&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;QFile&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;core/headers/projet.h&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="classExportManager.html">    9</a></span>&#160;<span class="keyword">class </span><a class="code" href="classExportManager.html">ExportManager</a></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordtype">int</span> type;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    QFile* file;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="classProjet.html">Projet</a>* projet;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    Ui::ajouterTacheComposite *ui;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">void</span> accept();</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="classExportManager.html">ExportManager</a>(QFile* pfile, <span class="keywordtype">int</span> ptype = ExportManager::EXPORT_XML()) : type(ptype), file(pfile) {}</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">int</span> EXPORT_XML() { <span class="keywordflow">return</span> 1; }</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">int</span> EXPORT_TXT() { <span class="keywordflow">return</span> 2; }</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classajouterTacheComposite.html">ajouterTacheComposite</a>(QWidget *parent = 0, <a class="code" href="classProjet.html">Projet</a>* projet = 0);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    ~<a class="code" href="classajouterTacheComposite.html">ajouterTacheComposite</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classExportManager.html#ac813502f04eb1f4ba1d3da24ecf884a6">exportProjet</a>(<a class="code" href="classProjet.html">Projet</a>* projet);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classExportManager.html#a415869192d773bbe4f03efc5383eb48d">exportEvents</a>(QList&lt;Evenement *&gt; *events);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;};</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;};</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#endif // AJOUTERTACHECOMPOSITE_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#endif // ExportManager_H</span></div>
 <div class="ttc" id="classProjet_html"><div class="ttname"><a href="classProjet.html">Projet</a></div><div class="ttdef"><b>Definition:</b> projet.h:14</div></div>
-<div class="ttc" id="namespaceUi_html"><div class="ttname"><a href="namespaceUi.html">Ui</a></div><div class="ttdef"><b>Definition:</b> ajouterActivite.h:6</div></div>
-<div class="ttc" id="classajouterTacheComposite_html"><div class="ttname"><a href="classajouterTacheComposite.html">ajouterTacheComposite</a></div><div class="ttdef"><b>Definition:</b> ajouterTacheComposite.h:12</div></div>
+<div class="ttc" id="classExportManager_html_ac813502f04eb1f4ba1d3da24ecf884a6"><div class="ttname"><a href="classExportManager.html#ac813502f04eb1f4ba1d3da24ecf884a6">ExportManager::exportProjet</a></div><div class="ttdeci">bool exportProjet(Projet *projet)</div><div class="ttdoc">Save in XML or TXT (depeding of class contructor parameter) a projet and all his tasks. </div><div class="ttdef"><b>Definition:</b> exportManager.cpp:8</div></div>
+<div class="ttc" id="classExportManager_html_a415869192d773bbe4f03efc5383eb48d"><div class="ttname"><a href="classExportManager.html#a415869192d773bbe4f03efc5383eb48d">ExportManager::exportEvents</a></div><div class="ttdeci">bool exportEvents(QList&lt; Evenement * &gt; *events)</div><div class="ttdoc">Save in XML or TXT (depeding of class contructor parameter) all week events. </div><div class="ttdef"><b>Definition:</b> exportManager.cpp:74</div></div>
+<div class="ttc" id="classExportManager_html"><div class="ttname"><a href="classExportManager.html">ExportManager</a></div><div class="ttdef"><b>Definition:</b> exportManager.h:9</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->

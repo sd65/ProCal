@@ -36,19 +36,20 @@ int main(int argc, char *argv[])
 
     initWithSomeData();
 
-    #if launchGUI
+#if launchGUI
     QApplication a(argc, argv);
     MainWindow w;
     w.showMaximized();
     return a.exec();
-    #else
+#else
     return 0;
-    #endif
+#endif
 
 }
 
 /*!
   This function can populate some data before entering the gui. Useful for debug or presentation purposes.
+  NOTES : this rely on the current time to set some schedule. So if you're opening the program in the evening, you won't see anything since the calendat is from 8 am to 8 pm !
    \return none
  */
 void initWithSomeData ()
@@ -58,51 +59,52 @@ void initWithSomeData ()
 
     ProjetManager& myProjetManager = ProjetManager::getInstance();
 
-    myProjetManager.creerProjet("Projet un");
-    myProjetManager.creerProjet("Projet deux", QDate(2020,1,1));
-    myProjetManager.creerProjet("Projet trois", QDate(2030,1,1), QDate(2030,1,2));
+    myProjetManager.creerProjet("Recette de Spaghettis à la ricotta", QDate::currentDate(), QDate::currentDate().addMonths(6));
+    myProjetManager.creerProjet("Partir en vacances", QDate::currentDate(), QDate::currentDate().addDays(10));
 
-    Projet* p1 = myProjetManager.getProjets()->value("Projet un");
+
 
     ///////////////
-    // Taches
+    // Recette de Spaghettis à la ricotta
 
-    p1->creerTacheUnitaire("Tache1");
-    Tache* t1 = p1->getTaches()->value("Tache1");
+    Projet* p1 = myProjetManager.getProjets()->value("Recette de Spaghettis à la ricotta");
+    p1->creerTacheUnitaire("Aller en Italie");
+    Tache* t1 = p1->getTaches()->value("Aller en Italie");
 
-    p1->creerTacheUnitaire("Tache3");
+    p1->creerTacheUnitaire("Acheter de bonnes pates fraiches", QTime(0,10), false, t1);
+    Tache* t2 = p1->getTaches()->value("Acheter de bonnes pates fraiches");
 
-    p1->creerTacheUnitaire("Tache2", QTime(0,10), false, t1 , QDate::currentDate().addDays(1), QDate::currentDate().addDays(2));
-    Tache* t2 = p1->getTaches()->value("Tache2");
+    creerTacheConteneur(compo, {t1, t2});
+    p1->creerTacheComposite("1 - Un bon début", *compo);
+    Tache* tc1 = p1->getTaches()->value("1 - Un bon début");
 
-    p1->creerTacheUnitaire("TacheInside1");
-    Tache* ti1 = p1->getTaches()->value("TacheInside1");
+    p1->creerTacheUnitaire("Aller à Va Piano !", QTime(1,0), false, tc1);
+    Tache* t3 = p1->getTaches()->value("Aller à Va Piano !");
 
-    p1->creerTacheUnitaire("TacheInside2");
-    Tache* ti2 = p1->getTaches()->value("TacheInside2");
+    creerTacheConteneur(compo2, {t3});
+    p1->creerTacheComposite("2 - Tout laisser tomber et...", *compo2 ,tc1);
 
-    creerTacheConteneur(compo, {ti1, ti2});
-    p1->creerTacheComposite("TacheCompositeInside", *compo);
-    Tache* tc0 = p1->getTaches()->value("TacheCompositeInside");
+    ///////////////
+    // Partir en vacances
 
-    creerTacheConteneur(compo2, {t1, t2, tc0});
-    p1->creerTacheComposite("TacheComposite1", *compo2);
+    Projet* p2 = myProjetManager.getProjets()->value("Partir en vacances");
 
-    QFile * f = new QFile("/home/sd/export.xml");
-    ExportManager exp (f, ExportManager::EXPORT_TXT());
-    exp.exportProjet(p1);
-//    //delete f;
+    p2->creerTacheUnitaire("Faire ses valises", QTime(1,0), false);
+    Tache* t10 = p2->getTaches()->value("Faire ses valises");
+
+    p2->creerTacheUnitaire("Réaliser que l'on n'est pas en vacances", QTime(1,0), false, t10);
+    Tache* t11 = p2->getTaches()->value("Réaliser que l'on n'est pas en vacances");
 
     /////////////
     // Activites
 
     ActiviteManager& myActiviteManager = ActiviteManager::getInstance();
 
-    myActiviteManager.creerActivite("Activité un", "Balancoire");
-    Activite* a1 = myActiviteManager.getActivites()->value("Activité un");
+    myActiviteManager.creerActivite("Aller voir sa grand mère", "Pour avoir un peu d'argent de poche ?");
+    Activite* a1 = myActiviteManager.getActivites()->value("Aller voir sa grand mère");
 
-    myActiviteManager.creerActivite("Activité deux", "RDV galant");
-    Activite* a2 = myActiviteManager.getActivites()->value("Activité deux");
+    myActiviteManager.creerActivite("RDV galant", "Ne pas oublier de se mettre sur son 31.");
+    Activite* a2 = myActiviteManager.getActivites()->value("RDV galant");
 
 
     /////////////////
@@ -114,7 +116,9 @@ void initWithSomeData ()
 
     myProgrammation.programmer(a2, QDateTime::currentDateTime().addDays(1), QDateTime::currentDateTime().addDays(1).addSecs(3600));
 
-    myProgrammation.programmer(t2, QDateTime::currentDateTime().addDays(12), QDateTime::currentDateTime().addDays(13).addSecs(3600));
+    myProgrammation.programmer(t10, QDateTime::currentDateTime().addDays(3), QDateTime::currentDateTime().addDays(3).addSecs(3600));
+
+    myProgrammation.programmer(t11, QDateTime::currentDateTime().addDays(3).addSecs(3600*3), QDateTime::currentDateTime().addDays(3).addSecs(3600*4));
 
 }
 

@@ -19,18 +19,16 @@ Les activités ont forcement une date de prévu
 Singleton sur ProjetManaer et Programmation
 Composite sur tache
 set minmum et max in tache according to projet
-Rééemplenter notre propre widget pour les dates avec eve highlighted
+		Rééemplenter notre propre widget pour les dates avec eve highlighted
 On ne programme pas de tache Composite
 Tooltips !
 Revenir ) today
 Auto sized days
-Unicode for some icons
+		Unicode for some icons
 
 Notes pour nous :
 
-On ne peut pas faire hériter TAche UNitaire de evenement, mais tout Tache
-button Show today ?
-
+O
 
 TODO SD
 

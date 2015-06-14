@@ -149,7 +149,7 @@ void MainWindow::updateVueHebdomadaire() {
         if(i%6 == 0){
             for(j=0;j<7;j++){
                 QTableWidgetItem * case_heure = new QTableWidgetItem();
-                case_heure->setBackgroundColor(QColor("#F5F5F5"));
+                case_heure->setBackgroundColor(QColor("#E8E8E8"));
                 ui->vueHebdomadaire->setItem(i,j,case_heure);
             }
             listeHeures << h.toString("H:mm");
